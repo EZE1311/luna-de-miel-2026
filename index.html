@@ -3,614 +3,857 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plan v8 · Luna de Miel · Road Trip primero + Hawaii al final</title>
+<title>Nuestra Luna de Miel · Julio-Agosto 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ocean: #0a6e8a; --pacific: #2a7da8; --la: #d4763d; --canyon: #8b3a1a;
-    --sierra: #8b6f47; --gold: #c9a544;
-    --confirmed: #2d7a3e; --pending: #b8860b;
-    --sf: #5b8b9c; --pch: #6b9b6e;
-    --sand: #f4ead5; --soft: #f7f4ed; --deep: #1c3d4a;
-    --border: #d9d2c2; --text: #2a2a2a; --muted: #6b6b6b;
-    --danger: #b03030;
+    --sunset-coral: #ed7867;
+    --sunset-peach: #f5a986;
+    --sunset-gold: #e8b04b;
+    --ocean-deep: #1a4d5c;
+    --ocean-teal: #3a7a8a;
+    --ocean-soft: #a9d3dc;
+    --sand: #f9f1e3;
+    --cream: #fdf8f0;
+    --warm-white: #fffcf5;
+    --plum: #5a3b5c;
+    --leaf: #6b8e7f;
+    --rose: #d68b9c;
+    --ink: #2a2e35;
+    --ink-soft: #5a6068;
+    --ink-muted: #8c919a;
+    --line: #ebe1d0;
+    --shadow-soft: 0 4px 20px rgba(74, 49, 41, 0.06);
+    --shadow-card: 0 8px 32px rgba(74, 49, 41, 0.08);
+    --shadow-hover: 0 12px 40px rgba(74, 49, 41, 0.12);
   }
-  * { box-sizing: border-box; }
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; color: var(--text); background: var(--soft); margin: 0; line-height: 1.6; font-size: 15px; }
-  .container { max-width: 980px; margin: 0 auto; padding: 32px 28px 80px; background: white; box-shadow: 0 2px 24px rgba(0,0,0,0.05); }
-  header.hero { background: linear-gradient(135deg, var(--la) 0%, var(--ocean) 100%); color: white; padding: 36px 28px; border-radius: 12px; margin-bottom: 28px; }
-  header.hero .badge { display: inline-block; background: var(--confirmed); color: white; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 12px; letter-spacing: 0.6px; text-transform: uppercase; margin-bottom: 12px; }
-  header.hero h1 { margin: 0 0 12px; font-size: 28px; font-weight: 600; line-height: 1.25; }
-  header.hero .subtitle { margin: 0; font-size: 16px; opacity: 0.92; }
-  header.hero .meta { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 14px; }
-  header.hero .meta strong { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.7; margin-bottom: 2px; }
-  h2 { color: var(--deep); font-size: 22px; margin: 40px 0 14px; padding-bottom: 8px; border-bottom: 2px solid var(--la); }
-  h3 { color: var(--pacific); font-size: 17px; margin: 24px 0 10px; }
-  h4 { color: var(--deep); font-size: 14px; margin: 16px 0 6px; text-transform: uppercase; letter-spacing: 0.4px; }
-  p { margin: 8px 0 12px; }
-  ul, ol { margin: 8px 0 14px; padding-left: 22px; }
-  li { margin: 4px 0; }
-  table { width: 100%; border-collapse: collapse; margin: 14px 0 22px; font-size: 14px; }
-  th, td { padding: 9px 11px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
-  th { background: var(--sand); color: var(--deep); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.3px; }
-  tr:nth-child(even) td { background: #fafaf6; }
-  .pill { display: inline-block; padding: 2px 9px; border-radius: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; }
-  .pill.confirmed { background: #d4ecd9; color: var(--confirmed); }
-  .pill.pending { background: #fbeed1; color: var(--pending); }
-  .pill.urgent { background: #f3d5d5; color: var(--danger); }
-  .callout { border-left: 4px solid var(--pacific); background: #eaf3f6; padding: 14px 18px; border-radius: 4px; margin: 18px 0; }
-  .callout.warn { border-left-color: var(--pending); background: #fcf4d9; }
-  .callout p:first-child { margin-top: 0; } .callout p:last-child { margin-bottom: 0; }
-  code { background: var(--sand); padding: 1px 5px; border-radius: 3px; font-size: 13px; font-family: ui-monospace, "SF Mono", Monaco, monospace; }
-  .booking-card { background: linear-gradient(135deg, #e4f3e7 0%, #d4ecd9 100%); border: 2px solid var(--confirmed); border-radius: 10px; padding: 20px 24px; margin: 20px 0; }
-  .booking-card .reserva-codes { display: flex; gap: 24px; flex-wrap: wrap; padding-bottom: 14px; border-bottom: 1px solid rgba(45,122,62,0.2); margin-bottom: 14px; }
-  .booking-card .code-block { display: flex; flex-direction: column; }
-  .booking-card .code-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--confirmed); font-weight: 700; }
-  .booking-card .code-value { font-size: 18px; font-weight: 700; color: var(--deep); font-family: ui-monospace, "SF Mono", Monaco, monospace; margin-top: 2px; }
-  .flight-grid { display: grid; grid-template-columns: 60px 1fr 110px 110px 90px 80px; gap: 6px 12px; align-items: center; padding: 9px 0; border-bottom: 1px dashed rgba(0,0,0,0.1); font-size: 13px; }
-  .flight-grid.head { font-weight: 700; color: var(--deep); font-size: 11px; text-transform: uppercase; letter-spacing: 0.3px; padding-bottom: 6px; border-bottom: 2px solid var(--confirmed); }
-  .flight-grid:last-child { border-bottom: none; }
-  .flight-grid .vuelo { font-weight: 700; color: var(--canyon); font-family: ui-monospace, "SF Mono", Monaco, monospace; }
-  .summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 18px 0 24px; }
-  .card { background: var(--sand); border-radius: 8px; padding: 16px; border-left: 4px solid var(--pacific); }
-  .card .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted); font-weight: 600; }
-  .card .value { font-size: 19px; font-weight: 600; color: var(--deep); margin-top: 4px; }
-  .card .sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .day-row { display: grid; grid-template-columns: 44px 90px 140px 1fr 80px; gap: 10px; padding: 8px 10px; align-items: center; border-bottom: 1px solid var(--border); font-size: 14px; }
-  .day-row.head { background: var(--sand); font-weight: 600; color: var(--deep); text-transform: uppercase; font-size: 12px; letter-spacing: 0.3px; }
-  .day-row .d { font-weight: 600; }
-  .day-row.transit { background: #e4f3e7; }
-  .day-row.transit .d { color: var(--confirmed); }
-  .day-row.la .d { color: var(--la); }
-  .day-row.hawaii .d { color: var(--ocean); }
-  .day-row.vegas .d { color: var(--canyon); }
-  .day-row.sierra .d { color: var(--sierra); }
-  .day-row.sf .d { color: var(--sf); }
-  .day-row.pch .d { color: var(--pch); }
-  .day-row .loc { font-weight: 600; color: var(--deep); }
-  .day-row .drive { color: var(--muted); font-size: 12px; text-align: right; font-family: ui-monospace, "SF Mono", monospace; }
-  .pending-list { list-style: none; padding-left: 0; }
-  .pending-list li { padding: 10px 14px; margin: 6px 0; background: var(--sand); border-radius: 6px; border-left: 3px solid var(--pending); display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
-  .pending-list li .text { flex: 1; min-width: 200px; }
-  .pending-list li .text strong { color: var(--deep); }
-  .pending-list li .text small { color: var(--muted); display: block; margin-top: 2px; font-size: 12px; }
-  .total-row { background: var(--deep); color: white; font-weight: 700; }
-  .total-row td { color: white; }
-  .calendar-section { margin: 24px 0 36px; }
-  .calendar-month-title { font-weight: 700; color: var(--deep); font-size: 16px; margin: 18px 0 10px; text-transform: uppercase; letter-spacing: 0.5px; }
-  .cal-legend { display: flex; flex-wrap: wrap; gap: 12px; padding: 12px 14px; background: var(--sand); border-radius: 6px; font-size: 12px; margin-bottom: 18px; }
-  .cal-legend .lg-item { display: flex; align-items: center; gap: 6px; }
-  .cal-legend .lg-swatch { width: 14px; height: 14px; border-radius: 3px; border: 1px solid rgba(0,0,0,0.1); }
-  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
-  .cal-head { background: var(--deep); color: white; padding: 8px 4px; text-align: center; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; border-radius: 4px; }
-  .cal-day { background: white; padding: 8px; border: 1px solid var(--border); border-radius: 6px; min-height: 88px; font-size: 11px; display: flex; flex-direction: column; }
-  .cal-day.other-month { background: #f7f5ef; color: #c4bda8; min-height: 56px; }
-  .cal-day .cal-num { font-weight: 700; font-size: 16px; color: var(--deep); line-height: 1; }
-  .cal-day .cal-loc { font-weight: 700; font-size: 11px; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.3px; }
-  .cal-day .cal-detail { color: var(--muted); font-size: 10px; margin-top: 3px; line-height: 1.35; }
-  .cal-day.transit { background: #ebebe8; border-left: 3px solid #7b7b7b; }
-  .cal-day.transit .cal-loc { color: #5b5b5b; }
-  .cal-day.hawaii { background: #d6e8f3; border-left: 3px solid var(--ocean); }
-  .cal-day.hawaii .cal-loc { color: var(--ocean); }
-  .cal-day.vegas { background: #f3d8c8; border-left: 3px solid var(--canyon); }
-  .cal-day.vegas .cal-loc { color: var(--canyon); }
-  .cal-day.sierra { background: #e8dcc0; border-left: 3px solid var(--sierra); }
-  .cal-day.sierra .cal-loc { color: var(--sierra); }
-  .cal-day.sf { background: #dde8ee; border-left: 3px solid var(--sf); }
-  .cal-day.sf .cal-loc { color: var(--sf); }
-  .cal-day.pch { background: #dde9d9; border-left: 3px solid var(--pch); }
-  .cal-day.pch .cal-loc { color: var(--pch); }
-  .cal-day.la { background: #fce8d8; border-left: 3px solid var(--la); }
-  .cal-day.la .cal-loc { color: var(--la); }
-  .footer { margin-top: 50px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; text-align: center; }
-  @media print {
-    body { background: white; font-size: 12px; }
-    .container { box-shadow: none; padding: 0; max-width: none; }
-    header.hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    h2 { page-break-after: avoid; }
-    table, .booking-card, .callout { page-break-inside: avoid; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.65;
+    font-size: 15.5px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .public-banner {
+    background: linear-gradient(135deg, var(--sunset-gold) 0%, var(--sunset-coral) 100%);
+    color: white;
+    padding: 10px 24px;
+    text-align: center;
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+  .public-banner strong { font-weight: 700; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+  .hero {
+    background:
+      linear-gradient(180deg, rgba(26, 77, 92, 0.05) 0%, rgba(237, 120, 103, 0.12) 60%, transparent 100%),
+      radial-gradient(ellipse at top left, rgba(245, 169, 134, 0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom right, rgba(169, 211, 220, 0.3) 0%, transparent 50%),
+      var(--cream);
+    padding: 80px 0 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 20px; right: 5%;
+    width: 220px; height: 220px;
+    background: radial-gradient(circle, var(--sunset-peach) 0%, transparent 70%);
+    opacity: 0.4;
+    border-radius: 50%;
+    filter: blur(30px);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 40px; left: 8%;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, var(--ocean-soft) 0%, transparent 70%);
+    opacity: 0.3;
+    border-radius: 50%;
+    filter: blur(40px);
+  }
+  .hero-content { position: relative; z-index: 1; text-align: center; }
+  .hero-eyebrow {
+    font-family: 'Caveat', cursive;
+    font-size: 32px;
+    color: var(--sunset-coral);
+    margin-bottom: 8px;
+    font-weight: 700;
+    transform: rotate(-1.5deg);
+    display: inline-block;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 78px;
+    font-weight: 500;
+    line-height: 1.05;
+    color: var(--ocean-deep);
+    letter-spacing: -1.5px;
+    margin-bottom: 18px;
+  }
+  .hero h1 em { font-style: italic; color: var(--sunset-coral); font-weight: 400; }
+  .hero-tagline {
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 620px;
+    margin: 0 auto 36px;
+    line-height: 1.6;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+  }
+  .hero-stat { text-align: center; }
+  .hero-stat .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    font-weight: 600;
+    color: var(--sunset-coral);
+    line-height: 1;
+    font-feature-settings: 'lnum';
+  }
+  .hero-stat .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--ink-soft);
+    margin-top: 6px;
+    font-weight: 500;
+  }
+  .hero-dates {
+    margin-top: 36px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--ocean-deep);
+    font-style: italic;
+  }
+  .hero-dates span {
+    display: inline-block;
+    padding: 0 16px;
+    color: var(--sunset-gold);
+    font-size: 18px;
+  }
+  .nav {
+    background: rgba(253, 248, 240, 0.92);
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .nav-inner {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-soft);
+  }
+  .nav-inner a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+    border-bottom: 1.5px solid transparent;
+    padding-bottom: 2px;
+  }
+  .nav-inner a:hover { color: var(--sunset-coral); border-bottom-color: var(--sunset-coral); }
+  section { padding: 80px 0; }
+  section.alt { background: var(--warm-white); }
+  .section-eyebrow {
+    font-family: 'Caveat', cursive;
+    font-size: 26px;
+    color: var(--sunset-coral);
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    font-weight: 500;
+    color: var(--ocean-deep);
+    line-height: 1.1;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+  .section-title em { font-style: italic; color: var(--sunset-coral); }
+  .section-lead {
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 720px;
+    margin-bottom: 48px;
+    line-height: 1.7;
+  }
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 32px;
+  }
+  .card {
+    background: var(--warm-white);
+    border-radius: 18px;
+    padding: 28px 24px;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid var(--line);
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+  .card .card-icon {
+    width: 44px; height: 44px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--sunset-peach) 0%, var(--sunset-coral) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+  .card.ocean .card-icon { background: linear-gradient(135deg, var(--ocean-soft) 0%, var(--ocean-teal) 100%); }
+  .card.sierra .card-icon { background: linear-gradient(135deg, #c9a96e 0%, #8b6f47 100%); }
+  .card.canyon .card-icon { background: linear-gradient(135deg, var(--sunset-gold) 0%, #8b3a1a 100%); }
+  .card.la .card-icon { background: linear-gradient(135deg, var(--rose) 0%, var(--plum) 100%); }
+  .card-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--ink-muted);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .card-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--ocean-deep);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .card-sub {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+  .booking-block {
+    background: var(--warm-white);
+    border-radius: 22px;
+    padding: 32px 36px;
+    box-shadow: var(--shadow-card);
+    margin: 28px 0;
+    border-top: 4px solid var(--sunset-coral);
+  }
+  .booking-block.confirmed { border-top-color: var(--leaf); }
+  .booking-block h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--ocean-deep);
+    margin-bottom: 6px;
+  }
+  .booking-block .badge {
+    display: inline-block;
+    background: var(--leaf);
+    color: white;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .booking-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 18px;
+    font-size: 13.5px;
+  }
+  .booking-meta div { display: flex; flex-direction: column; }
+  .booking-meta strong { font-size: 10.5px; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-muted); font-weight: 600; margin-bottom: 3px; }
+  .booking-meta span { font-family: 'DM Sans', monospace; font-size: 15px; color: var(--ocean-deep); font-weight: 600; }
+  .flight-list { list-style: none; }
+  .flight-list li {
+    display: grid;
+    grid-template-columns: 90px 1fr auto auto;
+    gap: 18px;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--line);
+    font-size: 14px;
+  }
+  .flight-list li:last-child { border-bottom: none; }
+  .flight-list .vuelo {
+    font-weight: 700;
+    color: var(--sunset-coral);
+    font-family: 'DM Sans', monospace;
+    font-size: 13px;
+  }
+  .flight-list .ruta { color: var(--ocean-deep); font-weight: 600; }
+  .flight-list .ruta small { display: block; color: var(--ink-muted); font-weight: 400; font-size: 12px; margin-top: 2px; }
+  .flight-list .horario { text-align: right; font-size: 13px; color: var(--ink-soft); line-height: 1.4; font-feature-settings: 'lnum'; }
+  .flight-list .horario strong { color: var(--ocean-deep); }
+  .pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .pill.ok, .pill.confirmed { background: #d4ecd9; color: #2d7a3e; }
+  .pill.pending { background: #fbeed1; color: #b8860b; }
+  .pill.urgent { background: #f3d5d5; color: #b03030; }
+  .calendar-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px 22px;
+    background: var(--sand);
+    border-radius: 14px;
+    font-size: 12.5px;
+    margin-bottom: 28px;
+    color: var(--ink-soft);
+  }
+  .legend-item { display: flex; align-items: center; gap: 8px; }
+  .legend-swatch { width: 16px; height: 16px; border-radius: 5px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06); }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+  .cal-head {
+    background: var(--ocean-deep);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 8px;
+  }
+  .cal-day {
+    background: var(--warm-white);
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    min-height: 100px;
+    font-size: 11px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .cal-day:hover { transform: translateY(-2px); box-shadow: var(--shadow-soft); }
+  .cal-day.other-month {
+    background: rgba(235, 225, 208, 0.4);
+    color: var(--ink-muted);
+    min-height: 60px;
+    opacity: 0.6;
+  }
+  .cal-day .cal-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--ocean-deep);
+    line-height: 1;
+  }
+  .cal-day .cal-loc {
+    font-weight: 700;
+    font-size: 11px;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .cal-day .cal-detail {
+    color: var(--ink-soft);
+    font-size: 10.5px;
+    margin-top: 4px;
+    line-height: 1.45;
+  }
+  .cal-day.transit { background: #ebe6dc; border-color: #d6cdba; }
+  .cal-day.transit .cal-loc { color: var(--ink-soft); }
+  .cal-day.hawaii { background: linear-gradient(135deg, #e8f1f4 0%, #d6e8f3 100%); border-color: #b8d4dc; }
+  .cal-day.hawaii .cal-loc { color: var(--ocean-teal); }
+  .cal-day.vegas { background: linear-gradient(135deg, #fce8d8 0%, #f3d8c8 100%); border-color: #e8c4a8; }
+  .cal-day.vegas .cal-loc { color: #8b3a1a; }
+  .cal-day.sierra { background: linear-gradient(135deg, #efe5d0 0%, #e8dcc0 100%); border-color: #d4c4a4; }
+  .cal-day.sierra .cal-loc { color: #6b5435; }
+  .cal-day.sf { background: linear-gradient(135deg, #e8eef2 0%, #dde8ee 100%); border-color: #b8c8d6; }
+  .cal-day.sf .cal-loc { color: #4a7585; }
+  .cal-day.pch { background: linear-gradient(135deg, #e8f0e4 0%, #dde9d9 100%); border-color: #b8d4b0; }
+  .cal-day.pch .cal-loc { color: #5a7a52; }
+  .cal-day.la { background: linear-gradient(135deg, #fcdcc8 0%, #f5b894 100%); border-color: #e8a878; }
+  .cal-day.la .cal-loc { color: #8b4828; }
+  .day-timeline { margin-top: 32px; }
+  .day-row {
+    display: grid;
+    grid-template-columns: 60px 100px 1fr auto;
+    gap: 18px;
+    padding: 18px 22px;
+    align-items: start;
+    border-radius: 14px;
+    background: var(--warm-white);
+    margin-bottom: 10px;
+    border-left: 4px solid var(--ocean-soft);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .day-row:hover { transform: translateX(4px); box-shadow: var(--shadow-soft); }
+  .day-row.hawaii { border-left-color: var(--ocean-teal); }
+  .day-row.vegas { border-left-color: #8b3a1a; }
+  .day-row.sierra { border-left-color: #8b6f47; }
+  .day-row.sf { border-left-color: #4a7585; }
+  .day-row.pch { border-left-color: var(--leaf); }
+  .day-row.la { border-left-color: var(--sunset-coral); }
+  .day-row.transit { border-left-color: var(--ink-muted); }
+  .day-row .d {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--ocean-deep);
+    line-height: 1;
+  }
+  .day-row .date {
+    font-size: 12.5px;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    padding-top: 7px;
+  }
+  .day-row .activity {
+    font-size: 14.5px;
+    color: var(--ink);
+    line-height: 1.55;
+    padding-top: 6px;
+  }
+  .day-row .activity .loc {
+    display: block;
+    font-weight: 600;
+    color: var(--ocean-deep);
+    margin-bottom: 2px;
+    font-size: 14.5px;
+  }
+  .day-row .drive {
+    font-size: 11px;
+    color: var(--ink-muted);
+    text-align: right;
+    padding-top: 8px;
+    font-family: monospace;
+    white-space: nowrap;
+  }
+  .quote {
+    border-left: 4px solid var(--sunset-coral);
+    background: linear-gradient(90deg, rgba(237, 120, 103, 0.06) 0%, transparent 100%);
+    padding: 20px 26px;
+    border-radius: 0 12px 12px 0;
+    margin: 24px 0;
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 15px;
+  }
+  .quote.warn { border-left-color: var(--sunset-gold); background: linear-gradient(90deg, rgba(232, 176, 75, 0.08) 0%, transparent 100%); }
+  .quote.confirmed { border-left-color: var(--leaf); background: linear-gradient(90deg, rgba(107, 142, 127, 0.08) 0%, transparent 100%); }
+  .quote p { margin: 8px 0; }
+  .quote p:first-child { margin-top: 0; }
+  .quote p:last-child { margin-bottom: 0; }
+  .quote strong { color: var(--ocean-deep); font-style: normal; }
+  .budget-table {
+    width: 100%;
+    background: var(--warm-white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    border-collapse: collapse;
+    margin-top: 24px;
+  }
+  .budget-table th {
+    background: var(--ocean-deep);
+    color: white;
+    text-align: left;
+    padding: 14px 18px;
+    font-weight: 600;
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .budget-table td {
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+  }
+  .budget-table td:nth-child(2) { font-family: 'DM Sans', monospace; font-feature-settings: 'lnum'; text-align: right; font-weight: 500; }
+  .budget-table tr:hover td { background: rgba(245, 169, 134, 0.04); }
+  .budget-table .total-row td {
+    background: var(--ocean-deep);
+    color: white;
+    font-weight: 700;
+    font-size: 14.5px;
+  }
+  .budget-table .total-row.green td { background: var(--leaf); }
+  .budget-table .total-row.warn td { background: var(--sunset-gold); color: var(--ink); }
+  footer {
+    background: var(--ocean-deep);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 60px 0 40px;
+    text-align: center;
+    margin-top: 60px;
+  }
+  footer .foot-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    color: white;
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+  footer .foot-sub { font-size: 14px; max-width: 480px; margin: 0 auto; line-height: 1.6; }
+  footer .foot-meta {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  @media (max-width: 720px) {
+    .hero h1 { font-size: 48px; }
+    .hero-stats { gap: 32px; }
+    .hero-stat .num { font-size: 40px; }
+    .section-title { font-size: 32px; }
+    .flight-list li { grid-template-columns: 1fr; gap: 6px; }
+    .flight-list .horario { text-align: left; }
+    .day-row { grid-template-columns: 1fr; }
+    .day-row .d { font-size: 24px; }
+    .day-row .drive { text-align: left; }
+    .cal-grid { grid-template-columns: 1fr; gap: 4px; }
+    .cal-day { min-height: auto; }
+    .cal-head { display: none; }
+    .booking-block { padding: 24px 22px; }
   }
 </style>
 </head>
 <body>
-<div class="container">
-<div style="background: linear-gradient(135deg, #c9a544 0%, #d4763d 100%); color: white; padding: 12px 24px; text-align: center; font-size: 13px; border-radius: 8px; margin: 0 28px 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.15);">
-  🌴 <strong>Versión pública del plan de viaje</strong> · Datos personales (códigos de reserva, nombres, emails, tarjetas) reemplazados con placeholders. Solo el itinerario y plan general son visibles.
+
+<div class="public-banner">
+  🌺 <strong>Versión pública</strong> — datos personales sanitizados · todo el itinerario y plan visible
 </div>
 
-
 <header class="hero">
-  <div class="badge">✓ Vuelos + 3 autos confirmados</div>
-  <h1>Luna de Miel · Road Trip primero + Hawaii al final</h1>
-  <p class="subtitle">Plan v8.3 · LATAM •••••• + Hawaiian •••••• + Hertz LAX→LAS + Thrifty Oahu + Dollar Maui Inclusive</p>
-  <div class="meta">
-    <div><strong>Salida</strong>Mié 22 jul · 15:45 AEP</div>
-    <div><strong>Regreso</strong>Mar 11 ago · 07:40 AEP</div>
-    <div><strong>Noches</strong>20 (17 hotel + 3 en vuelos)</div>
-    <div><strong>Pasajeros</strong>Pasajero 1 + Pasajero 2</div>
-    <div><strong>Versión</strong>v8.3 (versión pública)</div>
+  <div class="container hero-content">
+    <span class="hero-eyebrow">Nuestra luna de miel</span>
+    <h1>Hawaii, <em>Sierras</em>, Pacífico<br>& el Sur de California</h1>
+    <p class="hero-tagline">Un viaje de 3 semanas a través del Pacífico — desde las playas de Oahu y Maui, cruzando Las Vegas, las sierras de Yosemite, San Francisco, el Pacific Coast Highway hasta Santa Monica.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">19</div><div class="label">Noches</div></div>
+      <div class="hero-stat"><div class="num">10</div><div class="label">Ciudades</div></div>
+      <div class="hero-stat"><div class="num">2</div><div class="label">Islas Hawaii</div></div>
+      <div class="hero-stat"><div class="num">7</div><div class="label">Vuelos</div></div>
+      <div class="hero-stat"><div class="num">3</div><div class="label">Autos</div></div>
+    </div>
+    <div class="hero-dates">22 julio 2026 <span>—</span> 11 agosto 2026</div>
   </div>
 </header>
 
-<h2>📋 Reserva LATAM (sin cambios)</h2>
-
-<div class="booking-card">
-  <div class="reserva-codes">
-    <div class="code-block"><span class="code-label">Reserva</span><span class="code-value">••••••</span></div>
-    <div class="code-block"><span class="code-label">Orden</span><span class="code-value">•••••••••••••</span></div>
-    <div class="code-block"><span class="code-label">Pagado</span><span class="code-value">USD 2.226,46</span></div>
-    <div class="code-block"><span class="code-label">Tarifa</span><span class="code-value">Economy Standard</span></div>
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="#resumen">Resumen</a>
+    <a href="#vuelos">Vuelos</a>
+    <a href="#autos">Autos</a>
+    <a href="#calendario">Calendario</a>
+    <a href="#dia-a-dia">Día a día</a>
+    <a href="#presupuesto">Presupuesto</a>
   </div>
-  <div class="flight-grid head"><div>Vuelo</div><div>Ruta</div><div>Salida</div><div>Llegada</div><div>Duración</div><div>Estado</div></div>
-  <div class="flight-grid"><div class="vuelo">LA 454</div><div>AEP → SCL</div><div>Mié 22-jul<br>15:45</div><div>Mié 22-jul<br>17:08</div><div>~2h</div><div><span class="pill confirmed">OK</span></div></div>
-  <div class="flight-grid"><div class="vuelo">LA 602</div><div>SCL → LAX</div><div>Mié 22-jul<br>23:25</div><div>Jue 23-jul<br>07:45</div><div>~10h40</div><div><span class="pill confirmed">OK</span></div></div>
-  <div class="flight-grid"><div class="vuelo">LA 2479</div><div>LAX → LIM</div><div>Lun 10-ago<br>11:35</div><div>Lun 10-ago<br>22:10</div><div>~8h35</div><div><span class="pill confirmed">OK</span></div></div>
-  <div class="flight-grid"><div class="vuelo">LA 2465</div><div>LIM → AEP</div><div>Mar 11-ago<br>01:15</div><div>Mar 11-ago<br>07:40</div><div>~4h25</div><div><span class="pill confirmed">OK</span></div></div>
-</div>
+</nav>
 
-<h2>📋 Reserva Hawaiian Airlines (vuelos domésticos USA)</h2>
+<section id="resumen">
+  <div class="container">
+    <span class="section-eyebrow">El viaje en números</span>
+    <h2 class="section-title">Una <em>ruta</em> que abraza el Pacífico</h2>
+    <p class="section-lead">Comienza en las islas: tres noches en Waikiki para descansar del red-eye y caminar las playas de Oahu. Luego cinco noches en Maui — Road to Hana, Haleakala al amanecer, Molokini. Después el continente: Las Vegas, la Sierra Nevada de California (Mammoth, Lone Pine y Yosemite por Tioga Pass), San Francisco, el Pacific Coast Highway con paradas en Monterey y Big Sur, y un último brindis en Santa Monica.</p>
 
-<div class="booking-card">
-  <div class="reserva-codes">
-    <div class="code-block"><span class="code-label">Reserva</span><span class="code-value">••••••</span></div>
-    <div class="code-block"><span class="code-label">Operado por</span><span class="code-value">Alaska / Hawaiian</span></div>
-    <div class="code-block"><span class="code-label">Pagado</span><span class="code-value">USD 2.065,74</span></div>
-    <div class="code-block"><span class="code-label">Tarjeta</span><span class="code-value">VISA [oculta]</span></div>
+    <div class="overview-grid">
+      <div class="card ocean"><div class="card-icon">🌊</div><div class="card-label">Hawaii</div><div class="card-value">8 noches</div><div class="card-sub">Oahu 3 + Maui 5</div></div>
+      <div class="card canyon"><div class="card-icon">🎰</div><div class="card-label">Las Vegas</div><div class="card-value">1 noche</div><div class="card-sub">Strip + Hoover Dam + red-eye</div></div>
+      <div class="card sierra"><div class="card-icon">🏔️</div><div class="card-label">Sierra Nevada</div><div class="card-value">3 noches</div><div class="card-sub">Mariposa · Mammoth · Lone Pine</div></div>
+      <div class="card ocean"><div class="card-icon">🌉</div><div class="card-label">San Francisco</div><div class="card-value">2 noches</div><div class="card-sub">Golden Gate + Alcatraz</div></div>
+      <div class="card"><div class="card-icon">🌲</div><div class="card-label">PCH costa</div><div class="card-value">2 noches</div><div class="card-sub">Monterey + Cambria</div></div>
+      <div class="card la"><div class="card-icon">🌴</div><div class="card-label">Santa Monica</div><div class="card-value">1 noche</div><div class="card-sub">Cierre del viaje</div></div>
+      <div class="card"><div class="card-icon">🚗</div><div class="card-label">Manejo total</div><div class="card-value">~23 h</div><div class="card-sub">en 7 días · prom 3.3h/día</div></div>
+    </div>
   </div>
-  <div class="flight-grid head"><div>Vuelo</div><div>Ruta</div><div>Salida</div><div>Llegada</div><div>Avión</div><div>Estado</div></div>
-  <div class="flight-grid">
-    <div class="vuelo">AS 817</div><div>LAS → HNL <small>RED-EYE · 37H + 37J · Q Coach</small></div>
-    <div class="horario">Dom 2-ago<br><strong>01:55 AM</strong></div><div class="horario">Dom 2-ago<br>05:16 AM HST</div><div class="horario">A330-200</div>
-    <div><span class="pill confirmed">OK</span></div>
+</section>
+
+<section id="vuelos" class="alt">
+  <div class="container">
+    <span class="section-eyebrow">Booked & confirmed</span>
+    <h2 class="section-title">Los <em>vuelos</em></h2>
+    <p class="section-lead">Dos reservas internacionales y dos paquetes de vuelos domésticos — todos confirmados. Travesía Pacífico ida y vuelta vía Lima/Santiago con LATAM, hops inter-isla con Hawaiian/Alaska.</p>
+
+    <div class="booking-block confirmed">
+      <span class="badge">✓ Reserva pagada</span>
+      <h3>LATAM · Internacional</h3>
+      <div class="booking-meta">
+        <div><strong>Reserva</strong><span>••••••</span></div>
+        <div><strong>Orden</strong><span>•••••••••••••</span></div>
+        <div><strong>Pagado</strong><span>USD 2.226,00</span></div>
+        <div><strong>Tarifa</strong><span>Economy Standard</span></div>
+      </div>
+      <ul class="flight-list">
+        <li><span class="vuelo">LA 454</span><span class="ruta">AEP → SCL <small>Aeroparque → Santiago Pudahuel</small></span><span class="horario"><strong>Mié 22-jul · 15:45</strong><br>→ 17:08 · ~2h</span><span><span class="pill ok">OK</span></span></li>
+        <li><span class="vuelo">LA 602</span><span class="ruta">SCL → LAX <small>Santiago → Los Ángeles · Boeing 787</small></span><span class="horario"><strong>Mié 22-jul · 23:25</strong><br>→ Jue 07:45 · ~10h40</span><span><span class="pill ok">OK</span></span></li>
+        <li><span class="vuelo">LA 2479</span><span class="ruta">LAX → LIM <small>Los Ángeles → Lima</small></span><span class="horario"><strong>Lun 10-ago · 11:35</strong><br>→ 22:10 · ~8h35</span><span><span class="pill ok">OK</span></span></li>
+        <li><span class="vuelo">LA 2465</span><span class="ruta">LIM → AEP <small>Lima → Aeroparque</small></span><span class="horario"><strong>Mar 11-ago · 01:15</strong><br>→ 07:40 · ~4h25</span><span><span class="pill ok">OK</span></span></li>
+      </ul>
+    </div>
+
+    <div class="booking-block confirmed">
+      <span class="badge">✓ Reserva pagada</span>
+      <h3>Hawaiian / Alaska · Domésticos USA</h3>
+      <div class="booking-meta">
+        <div><strong>Reserva</strong><span>••••••</span></div>
+        <div><strong>Operado por</strong><span>Alaska / Hawaiian</span></div>
+        <div><strong>Pagado</strong><span>USD 2.065,74</span></div>
+        <div><strong>Tarifa</strong><span>Coach</span></div>
+      </div>
+      <ul class="flight-list">
+        <li><span class="vuelo">AS 817</span><span class="ruta">LAS → HNL <small>Red-eye · Airbus A330-200</small></span><span class="horario"><strong>Dom 2-ago · 01:55</strong><br>→ 05:16 HST · ~6h</span><span><span class="pill ok">OK</span></span></li>
+        <li><span class="vuelo">AS 1116</span><span class="ruta">HNL → OGG <small>Inter-island · Boeing 717</small></span><span class="horario"><strong>Mié 5-ago · 13:01</strong><br>→ 13:45 HST · ~40 min</span><span><span class="pill ok">OK</span></span></li>
+        <li><span class="vuelo">AS 934</span><span class="ruta">OGG → LAX <small>Maui → Los Ángeles · Airbus A330-200</small></span><span class="horario"><strong>Dom 9-ago · 15:00 HST</strong><br>→ 23:07 PDT · ~5h7</span><span><span class="pill ok">OK</span></span></li>
+      </ul>
+    </div>
+
+    <div class="quote warn">
+      <p><strong>Red-eye crítico:</strong> el vuelo LAS→HNL sale a la 01:55 AM del domingo. Última noche en Vegas se duerme en el avión.</p>
+      <p><strong>Llegada LAX el 9 ago a las 23:07:</strong> hotel cerca del aeropuerto para LATAM del día siguiente.</p>
+    </div>
   </div>
-  <div class="flight-grid">
-    <div class="vuelo">AS 1116</div><div>HNL → OGG <small>inter-island · 20A + 20B · M Coach</small></div>
-    <div class="horario">Mié 5-ago<br>13:01</div><div class="horario">Mié 5-ago<br>13:45 HST</div><div class="horario">B717-200</div>
-    <div><span class="pill confirmed">OK</span></div>
+</section>
+
+<section id="autos">
+  <div class="container">
+    <span class="section-eyebrow">Three rentals, three islands of road</span>
+    <h2 class="section-title">Los <em>autos</em></h2>
+    <p class="section-lead">Un SUV para el road trip continental, un SUV pequeño para descubrir Oahu, y un sedán para Maui con todos los seguros incluidos.</p>
+
+    <div class="booking-block confirmed">
+      <span class="badge">✓ Pagado</span>
+      <h3>Hertz · LAX → LAS · 10 días</h3>
+      <div class="booking-meta">
+        <div><strong>Confirmación</strong><span>•••••••••••</span></div>
+        <div><strong>Vehículo</strong><span>Nissan Rogue</span></div>
+        <div><strong>Pagado</strong><span>USD 1.079,60</span></div>
+        <div><strong>Drop-off fee</strong><span>incluido</span></div>
+      </div>
+      <ul class="flight-list">
+        <li><span class="vuelo">PICKUP</span><span class="ruta">LAX <small>Los Angeles International</small></span><span class="horario"><strong>Jue 23-jul · 08:00 AM</strong></span><span><span class="pill ok">OK</span></span></li>
+        <li><span class="vuelo">DROPOFF</span><span class="ruta">LAS <small>Harry Reid International (Las Vegas)</small></span><span class="horario"><strong>Sáb 1-ago · 11:00 PM</strong></span><span><span class="pill ok">OK</span></span></li>
+      </ul>
+    </div>
+
+    <div class="booking-block confirmed">
+      <span class="badge">✓ Reservado · pay at counter</span>
+      <h3>Thrifty · Oahu · 3 días</h3>
+      <div class="booking-meta">
+        <div><strong>Confirmación</strong><span>•••••••••••</span></div>
+        <div><strong>Vehículo</strong><span>Nissan Rogue (Small SUV)</span></div>
+        <div><strong>A pagar</strong><span>USD 242,92</span></div>
+        <div><strong>Free drivers</strong><span>2 adicionales</span></div>
+      </div>
+      <ul class="flight-list">
+        <li><span class="vuelo">PICKUP</span><span class="ruta">HNL <small>Daniel K. Inouye (Honolulu)</small></span><span class="horario"><strong>Lun 3-ago · 06:00 AM</strong></span><span><span class="pill ok">OK</span></span></li>
+        <li><span class="vuelo">DROPOFF</span><span class="ruta">HNL <small>Antes del vuelo a Maui</small></span><span class="horario"><strong>Mié 5-ago · 12:00 PM</strong></span><span><span class="pill ok">OK</span></span></li>
+      </ul>
+    </div>
+
+    <div class="booking-block confirmed">
+      <span class="badge">✓ Reservado · INCLUSIVE</span>
+      <h3>Dollar · Maui · 4 días con seguros incluidos</h3>
+      <div class="booking-meta">
+        <div><strong>Confirmación</strong><span>•••••••••••</span></div>
+        <div><strong>Vehículo</strong><span>Chevrolet Cruze (Sedan)</span></div>
+        <div><strong>A pagar</strong><span>USD 354,04</span></div>
+        <div><strong>Incluye</strong><span>LDW + Liability $300k</span></div>
+      </div>
+      <ul class="flight-list">
+        <li><span class="vuelo">PICKUP</span><span class="ruta">OGG <small>Kahului Airport · Maui</small></span><span class="horario"><strong>Mié 5-ago · 02:00 PM</strong></span><span><span class="pill ok">OK</span></span></li>
+        <li><span class="vuelo">DROPOFF</span><span class="ruta">OGG <small>Antes del vuelo de regreso</small></span><span class="horario"><strong>Dom 9-ago · 12:00 PM</strong></span><span><span class="pill ok">OK</span></span></li>
+      </ul>
+    </div>
+
+    <div class="quote confirmed">
+      <p><strong>Dollar Maui INCLUSIVE Rate</strong> — incluye todo: LDW Zero Excess + Liability $300.000 + Uninsured Motorist Protection + Unlimited miles + Taxes. En el counter <strong>nada extra</strong>.</p>
+    </div>
   </div>
-  <div class="flight-grid">
-    <div class="vuelo">AS 934</div><div>OGG → LAX <small>40D + 43H · M Coach (asientos separados)</small></div>
-    <div class="horario">Dom 9-ago<br>15:00 HST</div><div class="horario">Dom 9-ago<br><strong>23:07 PDT</strong></div><div class="horario">A330-200</div>
-    <div><span class="pill confirmed">OK</span></div>
+</section>
+
+<section id="calendario" class="alt">
+  <div class="container">
+    <span class="section-eyebrow">Visual at a glance</span>
+    <h2 class="section-title">El <em>calendario</em></h2>
+    <p class="section-lead">Cuatro semanas mapeadas con colores para ver de un vistazo en qué isla, ciudad o ruta estamos.</p>
+
+    <div class="calendar-legend">
+      <div class="legend-item"><span class="legend-swatch" style="background:#ebe6dc"></span>Tránsito / vuelo</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:linear-gradient(135deg,#e8f1f4,#d6e8f3)"></span>Hawaii</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:linear-gradient(135deg,#fce8d8,#f3d8c8)"></span>Las Vegas</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:linear-gradient(135deg,#efe5d0,#e8dcc0)"></span>Sierra Nevada</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:linear-gradient(135deg,#e8eef2,#dde8ee)"></span>San Francisco</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:linear-gradient(135deg,#e8f0e4,#dde9d9)"></span>PCH costa</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:linear-gradient(135deg,#fcdcc8,#f5b894)"></span>Santa Monica</div>
+    </div>
+
+    <div class="cal-grid">
+      <div class="cal-head">Dom</div><div class="cal-head">Lun</div><div class="cal-head">Mar</div><div class="cal-head">Mié</div><div class="cal-head">Jue</div><div class="cal-head">Vie</div><div class="cal-head">Sáb</div>
+
+      <div class="cal-day other-month"><div class="cal-num">19</div></div>
+      <div class="cal-day other-month"><div class="cal-num">20</div></div>
+      <div class="cal-day other-month"><div class="cal-num">21</div></div>
+      <div class="cal-day transit"><div class="cal-num">22</div><div class="cal-loc">✈ Vuelo</div><div class="cal-detail">AEP 15:45 → SCL → LAX overnight</div></div>
+      <div class="cal-day la"><div class="cal-num">23</div><div class="cal-loc">Santa Monica</div><div class="cal-detail">LAX 7:45 → drive 25 min · descanso · Pier sunset</div></div>
+      <div class="cal-day pch"><div class="cal-num">24</div><div class="cal-loc">Cambria</div><div class="cal-detail">Santa Monica → Santa Bárbara → Cambria · Hearst Castle</div></div>
+      <div class="cal-day pch"><div class="cal-num">25</div><div class="cal-loc">Monterey</div><div class="cal-detail">Cambria → Big Sur → Monterey · Bixby Bridge · McWay Falls</div></div>
+
+      <div class="cal-day sf"><div class="cal-num">26</div><div class="cal-loc">San Francisco</div><div class="cal-detail">Monterey → SF · Fisherman's Wharf PM</div></div>
+      <div class="cal-day sf"><div class="cal-num">27</div><div class="cal-loc">San Francisco</div><div class="cal-detail">Golden Gate + Alcatraz + Mission + Twin Peaks</div></div>
+      <div class="cal-day sierra"><div class="cal-num">28</div><div class="cal-loc">Mariposa</div><div class="cal-detail">SF → Mariposa · cena en El Portal junto al río</div></div>
+      <div class="cal-day sierra"><div class="cal-num">29</div><div class="cal-loc">Mammoth Lakes</div><div class="cal-detail">Yosemite Valley AM → Tioga Pass → Mammoth · Hot Creek</div></div>
+      <div class="cal-day sierra"><div class="cal-num">30</div><div class="cal-loc">Lone Pine</div><div class="cal-detail">Mammoth → 395 south · Alabama Hills sunset · Mt Whitney</div></div>
+      <div class="cal-day vegas"><div class="cal-num">31</div><div class="cal-loc">Las Vegas</div><div class="cal-detail">Lone Pine → Death Valley → Vegas · Strip noche</div></div>
+      <div class="cal-day vegas"><div class="cal-num">1</div><div class="cal-loc">Vegas → ✈ Red-eye</div><div class="cal-detail">Hoover Dam + show · LAS airport 22:30 · AS 817 sale 01:55 AM</div></div>
+
+      <div class="cal-day hawaii"><div class="cal-num">2</div><div class="cal-loc">Oahu</div><div class="cal-detail">Llegada HNL 05:16 AM · Uber Waikiki · chill day · sin auto</div></div>
+      <div class="cal-day hawaii"><div class="cal-num">3</div><div class="cal-loc">Oahu · Thrifty</div><div class="cal-detail">Pickup Thrifty 06:00 · Pearl Harbor 7:30 + Diamond Head sunset</div></div>
+      <div class="cal-day hawaii"><div class="cal-num">4</div><div class="cal-loc">Oahu · North Shore</div><div class="cal-detail">North Shore (Sunset Beach, Waimea, Giovanni's)</div></div>
+      <div class="cal-day hawaii"><div class="cal-num">5</div><div class="cal-loc">Oahu → Maui</div><div class="cal-detail">Drop Thrifty HNL 12:00 · Vuelo OGG 13:01 · pickup Dollar OGG 14:00 · resort Wailea</div></div>
+      <div class="cal-day hawaii"><div class="cal-num">6</div><div class="cal-loc">Maui</div><div class="cal-detail">Road to Hana (día completo)</div></div>
+      <div class="cal-day hawaii"><div class="cal-num">7</div><div class="cal-loc">Maui</div><div class="cal-detail">Haleakala amanecer + spa PM</div></div>
+      <div class="cal-day hawaii"><div class="cal-num">8</div><div class="cal-loc">Maui</div><div class="cal-detail">Snorkel Molokini + cena Mama's Fish House</div></div>
+
+      <div class="cal-day transit"><div class="cal-num">9</div><div class="cal-loc">LAX hotel</div><div class="cal-detail">AS 934 sale OGG 15:00 · LAX 23:07 PM</div></div>
+      <div class="cal-day transit"><div class="cal-num">10</div><div class="cal-loc">✈ Vuelo home</div><div class="cal-detail">LAX 11:35 → LIM 22:10 (LATAM)</div></div>
+      <div class="cal-day transit"><div class="cal-num">11</div><div class="cal-loc">✈ → AEP</div><div class="cal-detail">LIM 01:15 → AEP 07:40 · 🏠 en casa</div></div>
+      <div class="cal-day other-month"><div class="cal-num">12</div></div>
+      <div class="cal-day other-month"><div class="cal-num">13</div></div>
+      <div class="cal-day other-month"><div class="cal-num">14</div></div>
+      <div class="cal-day other-month"><div class="cal-num">15</div></div>
+    </div>
   </div>
-</div>
+</section>
 
-<div class="callout warn">
-  <p><strong>⚠ Sobre el red-eye Sáb 1 / Dom 2 ago:</strong> el vuelo LAS→HNL sale a la 01:55 AM del domingo. Esto significa que el sáb 1 ago hacen su día normal en Vegas, cenan temprano, hacen check-out del hotel (o late checkout pagando) y van al aeropuerto LAS alrededor de las 22:30. Hay <strong>solo 1 noche de hotel en Vegas (vie 31 jul)</strong>; la noche del sáb 1 se duerme en el avión.</p>
-  <p><strong>⚠ Llegada OGG → LAX 23:07 PDT:</strong> aterrizan tarde el domingo. Reservar hotel cerca de LAX la misma noche del dom 9 ago, dormir 6-7h, e ir al LATAM lun 10 ago 11:35 AM. La conexión es ajustada pero viable (12+ horas de buffer entre vuelos).</p>
-  <p><strong>⚠ Asientos OGG→LAX separados:</strong> Pasajero 1 40D, Pasajero 2 43H. Pueden cambiar gratis online si abren asientos juntos antes del check-in 24h antes.</p>
-</div>
+<section id="dia-a-dia">
+  <div class="container">
+    <span class="section-eyebrow">Day by day</span>
+    <h2 class="section-title">El <em>itinerario</em>, en detalle</h2>
+    <p class="section-lead">Veinte días con sus paradas, manejos y momentos clave. De Buenos Aires al Pacífico, por el desierto hasta el Pacífico otra vez.</p>
 
-<h2>🗺 Cómo se reorganizó vs v7</h2>
-<ul>
-  <li><strong>Road trip se hace PRIMERO</strong> (días 1-10) y Hawaii queda como cierre (días 11-18).</li>
-  <li><strong>Dirección del road trip invertida:</strong> LAX → Santa Monica → PCH norte → SF → Sierra → Vegas (antes era Vegas → Sierra → SF → PCH sur → Santa Monica).</li>
-  <li><strong>Día 1 (jue 23) es muy chill:</strong> aterrizan LAX 7:45, retiran auto, drive 25 min a Santa Monica, descansan. Sin vuelos domésticos el día de llegada.</li>
-  <li><strong>Vuelo nuevo:</strong> LAS → HNL (sáb 1 ago) en vez de OGG → LAS al revés.</li>
-  <li><strong>Vuelo de vuelta:</strong> OGG → LAX (dom 9 ago) para enganchar con LATAM home flight del lun 10.</li>
-  <li><strong>1 noche hotel cerca de LAX</strong> el dom 9 ago (antes del vuelo internacional del lunes).</li>
-  <li><strong>Maui queda en 4 noches</strong> (vs 5 en v7) porque la última noche se va al hotel LAX.</li>
-  <li><strong>Auto se renta LAX pickup → LAS dropoff</strong> (vs v7 que era al revés).</li>
-</ul>
+    <div class="day-timeline">
 
-<h2>📊 Resumen</h2>
+      <div class="day-row transit"><div class="d">0</div><div class="date">Mié 22 jul</div><div class="activity"><span class="loc">En vuelo</span>Aeroparque 15:45 → SCL (layover 6h) → vuelo overnight a LAX</div><div class="drive">–</div></div>
 
-<div class="summary-cards">
-  <div class="card"><div class="label">Santa Monica / LA</div><div class="value">1 noche</div><div class="sub">Recovery day 1</div></div>
-  <div class="card"><div class="label">PCH norte</div><div class="value">2 noches</div><div class="sub">Cambria + Monterey</div></div>
-  <div class="card"><div class="label">San Francisco</div><div class="value">2 noches</div><div class="sub">Golden Gate + Alcatraz</div></div>
-  <div class="card"><div class="label">Sierra Nevada</div><div class="value">3 noches</div><div class="sub">Mariposa + Mammoth + Lone Pine</div></div>
-  <div class="card"><div class="label">Las Vegas</div><div class="value">1 noche</div><div class="sub">Strip + Hoover Dam + red-eye</div></div>
-  <div class="card"><div class="label">Oahu</div><div class="value">3 noches</div><div class="sub">Pearl Harbor + North Shore</div></div>
-  <div class="card"><div class="label">Maui</div><div class="value">4 noches</div><div class="sub">Honeymoon resort grand finale</div></div>
-  <div class="card"><div class="label">LAX hotel (último)</div><div class="value">1 noche</div><div class="sub">Antes del LATAM home</div></div>
-</div>
+      <div class="day-row la"><div class="d">1</div><div class="date">Jue 23 jul</div><div class="activity"><span class="loc">Santa Monica</span>Aterrizaje LAX 07:45 · customs + bags · shuttle a Car Rental Center · drive a Santa Monica 25 min · día chill: paseo Pier + Venice Beach + cena temprana</div><div class="drive">25 min</div></div>
 
-<h2>📆 Calendario visual</h2>
+      <div class="day-row pch"><div class="d">2</div><div class="date">Vie 24 jul</div><div class="activity"><span class="loc">Cambria</span>Santa Monica → PCH norte · Santa Bárbara (almuerzo State Street) → Solvang opcional → Cambria · Hearst Castle PM · Elephant Seal Vista sunset</div><div class="drive">4 hs PCH</div></div>
 
-<div class="calendar-section">
-  <div class="cal-legend">
-    <div class="lg-item"><span class="lg-swatch" style="background:#ebebe8"></span>Tránsito / vuelo</div>
-    <div class="lg-item"><span class="lg-swatch" style="background:#fce8d8"></span>Santa Monica / LA</div>
-    <div class="lg-item"><span class="lg-swatch" style="background:#dde9d9"></span>PCH costa</div>
-    <div class="lg-item"><span class="lg-swatch" style="background:#dde8ee"></span>San Francisco</div>
-    <div class="lg-item"><span class="lg-swatch" style="background:#e8dcc0"></span>Sierra Nevada</div>
-    <div class="lg-item"><span class="lg-swatch" style="background:#f3d8c8"></span>Las Vegas</div>
-    <div class="lg-item"><span class="lg-swatch" style="background:#d6e8f3"></span>Hawaii</div>
+      <div class="day-row pch"><div class="d">3</div><div class="date">Sáb 25 jul</div><div class="activity"><span class="loc">Monterey / Carmel</span>Cambria → Big Sur → Monterey · Bixby Bridge · McWay Falls · Pfeiffer Beach · cena Carmel-by-the-Sea</div><div class="drive">3 hs</div></div>
+
+      <div class="day-row sf"><div class="d">4</div><div class="date">Dom 26 jul</div><div class="activity"><span class="loc">San Francisco</span>Monterey Bay Aquarium AM · 17-Mile Drive + Pebble Beach · drive a SF vía Half Moon Bay · Fisherman's Wharf + Pier 39 PM</div><div class="drive">2 hs</div></div>
+
+      <div class="day-row sf"><div class="d">5</div><div class="date">Lun 27 jul</div><div class="activity"><span class="loc">San Francisco</span>Caminar Golden Gate · Crissy Field · Alcatraz tour mediodía · Painted Ladies + Mission + Twin Peaks atardecer · cena North Beach</div><div class="drive">–</div></div>
+
+      <div class="day-row sierra"><div class="d">6</div><div class="date">Mar 28 jul</div><div class="activity"><span class="loc">Mariposa (Yosemite)</span>SF → Mariposa vía Oakland, Modesto · check-in lodge · cena en El Portal junto al río Merced</div><div class="drive">4 hs</div></div>
+
+      <div class="day-row sierra"><div class="d">7</div><div class="date">Mié 29 jul</div><div class="activity"><span class="loc">Mammoth Lakes</span>Yosemite Valley AM: Tunnel View, El Capitan, Half Dome viewpoint, Bridalveil Fall · cruce Tioga Pass · Tuolumne Meadows, Olmsted Point · bajada a Mammoth · Hot Creek</div><div class="drive">3 hs scenic</div></div>
+
+      <div class="day-row sierra"><div class="d">8</div><div class="date">Jue 30 jul</div><div class="activity"><span class="loc">Lone Pine</span>Mammoth → 395 south · parada Manzanar + Bishop · Lone Pine · Alabama Hills sunset (paisajes wild west) · vista Mt Whitney</div><div class="drive">2.5 hs</div></div>
+
+      <div class="day-row vegas"><div class="d">9</div><div class="date">Vie 31 jul</div><div class="activity"><span class="loc">Las Vegas</span>Lone Pine → Death Valley · Father Crowley Vista · Mesquite Flat Sand Dunes · Furnace Creek · Vegas · check-in Strip · Bellagio fountains noche</div><div class="drive">4 hs</div></div>
+
+      <div class="day-row vegas"><div class="d">10</div><div class="date">Sáb 1 ago</div><div class="activity"><span class="loc">Las Vegas → ✈ Red-eye</span>Hoover Dam + Lake Mead AM · Red Rock Canyon · pool day · show PM · cena Strip · LAS ~22:30 · vuelo AS 817 01:55 AM Dom 2</div><div class="drive">1.5 hs</div></div>
+
+      <div class="day-row hawaii"><div class="d">11</div><div class="date">Dom 2 ago</div><div class="activity"><span class="loc">Oahu (Waikiki) · sin auto</span>Aterrizan HNL 05:16 AM · Uber a Waikiki · early check-in si disponible · siesta · pool/playa Waikiki PM · cena temprana</div><div class="drive">–</div></div>
+
+      <div class="day-row hawaii"><div class="d">12</div><div class="date">Lun 3 ago</div><div class="activity"><span class="loc">Oahu · pickup Thrifty</span>Uber Waikiki→HNL · pickup Thrifty 06:00 · Pearl Harbor 7:30 AM · vuelta Waikiki almuerzo · Diamond Head sunset · cena</div><div class="drive">2 hs</div></div>
+
+      <div class="day-row hawaii"><div class="d">13</div><div class="date">Mar 4 ago</div><div class="activity"><span class="loc">Oahu · North Shore</span>North Shore en auto: Sunset Beach, Waimea Bay, Giovanni's Shrimp Truck, Dole Plantation · vuelta Waikiki al atardecer</div><div class="drive">3 hs</div></div>
+
+      <div class="day-row hawaii"><div class="d">14</div><div class="date">Mié 5 ago</div><div class="activity"><span class="loc">Oahu → Maui</span>Check-out Waikiki · drive HNL · devolver Thrifty 12:00 · AS 1116 HNL→OGG 13:01-13:45 · pickup Dollar OGG 14:00 · drive Wailea · check-in resort · atardecer playa</div><div class="drive">~1h</div></div>
+
+      <div class="day-row hawaii"><div class="d">15</div><div class="date">Jue 6 ago</div><div class="activity"><span class="loc">Maui</span>Road to Hana (día completo en auto, ~10h ida y vuelta)</div><div class="drive">–</div></div>
+
+      <div class="day-row hawaii"><div class="d">16</div><div class="date">Vie 7 ago</div><div class="activity"><span class="loc">Maui</span>Haleakala amanecer (salir 3 AM) + spa o piscina PM</div><div class="drive">–</div></div>
+
+      <div class="day-row hawaii"><div class="d">17</div><div class="date">Sáb 8 ago</div><div class="activity"><span class="loc">Maui</span>Snorkel Molokini AM + cena Mama's Fish House</div><div class="drive">–</div></div>
+
+      <div class="day-row transit"><div class="d">18</div><div class="date">Dom 9 ago</div><div class="activity"><span class="loc">LAX hotel</span>Última mañana Maui · check-out 11 AM · drive a OGG · devolver Dollar 12:00 · AS 934 sale 15:00 HST · llegada LAX 23:07 PDT · hotel cerca aeropuerto</div><div class="drive">–</div></div>
+
+      <div class="day-row transit"><div class="d">19</div><div class="date">Lun 10 ago</div><div class="activity"><span class="loc">Vuelta a casa</span>Despertar 6:30 AM · shuttle a LAX 9:00 AM · check-in LATAM 9:30 · vuelo LAX 11:35 → LIM 22:10 · conexión 3h · LIM 01:15 → AEP 07:40</div><div class="drive">–</div></div>
+
+      <div class="day-row transit"><div class="d">20</div><div class="date">Mar 11 ago</div><div class="activity"><span class="loc">Llegada AEP</span>Arribo Aeroparque 07:40 AM · 🏠 en casa</div><div class="drive">–</div></div>
+
+    </div>
   </div>
+</section>
 
-  <div class="calendar-month-title">Julio – Agosto 2026</div>
+<section id="presupuesto" class="alt">
+  <div class="container">
+    <span class="section-eyebrow">The numbers</span>
+    <h2 class="section-title">El <em>presupuesto</em></h2>
+    <p class="section-lead">Una mirada general a lo que ya está pagado, lo reservado y lo que falta cerrar. Los rangos reflejan el spread entre opciones económicas y premium.</p>
 
-  <div class="cal-grid">
-    <div class="cal-head">Dom</div><div class="cal-head">Lun</div><div class="cal-head">Mar</div><div class="cal-head">Mié</div><div class="cal-head">Jue</div><div class="cal-head">Vie</div><div class="cal-head">Sáb</div>
+    <table class="budget-table">
+      <thead><tr><th>Categoría</th><th>USD pareja</th><th>Estado</th></tr></thead>
+      <tbody>
+        <tr><td>LATAM AEP↔LAX vía SCL/LIM</td><td>2.226,00</td><td><span class="pill confirmed">✓ Pagado</span></td></tr>
+        <tr><td>Hawaiian/Alaska 3 vuelos domésticos</td><td>2.065,74</td><td><span class="pill confirmed">✓ Pagado</span></td></tr>
+        <tr><td>Hertz Nissan Rogue LAX→LAS 10 días</td><td>1.079,60</td><td><span class="pill confirmed">✓ Pagado</span></td></tr>
+        <tr><td>Thrifty Oahu 3 días</td><td>242,92</td><td><span class="pill confirmed">✓ Reservado</span></td></tr>
+        <tr><td>Dollar Maui 4 días (Inclusive)</td><td>354,04</td><td><span class="pill confirmed">✓ Reservado</span></td></tr>
+        <tr><td>Equipaje despachado Hawaiian</td><td>300 – 380</td><td><span class="pill pending">Pendiente</span></td></tr>
+        <tr><td>Hotel Santa Monica 1 noche</td><td>320 – 500</td><td><span class="pill pending">Pendiente</span></td></tr>
+        <tr><td>Hotel Cambria 1 noche</td><td>250 – 380</td><td><span class="pill pending">Pendiente</span></td></tr>
+        <tr><td>Hotel Monterey 1 noche</td><td>320 – 500</td><td><span class="pill pending">Pendiente</span></td></tr>
+        <tr><td>Hotel San Francisco 2 noches</td><td>560 – 900</td><td><span class="pill pending">Pendiente</span></td></tr>
+        <tr><td>Hotel Mariposa 1 noche</td><td>280 – 450</td><td><span class="pill pending">Pendiente</span></td></tr>
+        <tr><td>Hotel Mammoth 1 noche</td><td>250 – 400</td><td><span class="pill pending">Pendiente</span></td></tr>
+        <tr><td>Hotel Lone Pine 1 noche</td><td>150 – 220</td><td><span class="pill pending">Pendiente</span></td></tr>
+        <tr><td>Hotel Vegas 1 noche</td><td>250 – 400</td><td><span class="pill pending">Pendiente</span></td></tr>
+        <tr><td>Hotel Oahu 3 noches</td><td>660 – 900</td><td><span class="pill pending">Pendiente</span></td></tr>
+        <tr><td>Hotel Maui 4 noches</td><td>1.520 – 2.080</td><td><span class="pill urgent">⚠ Reservar ya</span></td></tr>
+        <tr><td>Hotel cerca LAX (último día)</td><td>240 – 380</td><td><span class="pill pending">Pendiente</span></td></tr>
+        <tr><td>Combustible (mainland + Hawaii)</td><td>240 – 340</td><td><span class="pill pending">En viaje</span></td></tr>
+        <tr><td>Parking (SF, Maui resort, Oahu)</td><td>305 – 590</td><td><span class="pill pending">En viaje</span></td></tr>
+        <tr><td>Comidas 19 días</td><td>1.140 – 1.710</td><td><span class="pill pending">En viaje</span></td></tr>
+        <tr><td>Tours: Pearl Harbor, Alcatraz, Hearst, Aquarium, show Vegas, Road to Hana, Molokini</td><td>700 – 1.100</td><td><span class="pill pending">Pendiente</span></td></tr>
+        <tr><td>Misc: pase parques, propinas, Ubers, casino</td><td>400 – 600</td><td><span class="pill pending">En viaje</span></td></tr>
+        <tr class="total-row"><td>TOTAL ESTIMADO</td><td>13.124 – 17.116</td><td>—</td></tr>
+        <tr class="total-row green"><td>✓ PAGADO + RESERVADO</td><td>5.968,30</td><td>34% – 45%</td></tr>
+        <tr class="total-row warn"><td>Falta cerrar</td><td>7.156 – 11.148</td><td>—</td></tr>
+      </tbody>
+    </table>
 
-    <!-- Jul 19-25 -->
-    <div class="cal-day other-month"><div class="cal-num">19</div></div>
-    <div class="cal-day other-month"><div class="cal-num">20</div></div>
-    <div class="cal-day other-month"><div class="cal-num">21</div></div>
-    <div class="cal-day transit"><div class="cal-num">22</div><div class="cal-loc">✈ Vuelo</div><div class="cal-detail">AEP 15:45 → SCL → LAX overnight</div></div>
-    <div class="cal-day la"><div class="cal-num">23</div><div class="cal-loc">Santa Monica</div><div class="cal-detail">LAX 7:45 → retiro auto → drive 25 min · descanso · Pier sunset</div></div>
-    <div class="cal-day pch"><div class="cal-num">24</div><div class="cal-loc">Cambria</div><div class="cal-detail">Santa Monica → Santa Bárbara → Cambria (4h PCH) · Hearst Castle</div></div>
-    <div class="cal-day pch"><div class="cal-num">25</div><div class="cal-loc">Monterey</div><div class="cal-detail">Cambria → Big Sur → Monterey (3h) · Bixby Bridge · McWay Falls</div></div>
-
-    <!-- Jul 26 - Aug 1 -->
-    <div class="cal-day sf"><div class="cal-num">26</div><div class="cal-loc">San Francisco</div><div class="cal-detail">Monterey → SF (2h via Half Moon Bay) · Fisherman's Wharf PM</div></div>
-    <div class="cal-day sf"><div class="cal-num">27</div><div class="cal-loc">San Francisco</div><div class="cal-detail">Golden Gate + Alcatraz + Mission + Twin Peaks</div></div>
-    <div class="cal-day sierra"><div class="cal-num">28</div><div class="cal-loc">Mariposa (Yosemite)</div><div class="cal-detail">SF → Mariposa (4h) · cena en El Portal junto al río</div></div>
-    <div class="cal-day sierra"><div class="cal-num">29</div><div class="cal-loc">Mammoth Lakes</div><div class="cal-detail">Yosemite Valley AM (Tunnel View, El Capitan) → Tioga Pass (3h scenic) → Mammoth · Hot Creek termas</div></div>
-    <div class="cal-day sierra"><div class="cal-num">30</div><div class="cal-loc">Lone Pine</div><div class="cal-detail">Mammoth → 395 south (2.5h) · Alabama Hills sunset · vista Mt Whitney</div></div>
-    <div class="cal-day vegas"><div class="cal-num">31</div><div class="cal-loc">Las Vegas</div><div class="cal-detail">Lone Pine → Death Valley → Vegas (4h) · Strip noche · ÚNICA noche Vegas</div></div>
-    <div class="cal-day vegas"><div class="cal-num">1</div><div class="cal-loc">Vegas → ✈ Red-eye</div><div class="cal-detail">Día Vegas: Hoover Dam + show · cena temprana · LAS airport 22:30 PM · AS 817 sale 01:55 AM</div></div>
-
-    <!-- Aug 2-8 -->
-    <div class="cal-day hawaii"><div class="cal-num">2</div><div class="cal-loc">Oahu (sin auto)</div><div class="cal-detail">Llegada HNL 05:16 AM · Uber Waikiki ($35) · chill day · sin auto este día</div></div>
-    <div class="cal-day hawaii"><div class="cal-num">3</div><div class="cal-loc">Oahu (Thrifty)</div><div class="cal-detail">Uber Waikiki→HNL 5:30 AM · pickup Thrifty 06:00 · Pearl Harbor 7:30 + Diamond Head sunset</div></div>
-    <div class="cal-day hawaii"><div class="cal-num">4</div><div class="cal-loc">Oahu (Thrifty)</div><div class="cal-detail">North Shore en auto (Sunset Beach, Waimea, Giovanni's)</div></div>
-    <div class="cal-day hawaii"><div class="cal-num">5</div><div class="cal-loc">Oahu → Maui</div><div class="cal-detail">Drop Thrifty HNL 12:00 · Vuelo OGG 13:01 → 13:45 · pickup Dollar OGG 14:00 · check-in resort Wailea PM</div></div>
-    <div class="cal-day hawaii"><div class="cal-num">6</div><div class="cal-loc">Maui</div><div class="cal-detail">Road to Hana (día completo)</div></div>
-    <div class="cal-day hawaii"><div class="cal-num">7</div><div class="cal-loc">Maui</div><div class="cal-detail">Haleakala amanecer + spa PM</div></div>
-    <div class="cal-day hawaii"><div class="cal-num">8</div><div class="cal-loc">Maui</div><div class="cal-detail">Snorkel Molokini + cena Mama's Fish House</div></div>
-
-    <!-- Aug 9-15 -->
-    <div class="cal-day transit"><div class="cal-num">9</div><div class="cal-loc">LAX hotel</div><div class="cal-detail">Última mañana Maui · AS 934 sale OGG 15:00 · LAX 23:07 PM · hotel cerca aeropuerto</div></div>
-    <div class="cal-day transit"><div class="cal-num">10</div><div class="cal-loc">✈ Vuelo home</div><div class="cal-detail">LAX 11:35 → LIM 22:10 (LATAM)</div></div>
-    <div class="cal-day transit"><div class="cal-num">11</div><div class="cal-loc">✈ → AEP</div><div class="cal-detail">LIM 01:15 → AEP 07:40 · 🏠 en casa</div></div>
-    <div class="cal-day other-month"><div class="cal-num">12</div></div>
-    <div class="cal-day other-month"><div class="cal-num">13</div></div>
-    <div class="cal-day other-month"><div class="cal-num">14</div></div>
-    <div class="cal-day other-month"><div class="cal-num">15</div></div>
+    <div class="quote confirmed" style="margin-top:32px">
+      <p><strong>✓ Ahorro vs primer plan:</strong> al usar DHCR para los rentals de Hawaii ahorramos ~USD 660 sobre la versión Hertz everywhere, incluyendo el valor de los seguros incluidos en el Maui Inclusive Rate.</p>
+    </div>
   </div>
-</div>
+</section>
 
-<h2>📅 Calendario día por día</h2>
-
-<div class="day-row head"><div>Día</div><div>Fecha</div><div>Ubicación</div><div>Actividad</div><div>Manejo</div></div>
-
-<div class="day-row transit"><div class="d">0</div><div>Mié 22 jul</div><div class="loc">En vuelo</div><div>Aeroparque 15:45 → SCL (layover 6h) → vuelo overnight a LAX</div><div class="drive">–</div></div>
-
-<div class="day-row la"><div class="d">1</div><div>Jue 23 jul</div><div class="loc">Santa Monica</div><div>Aterrizan LAX 07:45 · customs + bags (~1h) · shuttle a Car Rental Center · retiro auto · drive LAX → Santa Monica 25 min · check-in hotel · día chill: paseo Pier + Venice Beach + cena temprana + dormir bien</div><div class="drive">25 min</div></div>
-
-<div class="day-row pch"><div class="d">2</div><div>Vie 24 jul</div><div class="loc">Cambria</div><div>Santa Monica → PCH norte · parada Santa Bárbara (almuerzo State Street + Stearns Wharf) → Solvang opcional → Cambria · Hearst Castle PM · Elephant Seal Vista Point sunset</div><div class="drive">4 hs PCH</div></div>
-
-<div class="day-row pch"><div class="d">3</div><div>Sáb 25 jul</div><div class="loc">Monterey / Carmel</div><div>Cambria → Big Sur → Monterey · paradas obligadas: Bixby Bridge (foto clásica), McWay Falls (cascada en la playa), Pfeiffer Beach (arena púrpura) · llegada Monterey · cena Carmel-by-the-Sea</div><div class="drive">3 hs con paradas</div></div>
-
-<div class="day-row sf"><div class="d">4</div><div>Dom 26 jul</div><div class="loc">San Francisco</div><div>Monterey Bay Aquarium AM · 17-Mile Drive + Pebble Beach · drive Monterey → SF vía Half Moon Bay (2h) · check-in hotel Union Square o Nob Hill · Fisherman's Wharf + Pier 39 sea lions PM</div><div class="drive">2 hs</div></div>
-
-<div class="day-row sf"><div class="d">5</div><div>Lun 27 jul</div><div class="loc">San Francisco</div><div>Caminar Golden Gate Bridge AM · Crissy Field · Alcatraz tour mediodía (reservar online) · Painted Ladies + Mission District + Twin Peaks atardecer · cena North Beach (zona italiana)</div><div class="drive">–</div></div>
-
-<div class="day-row sierra"><div class="d">6</div><div>Mar 28 jul</div><div class="loc">Mariposa (Yosemite gateway)</div><div>SF → Mariposa vía Oakland, Modesto · check-in lodge cerca del parque · cena en El Portal junto al río Merced</div><div class="drive">4 hs</div></div>
-
-<div class="day-row sierra"><div class="d">7</div><div>Mié 29 jul</div><div class="loc">Mammoth Lakes</div><div>Yosemite Valley AM: Tunnel View, El Capitan, Half Dome viewpoint, Bridalveil Fall, Yosemite Falls · cruce Tioga Pass este: Tuolumne Meadows, Olmsted Point, Tioga Lake · bajada a Mammoth · Hot Creek Geological Site (termas naturales gratis)</div><div class="drive">3 hs scenic</div></div>
-
-<div class="day-row sierra"><div class="d">8</div><div>Jue 30 jul</div><div class="loc">Lone Pine</div><div>Mammoth → 395 south · parada Manzanar (sitio histórico WWII) + Bishop · llegada Lone Pine · Alabama Hills sunset (paisajes "wild west", se filmaron muchas películas) · vista de Mt Whitney</div><div class="drive">2.5 hs</div></div>
-
-<div class="day-row vegas"><div class="d">9</div><div>Vie 31 jul</div><div class="loc">Las Vegas (Strip)</div><div>Lone Pine → Death Valley · Father Crowley Vista (cráteres lunares) · Mesquite Flat Sand Dunes · Furnace Creek · Vegas · check-in Strip · Bellagio fountains noche</div><div class="drive">4 hs efectivos + paradas</div></div>
-
-<div class="day-row vegas"><div class="d">10</div><div>Sáb 1 ago</div><div class="loc">Las Vegas → Red-eye</div><div>Hoover Dam + Lake Mead AM · Red Rock Canyon · pool day · show PM (Cirque "O" Bellagio, U2 Sphere si toca, residencia top) · cena temprana Strip · check-out hotel y dejar bags en concierge si late checkout no llega · devolver auto Harry Reid LAS ~22:30 PM · vuelo <strong>AS 817 sale 01:55 AM Dom 2</strong></div><div class="drive">1.5 hs day trips</div></div>
-
-<div class="day-row hawaii"><div class="d">11</div><div>Dom 2 ago</div><div class="loc">Oahu (Waikiki) · SIN AUTO</div><div>Aterrizan HNL 05:16 AM (red-eye) · <strong>Uber a Waikiki ~30 min, ~$35</strong> · early check-in si disponible o dejar bags en hotel concierge · café + desayuno · siesta media mañana · pool/playa Waikiki PM · cena temprana · dormir bien</div><div class="drive">–</div></div>
-
-<div class="day-row hawaii"><div class="d">12</div><div>Lun 3 ago</div><div class="loc">Oahu · pickup Thrifty</div><div>Despertar 5:00 AM · <strong>Uber Waikiki→HNL ~$35</strong> · <strong>pickup Thrifty AS ••••••••••• a las 06:00 AM</strong> · drive a Pearl Harbor (20 min) · entrada 7:30 AM · vuelta Waikiki almuerzo · Diamond Head sunset (5 min en auto) · cena Waikiki</div><div class="drive">2 hs</div></div>
-
-<div class="day-row hawaii"><div class="d">13</div><div>Mar 4 ago</div><div class="loc">Oahu · North Shore</div><div>North Shore en auto (1h ida): Sunset Beach, Waimea Bay, Giovanni's Shrimp Truck, Dole Plantation opcional · vuelta Waikiki al atardecer</div><div class="drive">3 hs</div></div>
-
-<div class="day-row hawaii"><div class="d">14</div><div>Mié 5 ago</div><div class="loc">Oahu → Maui</div><div>Check-out Waikiki AM · drive a HNL · <strong>devolver Thrifty 12:00</strong> · vuelo <strong>AS 1116 HNL→OGG 13:01-13:45</strong> · <strong>pickup Dollar ••••••••••• OGG 14:00</strong> (Chevrolet Cruze) · drive a Wailea/Kaanapali (~30 min) · check-in resort · atardecer playa</div><div class="drive">~1h</div></div>
-
-<div class="day-row hawaii"><div class="d">15</div><div>Jue 6 ago</div><div class="loc">Maui</div><div>Road to Hana (día completo en auto, ~10h ida y vuelta)</div><div class="drive">–</div></div>
-
-<div class="day-row hawaii"><div class="d">16</div><div>Vie 7 ago</div><div class="loc">Maui</div><div>Haleakala amanecer (salir 3 AM) + spa o piscina PM</div><div class="drive">–</div></div>
-
-<div class="day-row hawaii"><div class="d">17</div><div>Sáb 8 ago</div><div class="loc">Maui</div><div>Snorkel Molokini AM + cena Mama's Fish House (reservar 2 meses antes)</div><div class="drive">–</div></div>
-
-<div class="day-row transit"><div class="d">18</div><div>Dom 9 ago</div><div class="loc">LAX hotel</div><div>Última mañana Maui (desayuno + última playa) · check-out resort 11 AM · drive a OGG · <strong>devolver Dollar 12:00 OGG</strong> · espera 3h · <strong>AS 934 sale 15:00 HST</strong> · llegada <strong>LAX 23:07 PDT</strong> · Uber hotel cerca aeropuerto · dormir 6-7h</div><div class="drive">–</div></div>
-
-<div class="day-row transit"><div class="d">19</div><div>Lun 10 ago</div><div class="loc">Vuelta a casa</div><div>Despertar 6:30 AM · desayuno hotel · shuttle a LAX 9:00 AM · check-in LATAM 9:30 AM · vuelo LAX 11:35 → LIM 22:10 · conexión 3h · LIM 01:15 → AEP 07:40 (mar 11)</div><div class="drive">–</div></div>
-
-<div class="day-row transit"><div class="d">20</div><div>Mar 11 ago</div><div class="loc">Llegada AEP</div><div>Arribo Aeroparque 07:40 AM</div><div class="drive">–</div></div>
-
-<h2>🚗 Auto Hertz Continental — ✅ CONFIRMADO</h2>
-
-<div class="booking-card">
-  <div class="reserva-codes">
-    <div class="code-block"><span class="code-label">Hertz Confirmation</span><span class="code-value">•••••••••••</span></div>
-    <div class="code-block"><span class="code-label">Vehículo</span><span class="code-value">Nissan Rogue</span></div>
-    <div class="code-block"><span class="code-label">Pagado</span><span class="code-value">USD 1.079,60</span></div>
-    <div class="code-block"><span class="code-label">Total días</span><span class="code-value">10 días</span></div>
+<footer>
+  <div class="container">
+    <div class="foot-title">Mahalo · 22 jul → 11 ago 2026</div>
+    <p class="foot-sub">Un viaje que cruza dos océanos, dos cordilleras y una vida nueva juntos.</p>
+    <div class="foot-meta">Versión pública del plan · sanitizada · generado en mayo 2026</div>
   </div>
-  <div class="flight-grid head"><div>Tramo</div><div>Ubicación</div><div>Fecha</div><div>Hora</div><div>Tipo</div><div>Estado</div></div>
-  <div class="flight-grid">
-    <div class="vuelo">PICKUP</div><div>LAX <small>Los Angeles International Airport</small></div>
-    <div class="horario">Jue 23-jul</div><div class="horario">08:00 AM</div><div class="horario">Midsize SUV</div>
-    <div><span class="pill confirmed">OK</span></div>
-  </div>
-  <div class="flight-grid">
-    <div class="vuelo">DROPOFF</div><div>LAS <small>Harry Reid International Airport</small></div>
-    <div class="horario">Sáb 1-ago</div><div class="horario">11:00 PM</div><div class="horario">Nissan Rogue</div>
-    <div><span class="pill confirmed">OK</span></div>
-  </div>
-</div>
+</footer>
 
-<div class="callout warn">
-  <p><strong>📌 Antes del pickup (Jue 23 jul):</strong></p>
-  <ul>
-    <li><strong>Permiso Internacional de Conducir</strong> (sacar en ACA antes de viajar, USD 30) — Hertz no siempre lo exige en CA/NV pero conviene tenerlo.</li>
-    <li><strong>Licencia argentina</strong> + pasaporte + tarjeta de crédito en USD a nombre de Pasajero 1.</li>
-    <li><strong>Hertz Gold membership</strong> — si te asociás gratis online, te saltea la cola y vas directo al lote (Skip the Counter).</li>
-    <li><strong>Cobertura de tu tarjeta de crédito:</strong> verificar antes del viaje si tu Visa/Master cubre CDW (Collision Damage Waiver) en USA. Si sí, en el counter rechazá el "Protect the Car" ($28/día = $280 totales).</li>
-  </ul>
-  <p><strong>📌 En el counter Hertz LAX (jue 23 jul AM):</strong></p>
-  <ul>
-    <li><strong>Rechazar:</strong> Protect the Car · Roadside Assistance · Prepaid Fuel · PlatePass (Toll Pass).</li>
-    <li><strong>Confirmar:</strong> drop-off acordado en LAS, sin sorpresas.</li>
-    <li><strong>Inspección del auto:</strong> sacar fotos/video de toda la carrocería ANTES de salir del lote. Marcar cualquier raspón en el contrato.</li>
-    <li><strong>Conductor adicional:</strong> Pasajero 2 puede manejar gratis si es cónyuge (algunas oficinas Hertz lo permiten sin cargo, otras no). Preguntar.</li>
-  </ul>
-  <p><strong>📌 Timing del dropoff Sáb 1 ago:</strong> devolver el auto en LAS ~21:00-22:00 PM (la reserva permite hasta 23:00). Tenés <strong>3h de buffer</strong> antes del vuelo AS 817 que sale 01:55 AM dom 2. Shuttle de LAS rental center a la terminal de salida: ~15 min. Cómodo.</p>
-  <p><strong>Tioga Pass (Hwy 120 east):</strong> única ruta de Yosemite hacia Mammoth. Solo abierta verano (jun-oct según nieve). En julio-agosto siempre abierta. Verificar <code>nps.gov/yose</code> cerca de la fecha.</p>
-  <p><strong>Yosemite entry reservation:</strong> entre 5 AM y 4 PM se requiere reserva (USD 2 por auto, recreation.gov). Aunque solo crucen Tioga Pass, conviene tenerla por las dudas.</p>
-</div>
-
-<h2>🚗 Thrifty Oahu — ✅ CONFIRMADO vía Discount Hawaii Car Rental</h2>
-
-<div class="booking-card">
-  <div class="reserva-codes">
-    <div class="code-block"><span class="code-label">Thrifty Confirm</span><span class="code-value">•••••••••••</span></div>
-    <div class="code-block"><span class="code-label">Broker</span><span class="code-value">DHCR</span></div>
-    <div class="code-block"><span class="code-label">A pagar (counter)</span><span class="code-value">USD 242,92</span></div>
-    <div class="code-block"><span class="code-label">Días</span><span class="code-value">3 días</span></div>
-  </div>
-  <div class="flight-grid head"><div>Tramo</div><div>Ubicación</div><div>Fecha</div><div>Hora</div><div>Tipo</div><div>Estado</div></div>
-  <div class="flight-grid">
-    <div class="vuelo">PICKUP</div><div>HNL <small>Honolulu International Airport</small></div>
-    <div class="horario">Lun 3-ago</div><div class="horario">06:00 AM</div><div class="horario">Nissan Rogue (Small SUV)</div>
-    <div><span class="pill confirmed">OK</span></div>
-  </div>
-  <div class="flight-grid">
-    <div class="vuelo">DROPOFF</div><div>HNL</div>
-    <div class="horario">Mié 5-ago</div><div class="horario">12:00 PM</div><div class="horario">antes vuelo OGG 13:01</div>
-    <div><span class="pill confirmed">OK</span></div>
-  </div>
-</div>
-
-<div class="callout warn">
-  <p><strong>📌 Benefits incluidos sin cargo:</strong> Unlimited miles + <strong>2 Free Extra Drivers</strong> (Pasajero 2 gratis como conductora adicional).</p>
-  <p><strong>⚠ Seguros NO incluidos.</strong> En el counter Thrifty te van a ofrecer LDW (~$30-40/día) + Liability (~$15-20/día). Decidí antes:</p>
-  <ul>
-    <li>Si tu Visa argentina cubre CDW en USA → rechazar todos los seguros (~$140-180 ahorro 3 días).</li>
-    <li>Si no estás seguro → comprá al menos el LDW del counter ($90-120 los 3 días) o RentalCover online ($30-45 los 3 días).</li>
-    <li><strong>Sin seguro = vos asumís 100% del daño/robo del auto en caso de accidente. Hawaii es "no fault state" pero igual te cobran el auto.</strong></li>
-  </ul>
-  <p><strong>⚠ Aug 2 (dom) sin auto:</strong> aterrizan HNL 05:16 AM del red-eye → Uber a Waikiki (~$35) → chill day en Waikiki sin auto. El pickup del Thrifty es Lun 3 ago 06:00 AM en HNL → Uber Waikiki→HNL 5:30 AM (~$35). Total Ubers extra: ~$70.</p>
-</div>
-
-<h2>🚗 Dollar Maui — ✅ CONFIRMADO con SEGUROS INCLUIDOS (Inclusive Rate)</h2>
-
-<div class="booking-card">
-  <div class="reserva-codes">
-    <div class="code-block"><span class="code-label">Dollar Confirm</span><span class="code-value">•••••••••••</span></div>
-    <div class="code-block"><span class="code-label">Broker</span><span class="code-value">DHCR Inclusive</span></div>
-    <div class="code-block"><span class="code-label">A pagar (counter)</span><span class="code-value">USD 354,04</span></div>
-    <div class="code-block"><span class="code-label">Días</span><span class="code-value">4 días</span></div>
-  </div>
-  <div class="flight-grid head"><div>Tramo</div><div>Ubicación</div><div>Fecha</div><div>Hora</div><div>Tipo</div><div>Estado</div></div>
-  <div class="flight-grid">
-    <div class="vuelo">PICKUP</div><div>OGG <small>Kahului Airport - Maui</small></div>
-    <div class="horario">Mié 5-ago</div><div class="horario">02:00 PM</div><div class="horario">Chevrolet Cruze (Sedan)</div>
-    <div><span class="pill confirmed">OK</span></div>
-  </div>
-  <div class="flight-grid">
-    <div class="vuelo">DROPOFF</div><div>OGG</div>
-    <div class="horario">Dom 9-ago</div><div class="horario">12:00 PM</div><div class="horario">antes vuelo OGG→LAX 15:00</div>
-    <div><span class="pill confirmed">OK</span></div>
-  </div>
-</div>
-
-<div class="callout" style="border-left-color: var(--confirmed); background: #e4f3e7;">
-  <p><strong>🎁 Inclusive Rate — TODO INCLUIDO:</strong></p>
-  <ul>
-    <li>Unlimited miles</li>
-    <li><strong>LDW Loss Damage Waiver - Zero Excess</strong> (colisión 100% cubierta)</li>
-    <li><strong>LIS Liability + Supplemental Liability $300.000</strong> (responsabilidad civil)</li>
-    <li><strong>Uninsured Motorist Protection</strong> (cobre si te chocan y el otro no tiene seguro)</li>
-    <li>All taxes and fees included</li>
-  </ul>
-  <p><strong>En el counter NO comprés nada extra. Negate firmemente a los upsells.</strong></p>
-</div>
-
-<div class="callout warn">
-  <p><strong>⚠ Chevrolet Cruze es SEDAN, no SUV.</strong> 5 plazas, transmisión automática, AC. Para Maui:</p>
-  <ul>
-    <li>✅ <strong>Road to Hana:</strong> sedanes funcionan (ruta pavimentada con curvas, sin off-road).</li>
-    <li>✅ <strong>Haleakala:</strong> ruta pavimentada hasta la cima.</li>
-    <li>✅ <strong>Wailea / Kaanapali / Lahaina:</strong> avenidas normales.</li>
-    <li>⚠ <strong>Hana Backside (loop completa):</strong> ESA parte tiene gravel road — el rental contract puede prohibirlo con sedanes. Confirmar al pickup.</li>
-  </ul>
-  <p><strong>Si querés cambiar a SUV:</strong> llamá a DHCR (1-800-292-1930), pediles upgrade a "Small SUV Inclusive". Probable cargo adicional: USD 50-100.</p>
-  <p><strong>⚠ Requisito Inclusive Rate:</strong> "US and Canadian license holders excluded" — válido SOLO con licencia argentina + PIC. Llevar ambos al counter Dollar.</p>
-</div>
-
-<h2>🚗 Hertz HNL Oahu — ❌ CANCELADO</h2>
-
-<div class="callout warn">
-  <p>La reserva Hertz ••••••••••• ($343,76 Nissan Rogue · Aug 2-5 en HNL) fue <strong>cancelada</strong> y reemplazada por la Thrifty (vía DHCR) que cuesta $100 menos. El refund de Hertz debería volver a Visa [oculta] en 5-10 días hábiles. <strong>Verificar el extracto bancario para confirmar.</strong></p>
-</div>
-
-<h2>✈ Vuelos domésticos USA — ✅ TODOS CONFIRMADOS (••••••)</h2>
-
-<table>
-  <thead><tr><th>Vuelo</th><th>Fecha y horario</th><th>Asientos</th><th>Avión</th><th>Estado</th></tr></thead>
-  <tbody>
-    <tr>
-      <td><strong>AS 817 · LAS → HNL</strong><br><small>RED-EYE Vegas → Honolulu</small></td>
-      <td>Dom 2 ago · 01:55 → 05:16 HST<br><small>~6h21 nonstop</small></td>
-      <td>37H + 37J<br>Q Coach</td>
-      <td>Airbus A330-200</td>
-      <td><span class="pill confirmed">✓ Pagado</span></td>
-    </tr>
-    <tr>
-      <td><strong>AS 1116 · HNL → OGG</strong><br><small>Oahu → Maui inter-island</small></td>
-      <td>Mié 5 ago · 13:01 → 13:45 HST<br><small>~40 min</small></td>
-      <td>20A + 20B<br>M Coach</td>
-      <td>Boeing 717-200</td>
-      <td><span class="pill confirmed">✓ Pagado</span></td>
-    </tr>
-    <tr>
-      <td><strong>AS 934 · OGG → LAX</strong><br><small>Maui → Los Angeles directo</small></td>
-      <td>Dom 9 ago · 15:00 HST → 23:07 PDT<br><small>~5h7 nonstop</small></td>
-      <td>40D + 43H<br>M Coach (separados)</td>
-      <td>Airbus A330-200</td>
-      <td><span class="pill confirmed">✓ Pagado</span></td>
-    </tr>
-    <tr class="total-row"><td colspan="4">Total vuelos domésticos confirmados</td><td>USD 2.065,74</td></tr>
-  </tbody>
-</table>
-
-<div class="callout warn">
-  <p><strong>📌 Tareas pendientes post-compra:</strong></p>
-  <ul>
-    <li><strong>Asientos OGG → LAX:</strong> Pasajero 1 en 40D, Pasajero 2 en 43H (separados). Ir a hawaiianairlines.com → Manage trip •••••• y ver si hay asientos juntos disponibles antes del check-in 24h.</li>
-    <li><strong>Atmos Rewards:</strong> ambos pasajeros pueden unirse gratis y agregar el número a la reserva para acumular puntos.</li>
-    <li><strong>Equipaje:</strong> tarifa Coach no incluye valija despachada. Cargo: $45 1ra + $55 2da (en LAS-HNL y OGG-LAX). El HNL-OGG interisland: $30 1ra + $40 2da. <strong>Total bolsos pareja: ~$300-380 si despachan 2 valijas c/u en cada vuelo</strong>. Considerar pagar online (más barato que en aeropuerto).</li>
-    <li><strong>Bolsos gratis:</strong> 1 carry-on (22"×14"×9") + 1 personal item por persona, gratis.</li>
-  </ul>
-</div>
-
-<h2>🏨 Alojamiento — pendiente de reservar</h2>
-
-<table>
-  <thead><tr><th>Lugar</th><th>Noches</th><th>Sugerido</th><th>USD/noche pareja</th></tr></thead>
-  <tbody>
-    <tr><td>Santa Monica (jue 23)</td><td>1</td><td>Shore Hotel · Hotel Casa del Mar · Loews Santa Monica</td><td>320-500</td></tr>
-    <tr><td>Cambria (vie 24)</td><td>1</td><td>Cambria Pines Lodge · Moonstone Landing · El Colibri Hotel</td><td>250-380</td></tr>
-    <tr><td>Monterey/Carmel (sáb 25)</td><td>1</td><td>Monterey Plaza · L'Auberge Carmel · Casa Munras</td><td>320-500</td></tr>
-    <tr><td>San Francisco (dom 26 - lun 27)</td><td>2</td><td>Hotel Nikko · Hotel Triton · Cornell Hotel</td><td>280-450</td></tr>
-    <tr><td>Mariposa/El Portal (mar 28)</td><td>1</td><td>Yosemite View Lodge (sobre el río) · Tenaya Lodge</td><td>280-450</td></tr>
-    <tr><td>Mammoth Lakes (mié 29)</td><td>1</td><td>Westin Monache · Mammoth Mountain Inn · Sierra Nevada Resort</td><td>250-400</td></tr>
-    <tr><td>Lone Pine (jue 30)</td><td>1</td><td>Dow Villa Motel · Best Western Plus Frontier Motel</td><td>150-220</td></tr>
-    <tr><td>Las Vegas Strip (vie 31 jul)</td><td>1</td><td>Bellagio · Cosmopolitan · Aria · Wynn (late checkout sáb 1 ago)</td><td>250-400</td></tr>
-    <tr><td>Waikiki (Oahu) (dom 2 - mar 4)</td><td>3</td><td>Outrigger Reef · Aqua Palms · OHANA Waikiki Malia</td><td>220-300</td></tr>
-    <tr><td>Maui (mié 5 - sáb 8)</td><td>4</td><td>Andaz Maui · Honua Kai · Westin Kaanapali · Airbnb premium oceanfront</td><td>380-520</td></tr>
-    <tr><td>LAX hotel (dom 9)</td><td>1</td><td>Sheraton Gateway LAX · Hyatt Regency LAX · H Hotel LAX</td><td>240-380</td></tr>
-  </tbody>
-</table>
-
-<h2>📝 Reservas con cupo</h2>
-
-<ul class="pending-list">
-  <li><div class="text"><strong>Hearst Castle tour</strong><small>Vie 24 jul PM · hearstcastle.org · USD 30-50 c/u</small></div><span class="pill pending">Próximo mes</span></li>
-  <li><div class="text"><strong>Monterey Bay Aquarium</strong><small>Dom 26 jul · entradas online USD 60 c/u</small></div><span class="pill pending">Próximo mes</span></li>
-  <li><div class="text"><strong>Alcatraz tour (SF)</strong><small>Lun 27 jul · alcatrazcityferry.com · se llena 2-3 meses antes</small></div><span class="pill urgent">Esta semana</span></li>
-  <li><div class="text"><strong>Yosemite entry reservation</strong><small>Mié 29 jul · recreation.gov · USD 2 por auto · entre 5 AM y 4 PM</small></div><span class="pill urgent">Esta semana</span></li>
-  <li><div class="text"><strong>Show Las Vegas</strong><small>Sáb 1 ago · Cirque O Bellagio · U2 Sphere · residencia top</small></div><span class="pill pending">Próximo mes</span></li>
-  <li><div class="text"><strong>Pearl Harbor</strong><small>Lun 3 ago AM · recreation.gov gratis · sale 8 semanas antes (próximamente disponible)</small></div><span class="pill pending">Próximas semanas</span></li>
-  <li><div class="text"><strong>Hotel Maui (4 noches)</strong><small>Resort luna de miel se llena rápido</small></div><span class="pill urgent">Próxima semana</span></li>
-  <li><div class="text"><strong>LAS → HNL · HNL → OGG · OGG → LAX</strong><small>Reserva •••••• Hawaiian/Alaska — ✓ pagado USD 2.065,74</small></div><span class="pill confirmed">✓ Listo</span></li>
-  <li><div class="text"><strong>Mama's Fish House (Maui)</strong><small>Sáb 8 ago cena · opentable</small></div><span class="pill pending">Próximo mes</span></li>
-</ul>
-
-<h2>💰 Presupuesto v8.3 (todos los autos confirmados)</h2>
-
-<table>
-  <thead><tr><th>Categoría</th><th>USD pareja</th><th>Estado</th></tr></thead>
-  <tbody>
-    <tr><td>LATAM AEP↔LAX vía SCL/LIM (••••••)</td><td>2.226,00</td><td><span class="pill confirmed">✓ Pagado</span></td></tr>
-    <tr><td>Hawaiian/Alaska 3 vuelos domésticos (••••••)</td><td>2.065,74</td><td><span class="pill confirmed">✓ Pagado</span></td></tr>
-    <tr><td>Hertz Nissan Rogue LAX→LAS 10 días (•••••••••••)</td><td>1.079,60</td><td><span class="pill confirmed">✓ Pagado</span></td></tr>
-    <tr><td>Thrifty Nissan Rogue Oahu 3 días (•••••••••••)</td><td>242,92</td><td><span class="pill confirmed">✓ Reservado · pay at counter</span></td></tr>
-    <tr><td>Dollar Chevrolet Cruze Maui 4 días INCLUSIVE (•••••••••••)</td><td>354,04</td><td><span class="pill confirmed">✓ Reservado · pay at counter</span></td></tr>
-    <tr><td>Equipaje despachado Hawaiian (estimado mostrador)</td><td>300 – 380</td><td><span class="pill pending">Pendiente</span></td></tr>
-    <tr><td>Seguros Thrifty Oahu (LDW counter o usar tarjeta CDW)</td><td>0 – 120</td><td><span class="pill pending">Decidir antes</span></td></tr>
-    <tr><td>Ubers extra Oahu (HNL↔Waikiki dom 2 + lun 3)</td><td>70 – 80</td><td><span class="pill pending">En viaje</span></td></tr>
-    <tr><td>Hotel Santa Monica 1 noche</td><td>320 – 500</td><td><span class="pill pending">Pendiente</span></td></tr>
-    <tr><td>Hotel Cambria 1 noche</td><td>250 – 380</td><td><span class="pill pending">Pendiente</span></td></tr>
-    <tr><td>Hotel Monterey 1 noche</td><td>320 – 500</td><td><span class="pill pending">Pendiente</span></td></tr>
-    <tr><td>Hotel San Francisco 2 noches</td><td>560 – 900</td><td><span class="pill pending">Pendiente</span></td></tr>
-    <tr><td>Hotel Mariposa 1 noche</td><td>280 – 450</td><td><span class="pill pending">Pendiente</span></td></tr>
-    <tr><td>Hotel Mammoth 1 noche</td><td>250 – 400</td><td><span class="pill pending">Pendiente</span></td></tr>
-    <tr><td>Hotel Lone Pine 1 noche</td><td>150 – 220</td><td><span class="pill pending">Pendiente</span></td></tr>
-    <tr><td>Hotel Vegas 1 noche (vie 31 jul)</td><td>250 – 400</td><td><span class="pill pending">Pendiente</span></td></tr>
-    <tr><td>Hotel Oahu 3 noches</td><td>660 – 900</td><td><span class="pill pending">Pendiente</span></td></tr>
-    <tr><td>Hotel Maui 4 noches</td><td>1.520 – 2.080</td><td><span class="pill urgent">⚠ Reservar ya</span></td></tr>
-    <tr><td>Hotel cerca LAX (dom 9 ago)</td><td>240 – 380</td><td><span class="pill pending">Pendiente</span></td></tr>
-    <tr><td>Combustible mainland (~2.000 km)</td><td>200 – 280</td><td><span class="pill pending">En viaje</span></td></tr>
-    <tr><td>Combustible Hawaii (~200 km Oahu + Maui)</td><td>40 – 60</td><td><span class="pill pending">En viaje</span></td></tr>
-    <tr><td>Parking SF 2 noches + Maui resort 4 noches + Oahu 3 noches</td><td>305 – 590</td><td><span class="pill pending">En viaje</span></td></tr>
-    <tr><td>Comidas 19 días</td><td>1.140 – 1.710</td><td><span class="pill pending">En viaje</span></td></tr>
-    <tr><td>Tours: Hearst, Aquarium, Alcatraz, show Vegas, Pearl Harbor, Road to Hana, Molokini</td><td>700 – 1.100</td><td><span class="pill pending">Pendiente</span></td></tr>
-    <tr><td>Misc: pase parques USD 80, propinas, Ubers, casino</td><td>400 – 600</td><td><span class="pill pending">En viaje</span></td></tr>
-    <tr class="total-row"><td><strong>TOTAL v8.3</strong></td><td><strong>USD 13.124 – 17.116</strong></td><td>—</td></tr>
-    <tr class="total-row" style="background:var(--confirmed); color:white;"><td><strong>✓ YA PAGADO (LATAM + Hawaiian + Hertz LAX)</strong></td><td><strong>USD 5.371,34</strong></td><td>41% – 31% del total</td></tr>
-    <tr class="total-row" style="background:#f4c95d; color:#1c3d4a;"><td><strong>✓ RESERVADO sin pagar (Thrifty + Dollar)</strong></td><td><strong>USD 596,96</strong></td><td>Pay at counter al pickup</td></tr>
-    <tr class="total-row" style="background:var(--pending); color:white;"><td><strong>Falta reservar + pagar (hoteles, tours, etc.)</strong></td><td><strong>USD 7.156 – 11.148</strong></td><td>—</td></tr>
-  </tbody>
-</table>
-
-<div class="callout" style="border-left-color: var(--confirmed); background: #e4f3e7;">
-  <p><strong>✅ Ahorro vs versión anterior con todo Hertz:</strong></p>
-  <ul>
-    <li>Oahu: $343,76 Hertz → $242,92 Thrifty = <strong>ahorro $100</strong></li>
-    <li>Maui: ~$760 Hertz cotización → $354,04 Dollar Inclusive (con seguros) = <strong>ahorro ~$400 + seguros incluidos ~$160 ≈ $560 valor</strong></li>
-    <li><strong>Ahorro total Hawaii: ~$660 sobre el plan original con Hertz everywhere</strong></li>
-  </ul>
-</div>
-
-<div class="callout warn">
-  <p><strong>Vs estimación original v8:</strong> total prácticamente igual (+USD 836 al mínimo, +USD 266 al máximo). Los vuelos domésticos salieron en el rango esperado.</p>
-  <p><strong>Palancas para bajar a USD 10k:</strong></p>
-  <ol>
-    <li>Maui Airbnb premium oceanfront en vez de resort: ahorra USD 600-900.</li>
-    <li>Santa Monica hotel chico (Bayside, ocean view más simple): ahorra USD 100-200.</li>
-    <li>Hotel SF en Marina/Mission en vez de Union Square: ahorra USD 100-250.</li>
-    <li>Hotel LAX último simple (Best Western, Travelodge): ahorra USD 100-150.</li>
-    <li>Saltar show Vegas top-tier (Cirque, U2): ahorra USD 300-600.</li>
-    <li>Solo 1 valija despachada c/u (ahorra ~USD 200).</li>
-  </ol>
-</div>
-
-<h2>🎯 Próximos pasos</h2>
-
-<ol>
-  <li><strong>Esta semana:</strong> Alcatraz · Yosemite entry · <strong>Hotel Maui</strong> (urgente) · cambiar asientos OGG→LAX si pueden quedar juntos.</li>
-  <li><strong>Próxima semana:</strong> resto de hoteles (Santa Monica, Cambria, Monterey, SF, Mariposa, Mammoth, Lone Pine, Vegas <em>1 noche</em>, Oahu, LAX último) + auto LAX→LAS.</li>
-  <li><strong>Este mes:</strong> Pearl Harbor (8 semanas antes) · show Vegas · Mama's Fish House · revisar política equipaje •••••• y pagar bolsos online.</li>
-  <li><strong>Próximo mes:</strong> Hearst Castle · Monterey Bay Aquarium · tours Maui (Road to Hana, Molokini).</li>
-</ol>
-
-<h2>✅ Estado actual del plan</h2>
-
-<table>
-  <thead><tr><th>Categoría</th><th>Estado</th></tr></thead>
-  <tbody>
-    <tr><td><strong>Vuelos internacionales LATAM (••••••)</strong></td><td><span class="pill confirmed">✓ Pagado USD 2.226,00</span></td></tr>
-    <tr><td><strong>Vuelos domésticos Hawaiian (••••••)</strong></td><td><span class="pill confirmed">✓ Pagado USD 2.065,74</span></td></tr>
-    <tr><td><strong>Hertz Nissan Rogue LAX→LAS (•••••••••••)</strong></td><td><span class="pill confirmed">✓ Pagado USD 1.079,60</span></td></tr>
-    <tr><td><strong>Hertz HNL Oahu (•••••••••••)</strong></td><td><span class="pill urgent">❌ CANCELADO — refund pendiente $343,76</span></td></tr>
-    <tr><td><strong>Thrifty Oahu vía DHCR (•••••••••••)</strong></td><td><span class="pill confirmed">✓ Reservado · $242,92 pay at counter</span></td></tr>
-    <tr><td><strong>Dollar Maui INCLUSIVE vía DHCR (•••••••••••)</strong></td><td><span class="pill confirmed">✓ Reservado · $354,04 pay at counter</span></td></tr>
-    <tr><td><strong>TOTAL pagado + reservado</strong></td><td><span class="pill confirmed">✓ USD 5.968,30</span></td></tr>
-    <tr><td>Hoteles (10 ubicaciones)</td><td><span class="pill pending">Pendiente · empezar por Maui</span></td></tr>
-    <tr><td>Tours y reservas con cupo</td><td><span class="pill pending">Pendiente</span></td></tr>
-  </tbody>
-</table>
-
-<h2>🔄 Comparación rápida con Opción 3 (Plan v7)</h2>
-
-<table>
-  <thead><tr><th></th><th>v7 (Hawaii primero)</th><th>v8 (Road trip primero) ← este</th></tr></thead>
-  <tbody>
-    <tr><td>Día 1 (Jue 23)</td><td>LAX → vuelo doméstico LAX→HNL → Waikiki</td><td>LAX → drive 25 min → Santa Monica chill day</td></tr>
-    <tr><td>Fatiga Día 1</td><td>Media (vuelos consecutivos)</td><td>Baja (solo 25 min de auto)</td></tr>
-    <tr><td>Mood final Día 1</td><td>Atardecer Waikiki</td><td>Atardecer Santa Monica Pier</td></tr>
-    <tr><td>Noches Maui</td><td>5</td><td>4</td></tr>
-    <tr><td>Cierre del viaje</td><td>Santa Monica + drive 20 min LAX</td><td>Maui + vuelo OGG→LAX + hotel LAX</td></tr>
-    <tr><td>Costo extra</td><td>baseline</td><td>+USD 250-400</td></tr>
-    <tr><td>Pro de cada uno</td><td>Más Maui · Más barato · Honeymoon vibe desde día 1</td><td>Día 1 chill · Hawaii como grand finale · Sin vuelos doméstico el día de llegada</td></tr>
-  </tbody>
-</table>
-
-<div class="footer">
-  Plan v8.3 (versión pública) · LATAM •••••• + Hawaiian •••••• + Hertz LAX-LAS ••••••••••• + Thrifty Oahu ••••••••••• + Dollar Maui Inclusive ••••••••••• · Todos los autos confirmados
-</div>
-
-</div>
 </body>
 </html>
