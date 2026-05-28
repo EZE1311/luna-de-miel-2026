@@ -705,8 +705,7 @@
     white-space: nowrap;
   }
   .tag-card.amex { background: #d6e4f2; color: #1b4d7e; }
-  .tag-card.visa5098 { background: #fcdcd6; color: #a23a2f; }
-  .tag-card.visa3002 { background: #e8d8ec; color: #6b3878; }
+  .tag-card.visa { background: #fcdcd6; color: #a23a2f; }
   .tag-card.counter { background: var(--sand); color: var(--ink-soft); }
   .card-split {
     display: grid;
@@ -725,8 +724,7 @@
     gap: 6px;
   }
   .cs-card.amex { border-top-color: #1b4d7e; }
-  .cs-card.visa5098 { border-top-color: #a23a2f; }
-  .cs-card.visa3002 { border-top-color: #6b3878; }
+  .cs-card.visa { border-top-color: #a23a2f; }
   .cs-country {
     font-size: 10.5px;
     text-transform: uppercase;
@@ -772,8 +770,7 @@
     font-size: 13.5px;
   }
   .budget-table .subtotal-row.amex td { background: rgba(27, 77, 126, 0.07); }
-  .budget-table .subtotal-row.visa5098 td { background: rgba(162, 58, 47, 0.06); }
-  .budget-table .subtotal-row.visa3002 td { background: rgba(107, 56, 120, 0.06); }
+  .budget-table .subtotal-row.visa td { background: rgba(162, 58, 47, 0.06); }
   .day-row.has-bookings {
     grid-template-areas: "d date activity drive" "bookings bookings bookings bookings";
     row-gap: 0;
@@ -996,35 +993,35 @@
 
     <div class="day-timeline">
 
-      <div class="day-row transit has-bookings"><div class="d">0</div><div class="date">Mié 22 jul</div><div class="activity"><span class="loc">En vuelo</span>Aeroparque 15:45 → SCL (layover 6h) → vuelo overnight a LAX</div><div class="drive">–</div><div class="day-bookings"><div class="booking-chip flight"><span class="bc-icon">✈️</span><div class="bc-body"><strong>LA 454 · AEP → SCL</strong><span>Mié 22-jul 15:45 → 17:08 · Reserva <code>YDEXMY</code> · AMEX 🇦🇷</span></div></div><div class="booking-chip flight"><span class="bc-icon">✈️</span><div class="bc-body"><strong>LA 602 · SCL → LAX</strong><span>Mié 22-jul 23:25 → Jue 07:45 · Reserva <code>YDEXMY</code> · AMEX 🇦🇷</span></div></div></div></div>
+      <div class="day-row transit has-bookings"><div class="d">0</div><div class="date">Mié 22 jul</div><div class="activity"><span class="loc">En vuelo</span>Aeroparque 15:45 → SCL (layover 6h) → vuelo overnight a LAX</div><div class="drive">–</div><div class="day-bookings"><div class="booking-chip flight"><span class="bc-icon">✈️</span><div class="bc-body"><strong>LA 454 · AEP → SCL</strong><span>Mié 22-jul 15:45 → 17:08 · Reserva <code>YDEXMY</code> · AMEX</span></div></div><div class="booking-chip flight"><span class="bc-icon">✈️</span><div class="bc-body"><strong>LA 602 · SCL → LAX</strong><span>Mié 22-jul 23:25 → Jue 07:45 · Reserva <code>YDEXMY</code> · AMEX</span></div></div></div></div>
 
-      <div class="day-row la has-bookings"><div class="d">1</div><div class="date">Jue 23 jul</div><div class="activity"><span class="loc">FRIENDS Experience + Santa Monica</span>Aterrizaje LAX 07:45 · customs + bags · shuttle a Car Rental Center · pickup Hertz · drive a Lakewood Center (30 min sur) · <strong>The FRIENDS™ Experience 09:30-11:00</strong> (sets recreados Central Perk + apartments, PIVOT! scene, foto en el sillón naranja) · drive a Santa Monica (~45 min) · check-in hotel beachfront · lunch · paseo Pier + Venice Beach · sunset · cena temprana</div><div class="drive">1.5 hs</div><div class="day-bookings"><div class="booking-chip car"><span class="bc-icon">🚗</span><div class="bc-body"><strong>Hertz · pickup LAX 08:00</strong><span>Nissan Rogue · 10 días · Conf. <code>L5994697119</code> · USD 1.079,60 · VISA *3002 🌎</span></div></div><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Santa Monica · 1 noche</strong><span>Pendiente reservar · ~USD 320-500</span></div></div><div class="booking-chip todo"><span class="bc-icon">🎬</span><div class="bc-body"><strong>FRIENDS™ Experience Lakewood 09:30</strong><span>Pendiente comprar tickets online</span></div></div></div></div>
+      <div class="day-row la has-bookings"><div class="d">1</div><div class="date">Jue 23 jul</div><div class="activity"><span class="loc">FRIENDS Experience + Santa Monica</span>Aterrizaje LAX 07:45 · customs + bags · shuttle a Car Rental Center · pickup Hertz · drive a Lakewood Center (30 min sur) · <strong>The FRIENDS™ Experience 09:30-11:00</strong> (sets recreados Central Perk + apartments, PIVOT! scene, foto en el sillón naranja) · drive a Santa Monica (~45 min) · check-in hotel beachfront · lunch · paseo Pier + Venice Beach · sunset · cena temprana</div><div class="drive">1.5 hs</div><div class="day-bookings"><div class="booking-chip car"><span class="bc-icon">🚗</span><div class="bc-body"><strong>Hertz · pickup LAX 08:00</strong><span>Nissan Rogue · 10 días · Conf. <code>L5994697119</code> · USD 1.079,60 · VISA</span></div></div><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Santa Monica · 1 noche</strong><span>Pendiente reservar · hasta USD 500</span></div></div><div class="booking-chip todo"><span class="bc-icon">🎬</span><div class="bc-body"><strong>FRIENDS™ Experience Lakewood 09:30</strong><span>Pendiente comprar tickets online</span></div></div></div></div>
 
-      <div class="day-row pch has-bookings"><div class="d">2</div><div class="date">Vie 24 jul</div><div class="activity"><span class="loc">Cambria</span>Santa Monica → PCH norte · Santa Bárbara (almuerzo State Street) → Solvang opcional → Cambria · Hearst Castle PM · Elephant Seal Vista sunset</div><div class="drive">4 hs PCH</div><div class="day-bookings"><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Cambria · 1 noche</strong><span>Pendiente reservar · ~USD 250-380</span></div></div><div class="booking-chip todo"><span class="bc-icon">🏰</span><div class="bc-body"><strong>Hearst Castle tour PM</strong><span>Pendiente reservar online (recreation.gov)</span></div></div></div></div>
+      <div class="day-row pch has-bookings"><div class="d">2</div><div class="date">Vie 24 jul</div><div class="activity"><span class="loc">Cambria</span>Santa Monica → PCH norte · Santa Bárbara (almuerzo State Street) → Solvang opcional → Cambria · Hearst Castle PM · Elephant Seal Vista sunset</div><div class="drive">4 hs PCH</div><div class="day-bookings"><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Cambria · 1 noche</strong><span>Pendiente reservar · hasta USD 380</span></div></div><div class="booking-chip todo"><span class="bc-icon">🏰</span><div class="bc-body"><strong>Hearst Castle tour PM</strong><span>Pendiente reservar online (recreation.gov)</span></div></div></div></div>
 
-      <div class="day-row pch has-bookings"><div class="d">3</div><div class="date">Sáb 25 jul</div><div class="activity"><span class="loc">Monterey / Carmel</span>Cambria → Big Sur → Monterey · Bixby Bridge · McWay Falls · Pfeiffer Beach · cena Carmel-by-the-Sea</div><div class="drive">3 hs</div><div class="day-bookings"><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Monterey · 1 noche</strong><span>Pendiente reservar · ~USD 320-500</span></div></div></div></div>
+      <div class="day-row pch has-bookings"><div class="d">3</div><div class="date">Sáb 25 jul</div><div class="activity"><span class="loc">Monterey / Carmel</span>Cambria → Big Sur → Monterey · Bixby Bridge · McWay Falls · Pfeiffer Beach · cena Carmel-by-the-Sea</div><div class="drive">3 hs</div><div class="day-bookings"><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Monterey · 1 noche</strong><span>Pendiente reservar · hasta USD 500</span></div></div></div></div>
 
-      <div class="day-row sf has-bookings"><div class="d">4</div><div class="date">Dom 26 jul</div><div class="activity"><span class="loc">San Francisco</span>Monterey Bay Aquarium AM · 17-Mile Drive + Pebble Beach · drive a SF vía Half Moon Bay · Fisherman's Wharf + Pier 39 PM</div><div class="drive">2 hs</div><div class="day-bookings"><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel San Francisco · 2 noches</strong><span>Pendiente reservar · ~USD 560-900</span></div></div></div></div>
+      <div class="day-row sf has-bookings"><div class="d">4</div><div class="date">Dom 26 jul</div><div class="activity"><span class="loc">San Francisco</span>Monterey Bay Aquarium AM · 17-Mile Drive + Pebble Beach · drive a SF vía Half Moon Bay · Fisherman's Wharf + Pier 39 PM</div><div class="drive">2 hs</div><div class="day-bookings"><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel San Francisco · 2 noches</strong><span>Pendiente reservar · hasta USD 900</span></div></div></div></div>
 
       <div class="day-row sf has-bookings"><div class="d">5</div><div class="date">Lun 27 jul</div><div class="activity"><span class="loc">San Francisco</span>Caminar Golden Gate · Crissy Field · Alcatraz tour mediodía · Painted Ladies + Mission + Twin Peaks atardecer · cena North Beach</div><div class="drive">–</div><div class="day-bookings"><div class="booking-chip todo"><span class="bc-icon">🚢</span><div class="bc-body"><strong>Alcatraz tour mediodía</strong><span>Pendiente reservar 2-3 meses antes (alcatrazcityexperiences.com)</span></div></div></div></div>
 
-      <div class="day-row sierra has-bookings"><div class="d">6</div><div class="date">Mar 28 jul</div><div class="activity"><span class="loc">Mariposa (Yosemite)</span>SF → Mariposa vía Oakland, Modesto · check-in lodge · cena en El Portal junto al río Merced</div><div class="drive">4 hs</div><div class="day-bookings"><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Mariposa · 1 noche</strong><span>Pendiente reservar · ~USD 280-450</span></div></div></div></div>
+      <div class="day-row sierra has-bookings"><div class="d">6</div><div class="date">Mar 28 jul</div><div class="activity"><span class="loc">Mariposa (Yosemite)</span>SF → Mariposa vía Oakland, Modesto · check-in lodge · cena en El Portal junto al río Merced</div><div class="drive">4 hs</div><div class="day-bookings"><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Mariposa · 1 noche</strong><span>Pendiente reservar · hasta USD 450</span></div></div></div></div>
 
-      <div class="day-row sierra has-bookings"><div class="d">7</div><div class="date">Mié 29 jul</div><div class="activity"><span class="loc">Mammoth Lakes</span>Yosemite Valley AM: Tunnel View, El Capitan, Half Dome viewpoint, Bridalveil Fall · cruce Tioga Pass · Tuolumne Meadows, Olmsted Point · bajada a Mammoth · Hot Creek</div><div class="drive">3 hs scenic</div><div class="day-bookings"><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Mammoth Lakes · 1 noche</strong><span>Pendiente reservar · ~USD 250-400</span></div></div></div></div>
+      <div class="day-row sierra has-bookings"><div class="d">7</div><div class="date">Mié 29 jul</div><div class="activity"><span class="loc">Mammoth Lakes</span>Yosemite Valley AM: Tunnel View, El Capitan, Half Dome viewpoint, Bridalveil Fall · cruce Tioga Pass · Tuolumne Meadows, Olmsted Point · bajada a Mammoth · Hot Creek</div><div class="drive">3 hs scenic</div><div class="day-bookings"><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Mammoth Lakes · 1 noche</strong><span>Pendiente reservar · hasta USD 400</span></div></div></div></div>
 
-      <div class="day-row sierra has-bookings"><div class="d">8</div><div class="date">Jue 30 jul</div><div class="activity"><span class="loc">Lone Pine</span>Mammoth → 395 south · parada Manzanar + Bishop · Lone Pine · Alabama Hills sunset (paisajes wild west) · vista Mt Whitney</div><div class="drive">2.5 hs</div><div class="day-bookings"><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Lone Pine · 1 noche</strong><span>Pendiente reservar · ~USD 150-220</span></div></div></div></div>
+      <div class="day-row sierra has-bookings"><div class="d">8</div><div class="date">Jue 30 jul</div><div class="activity"><span class="loc">Lone Pine</span>Mammoth → 395 south · parada Manzanar + Bishop · Lone Pine · Alabama Hills sunset (paisajes wild west) · vista Mt Whitney</div><div class="drive">2.5 hs</div><div class="day-bookings"><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Lone Pine · 1 noche</strong><span>Pendiente reservar · hasta USD 220</span></div></div></div></div>
 
-      <div class="day-row vegas has-bookings"><div class="d">9</div><div class="date">Vie 31 jul</div><div class="activity"><span class="loc">Las Vegas (llegada mediodía)</span>Salida Lone Pine 07:00 AM · Death Valley lite (solo Father Crowley Vista 15 min) · drive directo 95 N · <strong>llegada Vegas 11:30 AM</strong> · valet Polo Towers · lunch · pool · check-in 16:00 PM · <strong>Hoover Dam tour PM</strong> (14:30-18:30) · Strip walk + Bellagio Fountains + cena</div><div class="drive">4.5 hs</div><div class="day-bookings"><div class="booking-chip car"><span class="bc-icon">🚗</span><div class="bc-body"><strong>Hertz · dropoff LAS 23:00</strong><span>Conf. <code>L5994697119</code></span></div></div><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hilton Polo Towers · Studio · 1 noche</strong><span>3745 Las Vegas Blvd S · Order <code>139627873</code> · USD 191,88 ($157,73 online + $34,15 resort fee) · VISA *5098 🌎</span></div></div><div class="booking-chip todo"><span class="bc-icon">🌊</span><div class="bc-body"><strong>Hoover Dam tour PM 14:30-18:30</strong><span>Pendiente reservar</span></div></div></div></div>
+      <div class="day-row vegas has-bookings"><div class="d">9</div><div class="date">Vie 31 jul</div><div class="activity"><span class="loc">Las Vegas (llegada mediodía)</span>Salida Lone Pine 07:00 AM · Death Valley lite (solo Father Crowley Vista 15 min) · drive directo 95 N · <strong>llegada Vegas 11:30 AM</strong> · valet Polo Towers · lunch · pool · check-in 16:00 PM · <strong>Hoover Dam tour PM</strong> (14:30-18:30) · Strip walk + Bellagio Fountains + cena</div><div class="drive">4.5 hs</div><div class="day-bookings"><div class="booking-chip car"><span class="bc-icon">🚗</span><div class="bc-body"><strong>Hertz · dropoff LAS 23:00</strong><span>Conf. <code>L5994697119</code></span></div></div><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hilton Polo Towers · Studio · 1 noche</strong><span>3745 Las Vegas Blvd S · Order <code>139627873</code> · USD 191,88 ($157,73 online + $34,15 resort fee) · VISA</span></div></div><div class="booking-chip todo"><span class="bc-icon">🌊</span><div class="bc-body"><strong>Hoover Dam tour PM 14:30-18:30</strong><span>Pendiente reservar</span></div></div></div></div>
 
-      <div class="day-row vegas has-bookings"><div class="d">10</div><div class="date">Sáb 1 ago</div><div class="activity"><span class="loc">Las Vegas → ✈ Red-eye</span>Late breakfast + pool AM · check-out 11:00 (storage bags) · <strong>Red Rock Canyon scenic drive</strong> (40 min al loop + 13-mile scenic) · lunch tardío Strip · pool/spa/casino PM · cena Strip + show (Cirque "O" / U2 Sphere) · retirar bags 22:00 · LAS airport 22:30 · vuelo AS 817 01:55 AM Dom 2</div><div class="drive">2 hs</div><div class="day-bookings"><div class="booking-chip flight"><span class="bc-icon">🌙</span><div class="bc-body"><strong>AS 817 · LAS → HNL · Red-eye</strong><span>Sale Dom 2-ago 01:55 → 05:16 HST · PNR <code>YTNSWH</code> · USD 700,18 · VISA *5098 🌎</span></div></div><div class="booking-chip todo"><span class="bc-icon">🎭</span><div class="bc-body"><strong>Show Las Vegas (Cirque "O" / U2 Sphere)</strong><span>Pendiente reservar</span></div></div></div></div>
+      <div class="day-row vegas has-bookings"><div class="d">10</div><div class="date">Sáb 1 ago</div><div class="activity"><span class="loc">Las Vegas → ✈ Red-eye</span>Late breakfast + pool AM · check-out 11:00 (storage bags) · <strong>Red Rock Canyon scenic drive</strong> (40 min al loop + 13-mile scenic) · lunch tardío Strip · pool/spa/casino PM · cena Strip + show (Cirque "O" / U2 Sphere) · retirar bags 22:00 · LAS airport 22:30 · vuelo AS 817 01:55 AM Dom 2</div><div class="drive">2 hs</div><div class="day-bookings"><div class="booking-chip flight"><span class="bc-icon">🌙</span><div class="bc-body"><strong>AS 817 · LAS → HNL · Red-eye</strong><span>Sale Dom 2-ago 01:55 → 05:16 HST · PNR <code>YTNSWH</code> · USD 700,18 · VISA</span></div></div><div class="booking-chip todo"><span class="bc-icon">🎭</span><div class="bc-body"><strong>Show Las Vegas (Cirque "O" / U2 Sphere)</strong><span>Pendiente reservar</span></div></div></div></div>
 
-      <div class="day-row hawaii has-bookings"><div class="d">11</div><div class="date">Dom 2 ago</div><div class="activity"><span class="loc">Oahu (Waikiki) · sin auto</span>Aterrizan HNL 05:16 AM · Uber a Waikiki · early check-in si disponible · siesta · pool/playa Waikiki PM · cena temprana</div><div class="drive">–</div><div class="day-bookings"><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Oahu · 3 noches (Aug 2-5)</strong><span>Pendiente reservar · sugerido Royal Hawaiian / Sheraton Waikiki · ~USD 660-900</span></div></div></div></div>
+      <div class="day-row hawaii has-bookings"><div class="d">11</div><div class="date">Dom 2 ago</div><div class="activity"><span class="loc">Oahu (Waikiki) · sin auto</span>Aterrizan HNL 05:16 AM · Uber a Waikiki · early check-in si disponible · siesta · pool/playa Waikiki PM · cena temprana</div><div class="drive">–</div><div class="day-bookings"><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Oahu · 3 noches (Aug 2-5)</strong><span>Pendiente reservar · sugerido Royal Hawaiian / Sheraton Waikiki · hasta USD 900</span></div></div></div></div>
 
-      <div class="day-row hawaii has-bookings"><div class="d">12</div><div class="date">Lun 3 ago</div><div class="activity"><span class="loc">Pearl Harbor + Waikiki Beach</span>Uber Waikiki→HNL · pickup Thrifty 06:00 · Pearl Harbor 7:30 AM (Arizona Memorial + Battleship Missouri, ~4h total) · vuelta Waikiki almuerzo beachfront · playa + piscina PM · sunset cocktails Mai Tai Bar Royal Hawaiian · cena</div><div class="drive">1 hs</div><div class="day-bookings"><div class="booking-chip car"><span class="bc-icon">🚗</span><div class="bc-body"><strong>Thrifty · pickup HNL 06:00</strong><span>Nissan Rogue Small SUV · 3 días · Conf. <code>L59903023B8</code> · USD 242,92 al counter · VISA *3002 🌎</span></div></div><div class="booking-chip todo"><span class="bc-icon">⚓</span><div class="bc-body"><strong>Pearl Harbor 7:30 AM</strong><span>Pendiente reservar 8 semanas antes (recreation.gov, gratis Arizona Memorial)</span></div></div></div></div>
+      <div class="day-row hawaii has-bookings"><div class="d">12</div><div class="date">Lun 3 ago</div><div class="activity"><span class="loc">Pearl Harbor + Waikiki Beach</span>Uber Waikiki→HNL · pickup Thrifty 06:00 · Pearl Harbor 7:30 AM (Arizona Memorial + Battleship Missouri, ~4h total) · vuelta Waikiki almuerzo beachfront · playa + piscina PM · sunset cocktails Mai Tai Bar Royal Hawaiian · cena</div><div class="drive">1 hs</div><div class="day-bookings"><div class="booking-chip car"><span class="bc-icon">🚗</span><div class="bc-body"><strong>Thrifty · pickup HNL 06:00</strong><span>Nissan Rogue Small SUV · 3 días · Conf. <code>L59903023B8</code> · USD 242,92 al counter · VISA</span></div></div><div class="booking-chip todo"><span class="bc-icon">⚓</span><div class="bc-body"><strong>Pearl Harbor 7:30 AM</strong><span>Pendiente reservar 8 semanas antes (recreation.gov, gratis Arizona Memorial)</span></div></div></div></div>
 
       <div class="day-row hawaii"><div class="d">13</div><div class="date">Mar 4 ago</div><div class="activity"><span class="loc">Lanikai + Kailua · día de playa</span>Drive a Lanikai Beach (30 min) — una de las playas más lindas del mundo, arena blanca + agua turquesa calma · mañana en la playa · almuerzo Kailua town (Buzz's Steakhouse o food trucks) · tarde en Kailua Beach Park · vuelta Waikiki al atardecer · cena</div><div class="drive">1 hs</div></div>
 
-      <div class="day-row hawaii has-bookings"><div class="d">14</div><div class="date">Mié 5 ago</div><div class="activity"><span class="loc">Oahu → Maui</span>Check-out Waikiki · drive HNL · devolver Thrifty 12:00 · <strong>AS 1106 HNL→OGG 12:31-13:15</strong> · pickup Dollar OGG 14:00 · drive Wailea · check-in resort · atardecer playa</div><div class="drive">~1h</div><div class="day-bookings"><div class="booking-chip car"><span class="bc-icon">🚗</span><div class="bc-body"><strong>Thrifty · dropoff HNL 12:00</strong><span>Conf. <code>L59903023B8</code></span></div></div><div class="booking-chip flight"><span class="bc-icon">✈️</span><div class="bc-body"><strong>AS 1106 · HNL → OGG · inter-island</strong><span>12:31 → 13:15 · PNR <code>WICOTH</code> · USD 185,76 · VISA *5098 🌎</span></div></div><div class="booking-chip car"><span class="bc-icon">🚗</span><div class="bc-body"><strong>Dollar · pickup OGG 14:00 · INCLUSIVE</strong><span>Chevrolet Cruze · 4 días · Conf. <code>L5990878549</code> · USD 354,04 al counter · VISA *3002 🌎 · LDW + Liability $300k incluidos</span></div></div><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Maui · 4 noches (Aug 5-9)</strong><span>Pendiente reservar · sugerido Wailea Beach Resort · ~USD 1.520-2.080</span></div></div></div></div>
+      <div class="day-row hawaii has-bookings"><div class="d">14</div><div class="date">Mié 5 ago</div><div class="activity"><span class="loc">Oahu → Maui</span>Check-out Waikiki · drive HNL · devolver Thrifty 12:00 · <strong>AS 1106 HNL→OGG 12:31-13:15</strong> · pickup Dollar OGG 14:00 · drive Wailea · check-in resort · atardecer playa</div><div class="drive">~1h</div><div class="day-bookings"><div class="booking-chip car"><span class="bc-icon">🚗</span><div class="bc-body"><strong>Thrifty · dropoff HNL 12:00</strong><span>Conf. <code>L59903023B8</code></span></div></div><div class="booking-chip flight"><span class="bc-icon">✈️</span><div class="bc-body"><strong>AS 1106 · HNL → OGG · inter-island</strong><span>12:31 → 13:15 · PNR <code>WICOTH</code> · USD 185,76 · VISA</span></div></div><div class="booking-chip car"><span class="bc-icon">🚗</span><div class="bc-body"><strong>Dollar · pickup OGG 14:00 · INCLUSIVE</strong><span>Chevrolet Cruze · 4 días · Conf. <code>L5990878549</code> · USD 354,04 al counter · VISA · LDW + Liability $300k incluidos</span></div></div><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Maui · 4 noches (Aug 5-9)</strong><span>Pendiente reservar · sugerido Wailea Beach Resort · hasta USD 2.080</span></div></div></div></div>
 
       <div class="day-row hawaii has-bookings"><div class="d">15</div><div class="date">Jue 6 ago</div><div class="activity"><span class="loc">Maui · Molokini snorkel</span>Boat tour Molokini AM (~7:00 AM salida del puerto, ~5h en el agua + snorkel con peces tropicales y tortugas) · vuelta resort 13:00 · almuerzo · beach + piscina PM · sunset beachfront</div><div class="drive">–</div><div class="day-bookings"><div class="booking-chip todo"><span class="bc-icon">🐠</span><div class="bc-body"><strong>Molokini snorkel tour AM</strong><span>Pendiente reservar 2-3 semanas antes</span></div></div></div></div>
 
@@ -1032,11 +1029,11 @@
 
       <div class="day-row hawaii has-bookings"><div class="d">17</div><div class="date">Sáb 8 ago</div><div class="activity"><span class="loc">Maui · Hana lite + Mama's Fish House</span>Drive corto a Wai'anapanapa State Park (50 min) · playa de arena negra única + caminata corta plana por las lava caves · almuerzo en Hana town · vuelta resort 16:00 · beach PM · arreglarse · <strong>cena Mama's Fish House</strong> (reservar 2 meses antes)</div><div class="drive">2 hs</div><div class="day-bookings"><div class="booking-chip todo"><span class="bc-icon">🐟</span><div class="bc-body"><strong>Mama's Fish House · cena</strong><span>CRÍTICO: reservar 2 meses antes (mamasfishhouse.com)</span></div></div></div></div>
 
-      <div class="day-row hawaii has-bookings"><div class="d">18</div><div class="date">Dom 9 ago</div><div class="activity"><span class="loc">Maui · día completo + red-eye nocturno</span>Despertar tarde · desayuno · <strong>DÍA COMPLETO DE PLAYA del resort</strong> (checkout 11 AM con late checkout, bags storage en concierge) · piscina · lunch · spa opcional · sunset beachfront · cena tranquila · drive a OGG 20:30 (45 min) · devolver Dollar al lot afuera del horario · check-in <strong>AA 14 OGG 21:00</strong> · all carry-on para minimizar bags · <strong>depart 22:54 HST</strong> (red-eye)</div><div class="drive">45 min</div><div class="day-bookings"><div class="booking-chip car"><span class="bc-icon">🚗</span><div class="bc-body"><strong>Dollar · dropoff OGG 21:00 (lote después de horario)</strong><span>Conf. <code>L5990878549</code></span></div></div><div class="booking-chip flight"><span class="bc-icon">🌙</span><div class="bc-body"><strong>AA 14 · OGG → LAX · Red-eye</strong><span>22:54 HST → 07:10 PDT Lun 10-ago · PNR <code>KAMAWP</code> · USD 650,20 · VISA *5098 🌎</span></div></div></div></div>
+      <div class="day-row hawaii has-bookings"><div class="d">18</div><div class="date">Dom 9 ago</div><div class="activity"><span class="loc">Maui · día completo + red-eye nocturno</span>Despertar tarde · desayuno · <strong>DÍA COMPLETO DE PLAYA del resort</strong> (checkout 11 AM con late checkout, bags storage en concierge) · piscina · lunch · spa opcional · sunset beachfront · cena tranquila · drive a OGG 20:30 (45 min) · devolver Dollar al lot afuera del horario · check-in <strong>AA 14 OGG 21:00</strong> · all carry-on para minimizar bags · <strong>depart 22:54 HST</strong> (red-eye)</div><div class="drive">45 min</div><div class="day-bookings"><div class="booking-chip car"><span class="bc-icon">🚗</span><div class="bc-body"><strong>Dollar · dropoff OGG 21:00 (lote después de horario)</strong><span>Conf. <code>L5990878549</code></span></div></div><div class="booking-chip flight"><span class="bc-icon">🌙</span><div class="bc-body"><strong>AA 14 · OGG → LAX · Red-eye</strong><span>22:54 HST → 07:10 PDT Lun 10-ago · PNR <code>KAMAWP</code> · USD 650,20 · VISA</span></div></div></div></div>
 
-      <div class="day-row transit has-bookings"><div class="d">19</div><div class="date">Lun 10 ago</div><div class="activity"><span class="loc">LAX connection + vuelta a casa</span>Llegan LAX 07:10 AM (T4 American) · retirar bags ~07:40 · walk T4 → TBIT 8 min · <strong>check-in LATAM 08:30 AM</strong> · security · breakfast en TBIT · <strong>boarding LATAM 10:30 · depart 11:35 → LIM 22:10</strong> · conexión 3h en LIM · LIM 01:15 → AEP 07:40 Mar 11</div><div class="drive">–</div><div class="day-bookings"><div class="booking-chip flight"><span class="bc-icon">✈️</span><div class="bc-body"><strong>LA 2479 · LAX → LIM</strong><span>Lun 10-ago 11:35 → 22:10 (8h35) · Reserva <code>YDEXMY</code> · AMEX 🇦🇷</span></div></div></div></div>
+      <div class="day-row transit has-bookings"><div class="d">19</div><div class="date">Lun 10 ago</div><div class="activity"><span class="loc">LAX connection + vuelta a casa</span>Llegan LAX 07:10 AM (T4 American) · retirar bags ~07:40 · walk T4 → TBIT 8 min · <strong>check-in LATAM 08:30 AM</strong> · security · breakfast en TBIT · <strong>boarding LATAM 10:30 · depart 11:35 → LIM 22:10</strong> · conexión 3h en LIM · LIM 01:15 → AEP 07:40 Mar 11</div><div class="drive">–</div><div class="day-bookings"><div class="booking-chip flight"><span class="bc-icon">✈️</span><div class="bc-body"><strong>LA 2479 · LAX → LIM</strong><span>Lun 10-ago 11:35 → 22:10 (8h35) · Reserva <code>YDEXMY</code> · AMEX</span></div></div></div></div>
 
-      <div class="day-row transit has-bookings"><div class="d">20</div><div class="date">Mar 11 ago</div><div class="activity"><span class="loc">Llegada AEP</span>Arribo Aeroparque 07:40 AM · 🏠 en casa</div><div class="drive">–</div><div class="day-bookings"><div class="booking-chip flight"><span class="bc-icon">✈️</span><div class="bc-body"><strong>LA 2465 · LIM → AEP</strong><span>Mar 11-ago 01:15 → 07:40 (4h25) · Reserva <code>YDEXMY</code> · AMEX 🇦🇷</span></div></div></div></div>
+      <div class="day-row transit has-bookings"><div class="d">20</div><div class="date">Mar 11 ago</div><div class="activity"><span class="loc">Llegada AEP</span>Arribo Aeroparque 07:40 AM · 🏠 en casa</div><div class="drive">–</div><div class="day-bookings"><div class="booking-chip flight"><span class="bc-icon">✈️</span><div class="bc-body"><strong>LA 2465 · LIM → AEP</strong><span>Mar 11-ago 01:15 → 07:40 (4h25) · Reserva <code>YDEXMY</code> · AMEX</span></div></div></div></div>
 
     </div>
   </div>
@@ -1130,7 +1127,7 @@
       <div class="booking-meta">
         <div><strong>Reserva</strong><span>YDEXMY</span></div>
         <div><strong>Orden</strong><span>LA0454031WJYF</span></div>
-        <div><strong>Pagado</strong><span>USD 2.226,46 · AMEX 🇦🇷</span></div>
+        <div><strong>Pagado</strong><span>USD 2.226,46 · AMEX</span></div>
         <div><strong>Tarifa</strong><span>Economy Standard</span></div>
       </div>
       <ul class="flight-list">
@@ -1147,7 +1144,7 @@
       <div class="booking-meta">
         <div><strong>Trip ID</strong><span>1024060260</span></div>
         <div><strong>PNRs separados</strong><span>YTNSWH · WICOTH · KAMAWP</span></div>
-        <div><strong>Pagado</strong><span>USD 1.536,14 · VISA *5098 🌎</span></div>
+        <div><strong>Pagado</strong><span>USD 1.536,14 · VISA</span></div>
         <div><strong>Tarifa</strong><span>Economy + 3× Purchase Guarantee</span></div>
       </div>
       <ul class="flight-list">
@@ -1177,7 +1174,7 @@
       <div class="booking-meta">
         <div><strong>Confirmación</strong><span>L5994697119</span></div>
         <div><strong>Vehículo</strong><span>Nissan Rogue</span></div>
-        <div><strong>Pagado</strong><span>USD 1.079,60 · VISA *3002 🌎</span></div>
+        <div><strong>Pagado</strong><span>USD 1.079,60 · VISA</span></div>
         <div><strong>Drop-off fee</strong><span>incluido</span></div>
       </div>
       <ul class="flight-list">
@@ -1192,7 +1189,7 @@
       <div class="booking-meta">
         <div><strong>Confirmación</strong><span>L59903023B8</span></div>
         <div><strong>Vehículo</strong><span>Nissan Rogue (Small SUV)</span></div>
-        <div><strong>A pagar</strong><span>USD 242,92 · VISA *3002 🌎 al counter</span></div>
+        <div><strong>A pagar</strong><span>USD 242,92 · VISA al counter</span></div>
         <div><strong>Free drivers</strong><span>2 adicionales</span></div>
       </div>
       <ul class="flight-list">
@@ -1207,7 +1204,7 @@
       <div class="booking-meta">
         <div><strong>Confirmación</strong><span>L5990878549</span></div>
         <div><strong>Vehículo</strong><span>Chevrolet Cruze (Sedan)</span></div>
-        <div><strong>A pagar</strong><span>USD 354,04 · VISA *3002 🌎 al counter</span></div>
+        <div><strong>A pagar</strong><span>USD 354,04 · VISA al counter</span></div>
         <div><strong>Incluye</strong><span>LDW + Liability $300k</span></div>
       </div>
       <ul class="flight-list">
@@ -1233,63 +1230,54 @@
 
     <div class="card-split">
       <div class="cs-card amex">
-        <span class="cs-country">🇦🇷 Argentina</span>
+        <span class="cs-country">🇦🇷 Cuenta Argentina</span>
         <span class="cs-name">AMEX</span>
         <div class="cs-amount">USD 2.226,46</div>
         <div class="cs-detail">1 reserva · LATAM internacional</div>
         <div class="cs-pct">40% de lo confirmado</div>
       </div>
-      <div class="cs-card visa5098">
-        <span class="cs-country">🌎 Exterior</span>
-        <span class="cs-name">VISA *5098</span>
-        <div class="cs-amount">USD 1.728,02</div>
-        <div class="cs-detail">2 reservas · TicketsAtWork (3 vuelos) + Hotel Polo Towers</div>
-        <div class="cs-pct">31% de lo confirmado</div>
-      </div>
-      <div class="cs-card visa3002">
-        <span class="cs-country">🌎 Exterior</span>
-        <span class="cs-name">VISA *3002</span>
-        <div class="cs-amount">USD 1.676,56</div>
-        <div class="cs-detail">3 reservas · Hertz + Thrifty + Dollar · USD 596,96 al counter</div>
-        <div class="cs-pct">29% de lo confirmado</div>
+      <div class="cs-card visa">
+        <span class="cs-country">🌎 Cuenta Exterior</span>
+        <span class="cs-name">VISA</span>
+        <div class="cs-amount">USD 3.404,58</div>
+        <div class="cs-detail">5 reservas · TicketsAtWork + Hertz + Polo Towers + Thrifty + Dollar · USD 596,96 al counter</div>
+        <div class="cs-pct">60% de lo confirmado</div>
       </div>
     </div>
 
     <p style="font-size:12.5px;color:var(--ink-muted);margin:6px 0 18px;font-style:italic;">
-      <strong style="color:var(--ocean-deep);font-style:normal">Cuenta Argentina (AMEX):</strong> USD 2.226,46 · <strong style="color:var(--ocean-deep);font-style:normal">Cuenta exterior (VISA):</strong> USD 3.404,58 · total confirmado USD 5.631,04
+      <strong style="color:var(--ocean-deep);font-style:normal">Cuenta Argentina (AMEX):</strong> USD 2.226,46 · <strong style="color:var(--ocean-deep);font-style:normal">Cuenta Exterior (VISA):</strong> USD 3.404,58 · total confirmado USD 5.631,04
     </p>
 
     <table class="budget-table">
       <thead><tr><th>Categoría</th><th>USD</th><th>Tarjeta</th><th>Estado</th></tr></thead>
       <tbody>
-        <tr><td>LATAM AEP↔LAX vía SCL/LIM</td><td>2.226,46</td><td><span class="tag-card amex">AMEX 🇦🇷</span></td><td><span class="pill confirmed">✓ Pagado</span></td></tr>
-        <tr><td>TicketsAtWork 3 vuelos domésticos (AS 817 + AS 1106 + AA 14)</td><td>1.536,14</td><td><span class="tag-card visa5098">VISA *5098 🌎</span></td><td><span class="pill confirmed">✓ Pagado</span></td></tr>
-        <tr><td>Hertz Nissan Rogue LAX→LAS 10 días</td><td>1.079,60</td><td><span class="tag-card visa3002">VISA *3002 🌎</span></td><td><span class="pill confirmed">✓ Pagado</span></td></tr>
-        <tr><td>Thrifty Oahu 3 días</td><td>242,92</td><td><span class="tag-card visa3002">VISA *3002 🌎</span></td><td><span class="pill confirmed">✓ Reservado · counter</span></td></tr>
-        <tr><td>Dollar Maui 4 días (Inclusive)</td><td>354,04</td><td><span class="tag-card visa3002">VISA *3002 🌎</span></td><td><span class="pill confirmed">✓ Reservado · counter</span></td></tr>
-        <tr><td>Hotel Las Vegas Polo Towers 1 noche (vie 31 jul)</td><td>191,88</td><td><span class="tag-card visa5098">VISA *5098 🌎</span></td><td><span class="pill confirmed">✓ Pagado</span></td></tr>
-        <tr class="subtotal-row amex"><td>Subtotal AMEX 🇦🇷 Argentina</td><td>2.226,46</td><td colspan="2">1 reserva pagada</td></tr>
-        <tr class="subtotal-row visa5098"><td>Subtotal VISA *5098 🌎 Exterior</td><td>1.728,02</td><td colspan="2">2 reservas pagadas</td></tr>
-        <tr class="subtotal-row visa3002"><td>Subtotal VISA *3002 🌎 Exterior</td><td>1.676,56</td><td colspan="2">3 reservas (USD 1.079,60 pagado + 596,96 al counter)</td></tr>
-        <tr><td>Equipaje despachado</td><td>300 – 380</td><td>—</td><td><span class="pill pending">Pendiente</span></td></tr>
-        <tr><td>Hotel Santa Monica 1 noche</td><td>320 – 500</td><td>—</td><td><span class="pill pending">Pendiente</span></td></tr>
-        <tr><td>Hotel Cambria 1 noche</td><td>250 – 380</td><td>—</td><td><span class="pill pending">Pendiente</span></td></tr>
-        <tr><td>Hotel Monterey 1 noche</td><td>320 – 500</td><td>—</td><td><span class="pill pending">Pendiente</span></td></tr>
-        <tr><td>Hotel San Francisco 2 noches</td><td>560 – 900</td><td>—</td><td><span class="pill pending">Pendiente</span></td></tr>
-        <tr><td>Hotel Mariposa 1 noche</td><td>280 – 450</td><td>—</td><td><span class="pill pending">Pendiente</span></td></tr>
-        <tr><td>Hotel Mammoth 1 noche</td><td>250 – 400</td><td>—</td><td><span class="pill pending">Pendiente</span></td></tr>
-        <tr><td>Hotel Lone Pine 1 noche</td><td>150 – 220</td><td>—</td><td><span class="pill pending">Pendiente</span></td></tr>
-        <tr><td>Hotel Oahu 3 noches</td><td>660 – 900</td><td>—</td><td><span class="pill pending">Pendiente</span></td></tr>
-        <tr><td>Hotel Maui 4 noches</td><td>1.520 – 2.080</td><td>—</td><td><span class="pill urgent">⚠ Reservar ya</span></td></tr>
-        <tr><td><s>Hotel cerca LAX (último día)</s> — ya no necesario con red-eye OGG→LAX</td><td><s>240 – 380</s> · ahorro</td><td>—</td><td><span class="pill confirmed">✓ Eliminado</span></td></tr>
-        <tr><td>Combustible (mainland + Hawaii)</td><td>240 – 340</td><td>—</td><td><span class="pill pending">En viaje</span></td></tr>
-        <tr><td>Parking (SF, Maui resort, Oahu)</td><td>305 – 590</td><td>—</td><td><span class="pill pending">En viaje</span></td></tr>
-        <tr><td>Comidas 19 días</td><td>1.140 – 1.710</td><td>—</td><td><span class="pill pending">En viaje</span></td></tr>
-        <tr><td>Tours: Pearl Harbor, Alcatraz, Hearst, Aquarium, show Vegas, Road to Hana, Molokini, FRIENDS Experience</td><td>760 – 1.200</td><td>—</td><td><span class="pill pending">Pendiente</span></td></tr>
-        <tr><td>Misc: pase parques, propinas, Ubers, casino</td><td>400 – 600</td><td>—</td><td><span class="pill pending">En viaje</span></td></tr>
-        <tr class="total-row"><td>TOTAL ESTIMADO</td><td>12.297 – 15.898</td><td colspan="2">—</td></tr>
-        <tr class="total-row green"><td>✓ PAGADO + RESERVADO</td><td>5.631,04</td><td colspan="2">35% – 46%</td></tr>
-        <tr class="total-row warn"><td>Falta cerrar</td><td>6.666 – 10.267</td><td colspan="2">—</td></tr>
+        <tr><td>LATAM AEP↔LAX vía SCL/LIM</td><td>2.226,46</td><td><span class="tag-card amex">AMEX</span></td><td><span class="pill confirmed">✓ Pagado</span></td></tr>
+        <tr><td>TicketsAtWork 3 vuelos domésticos (AS 817 + AS 1106 + AA 14)</td><td>1.536,14</td><td><span class="tag-card visa">VISA</span></td><td><span class="pill confirmed">✓ Pagado</span></td></tr>
+        <tr><td>Hertz Nissan Rogue LAX→LAS 10 días</td><td>1.079,60</td><td><span class="tag-card visa">VISA</span></td><td><span class="pill confirmed">✓ Pagado</span></td></tr>
+        <tr><td>Thrifty Oahu 3 días</td><td>242,92</td><td><span class="tag-card visa">VISA</span></td><td><span class="pill confirmed">✓ Reservado · counter</span></td></tr>
+        <tr><td>Dollar Maui 4 días (Inclusive)</td><td>354,04</td><td><span class="tag-card visa">VISA</span></td><td><span class="pill confirmed">✓ Reservado · counter</span></td></tr>
+        <tr><td>Hotel Las Vegas Polo Towers 1 noche (vie 31 jul)</td><td>191,88</td><td><span class="tag-card visa">VISA</span></td><td><span class="pill confirmed">✓ Pagado</span></td></tr>
+        <tr class="subtotal-row amex"><td>Subtotal AMEX · Cuenta Argentina</td><td>2.226,46</td><td colspan="2">1 reserva pagada</td></tr>
+        <tr class="subtotal-row visa"><td>Subtotal VISA · Cuenta Exterior</td><td>3.404,58</td><td colspan="2">5 reservas (USD 2.807,62 pagado + 596,96 al counter)</td></tr>
+        <tr><td>Equipaje despachado</td><td>380</td><td>—</td><td><span class="pill pending">Pendiente</span></td></tr>
+        <tr><td>Hotel Santa Monica 1 noche</td><td>500</td><td>—</td><td><span class="pill pending">Pendiente</span></td></tr>
+        <tr><td>Hotel Cambria 1 noche</td><td>380</td><td>—</td><td><span class="pill pending">Pendiente</span></td></tr>
+        <tr><td>Hotel Monterey 1 noche</td><td>500</td><td>—</td><td><span class="pill pending">Pendiente</span></td></tr>
+        <tr><td>Hotel San Francisco 2 noches</td><td>900</td><td>—</td><td><span class="pill pending">Pendiente</span></td></tr>
+        <tr><td>Hotel Mariposa 1 noche</td><td>450</td><td>—</td><td><span class="pill pending">Pendiente</span></td></tr>
+        <tr><td>Hotel Mammoth 1 noche</td><td>400</td><td>—</td><td><span class="pill pending">Pendiente</span></td></tr>
+        <tr><td>Hotel Lone Pine 1 noche</td><td>220</td><td>—</td><td><span class="pill pending">Pendiente</span></td></tr>
+        <tr><td>Hotel Oahu 3 noches</td><td>900</td><td>—</td><td><span class="pill pending">Pendiente</span></td></tr>
+        <tr><td>Hotel Maui 4 noches</td><td>2.080</td><td>—</td><td><span class="pill urgent">⚠ Reservar ya</span></td></tr>
+        <tr><td>Combustible (mainland + Hawaii)</td><td>340</td><td>—</td><td><span class="pill pending">En viaje</span></td></tr>
+        <tr><td>Parking (SF, Maui resort, Oahu)</td><td>590</td><td>—</td><td><span class="pill pending">En viaje</span></td></tr>
+        <tr><td>Comidas 19 días</td><td>1.710</td><td>—</td><td><span class="pill pending">En viaje</span></td></tr>
+        <tr><td>Tours: Pearl Harbor, Alcatraz, Hearst, Aquarium, show Vegas, Road to Hana, Molokini, FRIENDS Experience</td><td>1.200</td><td>—</td><td><span class="pill pending">Pendiente</span></td></tr>
+        <tr><td>Misc: pase parques, propinas, Ubers, casino</td><td>600</td><td>—</td><td><span class="pill pending">En viaje</span></td></tr>
+        <tr class="total-row"><td>TOTAL ESTIMADO (peor caso)</td><td>16.781</td><td colspan="2">baja con cada reserva confirmada</td></tr>
+        <tr class="total-row green"><td>✓ PAGADO + RESERVADO</td><td>5.631,04</td><td colspan="2">34% del total estimado</td></tr>
+        <tr class="total-row warn"><td>Falta cerrar</td><td>11.150</td><td colspan="2">14 ítems pendientes</td></tr>
       </tbody>
     </table>
 
