@@ -694,6 +694,54 @@
     line-height: 1;
     margin-bottom: 4px;
   }
+  .day-row.has-bookings {
+    grid-template-areas: "d date activity drive" "bookings bookings bookings bookings";
+    row-gap: 0;
+  }
+  .day-row.has-bookings > .d { grid-area: d; }
+  .day-row.has-bookings > .date { grid-area: date; }
+  .day-row.has-bookings > .activity { grid-area: activity; }
+  .day-row.has-bookings > .drive { grid-area: drive; }
+  .day-bookings {
+    grid-area: bookings;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .booking-chip {
+    background: var(--cream);
+    border-left: 3px solid var(--ocean-soft);
+    border-radius: 8px;
+    padding: 9px 14px 11px;
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    font-size: 12.5px;
+    flex: 1 1 280px;
+    min-width: 240px;
+  }
+  .booking-chip.flight { border-left-color: var(--ocean-teal); background: rgba(58, 122, 138, 0.05); }
+  .booking-chip.car { border-left-color: #8b6f47; background: rgba(139, 111, 71, 0.05); }
+  .booking-chip.hotel { border-left-color: var(--sunset-coral); background: rgba(237, 120, 103, 0.06); }
+  .booking-chip.tour { border-left-color: var(--leaf); background: rgba(107, 142, 127, 0.07); }
+  .booking-chip.todo { border-left-color: var(--sunset-gold); background: rgba(232, 176, 75, 0.08); border-left-style: dashed; }
+  .bc-icon { font-size: 17px; line-height: 1.2; padding-top: 1px; flex-shrink: 0; }
+  .bc-body { display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 0; }
+  .bc-body strong { color: var(--ocean-deep); font-size: 13.5px; font-weight: 600; line-height: 1.3; }
+  .bc-body span { color: var(--ink-soft); font-size: 12px; line-height: 1.45; }
+  .bc-body code {
+    background: var(--sand);
+    padding: 1px 7px;
+    border-radius: 4px;
+    font-family: 'DM Sans', monospace;
+    font-size: 11.5px;
+    color: var(--ocean-deep);
+    font-weight: 700;
+    letter-spacing: 0.4px;
+  }
   @media (max-width: 720px) {
     .hero h1 { font-size: 48px; }
     .cd-grid { gap: 8px; }
@@ -717,7 +765,7 @@
 <body>
 
 <div class="public-banner">
-  🌺 <strong>Versión pública</strong> — datos personales sanitizados · todo el itinerario y plan visible
+  🌺 <strong>Versión pública</strong> — nombres, DNIs y tarjetas ocultos · itinerario y códigos de reserva visibles
 </div>
 
 <header class="hero">
@@ -745,12 +793,12 @@
 <nav class="nav">
   <div class="container nav-inner">
     <a href="#resumen">Resumen</a>
+    <a href="#calendario">Calendario</a>
+    <a href="#ruta-mapa">Mapa ruta</a>
+    <a href="#dia-a-dia">Día a día</a>
+    <a href="#hawaii">Hawaii</a>
     <a href="#vuelos">Vuelos</a>
     <a href="#autos">Autos</a>
-    <a href="#ruta-mapa">Mapa ruta</a>
-    <a href="#hawaii">Hawaii</a>
-    <a href="#calendario">Calendario</a>
-    <a href="#dia-a-dia">Día a día</a>
     <a href="#presupuesto">Presupuesto</a>
   </div>
 </nav>
@@ -773,106 +821,56 @@
   </div>
 </section>
 
-<section id="vuelos" class="alt">
+<section id="calendario" class="alt">
   <div class="container">
-    <span class="section-eyebrow">Booked & confirmed</span>
-    <h2 class="section-title">Los <em>vuelos</em></h2>
-    <p class="section-lead">Dos reservas internacionales y dos paquetes de vuelos domésticos — todos confirmados. Travesía Pacífico ida y vuelta vía Lima/Santiago con LATAM, hops inter-isla con Hawaiian/Alaska.</p>
+    <span class="section-eyebrow">Visual at a glance</span>
+    <h2 class="section-title">El <em>calendario</em></h2>
+    <p class="section-lead">Cuatro semanas mapeadas con colores para ver de un vistazo en qué isla, ciudad o ruta estamos.</p>
 
-    <div class="booking-block confirmed">
-      <span class="badge">✓ Reserva pagada</span>
-      <h3>LATAM · Internacional</h3>
-      <div class="booking-meta">
-        <div><strong>Reserva</strong><span>••••••</span></div>
-        <div><strong>Orden</strong><span>•••••••••••••</span></div>
-        <div><strong>Pagado</strong><span>USD 2.226,00</span></div>
-        <div><strong>Tarifa</strong><span>Economy Standard</span></div>
-      </div>
-      <ul class="flight-list">
-        <li><span class="vuelo">LA 454</span><span class="ruta">AEP → SCL <small>Aeroparque → Santiago Pudahuel</small></span><span class="horario"><strong>Mié 22-jul · 15:45</strong><br>→ 17:08 · ~2h</span><span><span class="pill ok">OK</span></span></li>
-        <li><span class="vuelo">LA 602</span><span class="ruta">SCL → LAX <small>Santiago → Los Ángeles · Boeing 787</small></span><span class="horario"><strong>Mié 22-jul · 23:25</strong><br>→ Jue 07:45 · ~10h40</span><span><span class="pill ok">OK</span></span></li>
-        <li><span class="vuelo">LA 2479</span><span class="ruta">LAX → LIM <small>Los Ángeles → Lima</small></span><span class="horario"><strong>Lun 10-ago · 11:35</strong><br>→ 22:10 · ~8h35</span><span><span class="pill ok">OK</span></span></li>
-        <li><span class="vuelo">LA 2465</span><span class="ruta">LIM → AEP <small>Lima → Aeroparque</small></span><span class="horario"><strong>Mar 11-ago · 01:15</strong><br>→ 07:40 · ~4h25</span><span><span class="pill ok">OK</span></span></li>
-      </ul>
+    <div class="calendar-legend">
+      <div class="legend-item"><span class="legend-swatch" style="background:#ebe6dc"></span>Tránsito / vuelo</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:linear-gradient(135deg,#e8f1f4,#d6e8f3)"></span>Hawaii</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:linear-gradient(135deg,#fce8d8,#f3d8c8)"></span>Las Vegas</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:linear-gradient(135deg,#efe5d0,#e8dcc0)"></span>Sierra Nevada</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:linear-gradient(135deg,#e8eef2,#dde8ee)"></span>San Francisco</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:linear-gradient(135deg,#e8f0e4,#dde9d9)"></span>PCH costa</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:linear-gradient(135deg,#fcdcc8,#f5b894)"></span>Santa Monica</div>
     </div>
 
-    <div class="booking-block confirmed">
-      <span class="badge">✓ Reserva pagada · TicketsAtWork</span>
-      <h3>Domésticos USA · 3 vuelos via TicketsAtWork</h3>
-      <div class="booking-meta">
-        <div><strong>Trip ID</strong><span>••••••••••</span></div>
-        <div><strong>PNRs separados</strong><span>••••• · ••••• · •••••</span></div>
-        <div><strong>Pagado</strong><span>USD 1.461,98</span></div>
-        <div><strong>Tarifa</strong><span>Economy</span></div>
-      </div>
-      <ul class="flight-list">
-        <li><span class="vuelo">AS 817</span><span class="ruta">LAS → HNL <small>Red-eye · Alaska/Hawaiian</small></span><span class="horario"><strong>Dom 2-ago · 01:55</strong><br>→ 05:16 HST · ~6h21</span><span><span class="pill ok">OK</span></span></li>
-        <li><span class="vuelo">AS 1106</span><span class="ruta">HNL → OGG <small>Inter-island · Alaska/Hawaiian</small></span><span class="horario"><strong>Mié 5-ago · 12:31</strong><br>→ 13:15 HST · ~44 min</span><span><span class="pill ok">OK</span></span></li>
-        <li><span class="vuelo">AA 14</span><span class="ruta">OGG → LAX <small>Red-eye · American Airlines</small></span><span class="horario"><strong>Dom 9-ago · 22:54 HST</strong><br>→ 07:10 PDT Lun · ~5h16</span><span><span class="pill ok">OK</span></span></li>
-      </ul>
-    </div>
+    <div class="cal-grid">
+      <div class="cal-head">Dom</div><div class="cal-head">Lun</div><div class="cal-head">Mar</div><div class="cal-head">Mié</div><div class="cal-head">Jue</div><div class="cal-head">Vie</div><div class="cal-head">Sáb</div>
 
-    <div class="quote warn">
-      <p><strong>Dos red-eyes:</strong> LAS→HNL (01:55 AM dom 2) al inicio + OGG→LAX (22:54 PM dom 9) al final. Última noche Hawaii se duerme en el avión.</p>
-      <p><strong>Conexión tight LAX el lun 10 ago:</strong> aterrizan AA 14 a las 07:10 AM, vuelo LATAM 11:35 AM = <strong>4h25 de buffer entre vuelos en LAX</strong>. Llevar TODO en carry-on para minimizar tiempo en bags.</p>
-      <p><strong>Bonus:</strong> el dom 9 ago se transformó en DÍA COMPLETO de playa en Maui (en vez de medio día) porque el vuelo sale recién a las 22:54 PM.</p>
-    </div>
-  </div>
-</section>
+      <div class="cal-day other-month"><div class="cal-num">19</div></div>
+      <div class="cal-day other-month"><div class="cal-num">20</div></div>
+      <div class="cal-day other-month"><div class="cal-num">21</div></div>
+      <div class="cal-day transit"><div class="cal-num">22</div><div class="cal-loc">✈ Vuelo</div><div class="cal-detail">AEP 15:45 → SCL → LAX overnight</div></div>
+      <div class="cal-day la"><div class="cal-num">23</div><div class="cal-loc">FRIENDS + Santa Monica</div><div class="cal-detail">LAX 7:45 → FRIENDS Experience Lakewood 9:30 → Santa Monica · Pier sunset</div></div>
+      <div class="cal-day pch"><div class="cal-num">24</div><div class="cal-loc">Cambria</div><div class="cal-detail">Santa Monica → Santa Bárbara → Cambria · Hearst Castle</div></div>
+      <div class="cal-day pch"><div class="cal-num">25</div><div class="cal-loc">Monterey</div><div class="cal-detail">Cambria → Big Sur → Monterey · Bixby Bridge · McWay Falls</div></div>
 
-<section id="autos">
-  <div class="container">
-    <span class="section-eyebrow">Three rentals, three islands of road</span>
-    <h2 class="section-title">Los <em>autos</em></h2>
-    <p class="section-lead">Un SUV para el road trip continental, un SUV pequeño para descubrir Oahu, y un sedán para Maui con todos los seguros incluidos.</p>
+      <div class="cal-day sf"><div class="cal-num">26</div><div class="cal-loc">San Francisco</div><div class="cal-detail">Monterey → SF · Fisherman's Wharf PM</div></div>
+      <div class="cal-day sf"><div class="cal-num">27</div><div class="cal-loc">San Francisco</div><div class="cal-detail">Golden Gate + Alcatraz + Mission + Twin Peaks</div></div>
+      <div class="cal-day sierra"><div class="cal-num">28</div><div class="cal-loc">Mariposa</div><div class="cal-detail">SF → Mariposa · cena en El Portal junto al río</div></div>
+      <div class="cal-day sierra"><div class="cal-num">29</div><div class="cal-loc">Mammoth Lakes</div><div class="cal-detail">Yosemite Valley AM → Tioga Pass → Mammoth · Hot Creek</div></div>
+      <div class="cal-day sierra"><div class="cal-num">30</div><div class="cal-loc">Lone Pine</div><div class="cal-detail">Mammoth → 395 south · Alabama Hills sunset · Mt Whitney</div></div>
+      <div class="cal-day vegas"><div class="cal-num">31</div><div class="cal-loc">Las Vegas llega AM</div><div class="cal-detail">Lone Pine 7 AM → DV lite → Vegas 11:30 AM · pool + Hoover Dam PM · Strip noche</div></div>
+      <div class="cal-day vegas"><div class="cal-num">1</div><div class="cal-loc">Vegas → ✈ Red-eye</div><div class="cal-detail">Red Rock Canyon AM · pool + show PM · LAS 22:30 · AS 817 sale 01:55 AM</div></div>
 
-    <div class="booking-block confirmed">
-      <span class="badge">✓ Pagado</span>
-      <h3>Hertz · LAX → LAS · 10 días</h3>
-      <div class="booking-meta">
-        <div><strong>Confirmación</strong><span>•••••••••••</span></div>
-        <div><strong>Vehículo</strong><span>Nissan Rogue</span></div>
-        <div><strong>Pagado</strong><span>USD 1.079,60</span></div>
-        <div><strong>Drop-off fee</strong><span>incluido</span></div>
-      </div>
-      <ul class="flight-list">
-        <li><span class="vuelo">PICKUP</span><span class="ruta">LAX <small>Los Angeles International</small></span><span class="horario"><strong>Jue 23-jul · 08:00 AM</strong></span><span><span class="pill ok">OK</span></span></li>
-        <li><span class="vuelo">DROPOFF</span><span class="ruta">LAS <small>Harry Reid International (Las Vegas)</small></span><span class="horario"><strong>Sáb 1-ago · 11:00 PM</strong></span><span><span class="pill ok">OK</span></span></li>
-      </ul>
-    </div>
+      <div class="cal-day hawaii"><div class="cal-num">2</div><div class="cal-loc">Oahu</div><div class="cal-detail">Llegada HNL 05:16 AM · Uber Waikiki · chill day · sin auto</div></div>
+      <div class="cal-day hawaii"><div class="cal-num">3</div><div class="cal-loc">Pearl Harbor + Beach</div><div class="cal-detail">Pickup Thrifty 06:00 · Pearl Harbor 7:30 AM · vuelta playa Waikiki PM · sunset cocktails</div></div>
+      <div class="cal-day hawaii"><div class="cal-num">4</div><div class="cal-loc">Lanikai + Kailua</div><div class="cal-detail">East side beach day · Lanikai (top 10 mundo) + Kailua town + playa todo el día</div></div>
+      <div class="cal-day hawaii"><div class="cal-num">5</div><div class="cal-loc">Oahu → Maui</div><div class="cal-detail">Drop Thrifty HNL 12:00 · Vuelo OGG 12:31-13:15 · pickup Dollar 14:00 · resort Wailea</div></div>
+      <div class="cal-day hawaii"><div class="cal-num">6</div><div class="cal-loc">Maui · Molokini</div><div class="cal-detail">Molokini snorkel tour AM (boat 5h) · playa resort PM · sunset beachfront</div></div>
+      <div class="cal-day hawaii"><div class="cal-num">7</div><div class="cal-loc">Maui · Beach Day</div><div class="cal-detail">Beach todo el día · piscina infinita · spa · relax puro</div></div>
+      <div class="cal-day hawaii"><div class="cal-num">8</div><div class="cal-loc">Maui · Hana lite</div><div class="cal-detail">Wai'anapanapa Black Sand Beach AM · beach resort PM · cena Mama's Fish House</div></div>
 
-    <div class="booking-block confirmed">
-      <span class="badge">✓ Reservado · pay at counter</span>
-      <h3>Thrifty · Oahu · 3 días</h3>
-      <div class="booking-meta">
-        <div><strong>Confirmación</strong><span>•••••••••••</span></div>
-        <div><strong>Vehículo</strong><span>Nissan Rogue (Small SUV)</span></div>
-        <div><strong>A pagar</strong><span>USD 242,92</span></div>
-        <div><strong>Free drivers</strong><span>2 adicionales</span></div>
-      </div>
-      <ul class="flight-list">
-        <li><span class="vuelo">PICKUP</span><span class="ruta">HNL <small>Daniel K. Inouye (Honolulu)</small></span><span class="horario"><strong>Lun 3-ago · 06:00 AM</strong></span><span><span class="pill ok">OK</span></span></li>
-        <li><span class="vuelo">DROPOFF</span><span class="ruta">HNL <small>Antes del vuelo a Maui</small></span><span class="horario"><strong>Mié 5-ago · 12:00 PM</strong></span><span><span class="pill ok">OK</span></span></li>
-      </ul>
-    </div>
-
-    <div class="booking-block confirmed">
-      <span class="badge">✓ Reservado · INCLUSIVE</span>
-      <h3>Dollar · Maui · 4 días con seguros incluidos</h3>
-      <div class="booking-meta">
-        <div><strong>Confirmación</strong><span>•••••••••••</span></div>
-        <div><strong>Vehículo</strong><span>Chevrolet Cruze (Sedan)</span></div>
-        <div><strong>A pagar</strong><span>USD 354,04</span></div>
-        <div><strong>Incluye</strong><span>LDW + Liability $300k</span></div>
-      </div>
-      <ul class="flight-list">
-        <li><span class="vuelo">PICKUP</span><span class="ruta">OGG <small>Kahului Airport · Maui</small></span><span class="horario"><strong>Mié 5-ago · 02:00 PM</strong></span><span><span class="pill ok">OK</span></span></li>
-        <li><span class="vuelo">DROPOFF</span><span class="ruta">OGG <small>Antes del vuelo de regreso</small></span><span class="horario"><strong>Dom 9-ago · 12:00 PM</strong></span><span><span class="pill ok">OK</span></span></li>
-      </ul>
-    </div>
-
-    <div class="quote confirmed">
-      <p><strong>Dollar Maui INCLUSIVE Rate</strong> — incluye todo: LDW Zero Excess + Liability $300.000 + Uninsured Motorist Protection + Unlimited miles + Taxes. En el counter <strong>nada extra</strong>.</p>
+      <div class="cal-day hawaii"><div class="cal-num">9</div><div class="cal-loc">Maui · día completo + red-eye</div><div class="cal-detail">Beach todo el día · Mama's Fish House · drive OGG 20:30 · AA 14 sale 22:54 HST (red-eye a LAX)</div></div>
+      <div class="cal-day transit"><div class="cal-num">10</div><div class="cal-loc">LAX → LATAM home</div><div class="cal-detail">Llegan LAX 07:10 AM · walk T4 → TBIT · LATAM 11:35 → LIM (4h25 connection)</div></div>
+      <div class="cal-day transit"><div class="cal-num">11</div><div class="cal-loc">✈ → AEP</div><div class="cal-detail">LIM 01:15 → AEP 07:40 · 🏠 en casa</div></div>
+      <div class="cal-day other-month"><div class="cal-num">12</div></div>
+      <div class="cal-day other-month"><div class="cal-num">13</div></div>
+      <div class="cal-day other-month"><div class="cal-num">14</div></div>
+      <div class="cal-day other-month"><div class="cal-num">15</div></div>
     </div>
   </div>
 </section>
@@ -910,7 +908,61 @@
   </div>
 </section>
 
-<section id="hawaii" class="alt">
+<section id="dia-a-dia" class="alt">
+  <div class="container">
+    <span class="section-eyebrow">Day by day</span>
+    <h2 class="section-title">El <em>itinerario</em>, en detalle</h2>
+    <p class="section-lead">Veinte días con sus paradas, manejos y momentos clave. De Buenos Aires al Pacífico, por el desierto hasta el Pacífico otra vez.</p>
+
+    <div class="day-timeline">
+
+      <div class="day-row transit has-bookings"><div class="d">0</div><div class="date">Mié 22 jul</div><div class="activity"><span class="loc">En vuelo</span>Aeroparque 15:45 → SCL (layover 6h) → vuelo overnight a LAX</div><div class="drive">–</div><div class="day-bookings"><div class="booking-chip flight"><span class="bc-icon">✈️</span><div class="bc-body"><strong>LA 454 · AEP → SCL</strong><span>Mié 22-jul 15:45 → 17:08 · Reserva <code>YDEXMY</code></span></div></div><div class="booking-chip flight"><span class="bc-icon">✈️</span><div class="bc-body"><strong>LA 602 · SCL → LAX</strong><span>Mié 22-jul 23:25 → Jue 07:45 · Reserva <code>YDEXMY</code></span></div></div></div></div>
+
+      <div class="day-row la has-bookings"><div class="d">1</div><div class="date">Jue 23 jul</div><div class="activity"><span class="loc">FRIENDS Experience + Santa Monica</span>Aterrizaje LAX 07:45 · customs + bags · shuttle a Car Rental Center · pickup Hertz · drive a Lakewood Center (30 min sur) · <strong>The FRIENDS™ Experience 09:30-11:00</strong> (sets recreados Central Perk + apartments, PIVOT! scene, foto en el sillón naranja) · drive a Santa Monica (~45 min) · check-in hotel beachfront · lunch · paseo Pier + Venice Beach · sunset · cena temprana</div><div class="drive">1.5 hs</div><div class="day-bookings"><div class="booking-chip car"><span class="bc-icon">🚗</span><div class="bc-body"><strong>Hertz · pickup LAX 08:00</strong><span>Nissan Rogue · 10 días · Conf. <code>L5994697119</code> · USD 1.079,60 pagado</span></div></div><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Santa Monica · 1 noche</strong><span>Pendiente reservar · ~USD 320-500</span></div></div><div class="booking-chip todo"><span class="bc-icon">🎬</span><div class="bc-body"><strong>FRIENDS™ Experience Lakewood 09:30</strong><span>Pendiente comprar tickets online</span></div></div></div></div>
+
+      <div class="day-row pch has-bookings"><div class="d">2</div><div class="date">Vie 24 jul</div><div class="activity"><span class="loc">Cambria</span>Santa Monica → PCH norte · Santa Bárbara (almuerzo State Street) → Solvang opcional → Cambria · Hearst Castle PM · Elephant Seal Vista sunset</div><div class="drive">4 hs PCH</div><div class="day-bookings"><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Cambria · 1 noche</strong><span>Pendiente reservar · ~USD 250-380</span></div></div><div class="booking-chip todo"><span class="bc-icon">🏰</span><div class="bc-body"><strong>Hearst Castle tour PM</strong><span>Pendiente reservar online (recreation.gov)</span></div></div></div></div>
+
+      <div class="day-row pch has-bookings"><div class="d">3</div><div class="date">Sáb 25 jul</div><div class="activity"><span class="loc">Monterey / Carmel</span>Cambria → Big Sur → Monterey · Bixby Bridge · McWay Falls · Pfeiffer Beach · cena Carmel-by-the-Sea</div><div class="drive">3 hs</div><div class="day-bookings"><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Monterey · 1 noche</strong><span>Pendiente reservar · ~USD 320-500</span></div></div></div></div>
+
+      <div class="day-row sf has-bookings"><div class="d">4</div><div class="date">Dom 26 jul</div><div class="activity"><span class="loc">San Francisco</span>Monterey Bay Aquarium AM · 17-Mile Drive + Pebble Beach · drive a SF vía Half Moon Bay · Fisherman's Wharf + Pier 39 PM</div><div class="drive">2 hs</div><div class="day-bookings"><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel San Francisco · 2 noches</strong><span>Pendiente reservar · ~USD 560-900</span></div></div></div></div>
+
+      <div class="day-row sf has-bookings"><div class="d">5</div><div class="date">Lun 27 jul</div><div class="activity"><span class="loc">San Francisco</span>Caminar Golden Gate · Crissy Field · Alcatraz tour mediodía · Painted Ladies + Mission + Twin Peaks atardecer · cena North Beach</div><div class="drive">–</div><div class="day-bookings"><div class="booking-chip todo"><span class="bc-icon">🚢</span><div class="bc-body"><strong>Alcatraz tour mediodía</strong><span>Pendiente reservar 2-3 meses antes (alcatrazcityexperiences.com)</span></div></div></div></div>
+
+      <div class="day-row sierra has-bookings"><div class="d">6</div><div class="date">Mar 28 jul</div><div class="activity"><span class="loc">Mariposa (Yosemite)</span>SF → Mariposa vía Oakland, Modesto · check-in lodge · cena en El Portal junto al río Merced</div><div class="drive">4 hs</div><div class="day-bookings"><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Mariposa · 1 noche</strong><span>Pendiente reservar · ~USD 280-450</span></div></div></div></div>
+
+      <div class="day-row sierra has-bookings"><div class="d">7</div><div class="date">Mié 29 jul</div><div class="activity"><span class="loc">Mammoth Lakes</span>Yosemite Valley AM: Tunnel View, El Capitan, Half Dome viewpoint, Bridalveil Fall · cruce Tioga Pass · Tuolumne Meadows, Olmsted Point · bajada a Mammoth · Hot Creek</div><div class="drive">3 hs scenic</div><div class="day-bookings"><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Mammoth Lakes · 1 noche</strong><span>Pendiente reservar · ~USD 250-400</span></div></div></div></div>
+
+      <div class="day-row sierra has-bookings"><div class="d">8</div><div class="date">Jue 30 jul</div><div class="activity"><span class="loc">Lone Pine</span>Mammoth → 395 south · parada Manzanar + Bishop · Lone Pine · Alabama Hills sunset (paisajes wild west) · vista Mt Whitney</div><div class="drive">2.5 hs</div><div class="day-bookings"><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Lone Pine · 1 noche</strong><span>Pendiente reservar · ~USD 150-220</span></div></div></div></div>
+
+      <div class="day-row vegas has-bookings"><div class="d">9</div><div class="date">Vie 31 jul</div><div class="activity"><span class="loc">Las Vegas (llegada mediodía)</span>Salida Lone Pine 07:00 AM · Death Valley lite (solo Father Crowley Vista 15 min) · drive directo 95 N · <strong>llegada Vegas 11:30 AM</strong> · valet Polo Towers · lunch · pool · check-in 16:00 PM · <strong>Hoover Dam tour PM</strong> (14:30-18:30) · Strip walk + Bellagio Fountains + cena</div><div class="drive">4.5 hs</div><div class="day-bookings"><div class="booking-chip car"><span class="bc-icon">🚗</span><div class="bc-body"><strong>Hertz · dropoff LAS 23:00</strong><span>Conf. <code>L5994697119</code></span></div></div><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hilton Polo Towers · Studio · 1 noche</strong><span>3745 Las Vegas Blvd S · Order <code>139627873</code> · USD 191,88 ($157,73 online + $34,15 resort fee)</span></div></div><div class="booking-chip todo"><span class="bc-icon">🌊</span><div class="bc-body"><strong>Hoover Dam tour PM 14:30-18:30</strong><span>Pendiente reservar</span></div></div></div></div>
+
+      <div class="day-row vegas has-bookings"><div class="d">10</div><div class="date">Sáb 1 ago</div><div class="activity"><span class="loc">Las Vegas → ✈ Red-eye</span>Late breakfast + pool AM · check-out 11:00 (storage bags) · <strong>Red Rock Canyon scenic drive</strong> (40 min al loop + 13-mile scenic) · lunch tardío Strip · pool/spa/casino PM · cena Strip + show (Cirque "O" / U2 Sphere) · retirar bags 22:00 · LAS airport 22:30 · vuelo AS 817 01:55 AM Dom 2</div><div class="drive">2 hs</div><div class="day-bookings"><div class="booking-chip flight"><span class="bc-icon">🌙</span><div class="bc-body"><strong>AS 817 · LAS → HNL · Red-eye</strong><span>Sale Dom 2-ago 01:55 → 05:16 HST · PNR <code>YTNSWH</code> · USD 700,18</span></div></div><div class="booking-chip todo"><span class="bc-icon">🎭</span><div class="bc-body"><strong>Show Las Vegas (Cirque "O" / U2 Sphere)</strong><span>Pendiente reservar</span></div></div></div></div>
+
+      <div class="day-row hawaii has-bookings"><div class="d">11</div><div class="date">Dom 2 ago</div><div class="activity"><span class="loc">Oahu (Waikiki) · sin auto</span>Aterrizan HNL 05:16 AM · Uber a Waikiki · early check-in si disponible · siesta · pool/playa Waikiki PM · cena temprana</div><div class="drive">–</div><div class="day-bookings"><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Oahu · 3 noches (Aug 2-5)</strong><span>Pendiente reservar · sugerido Royal Hawaiian / Sheraton Waikiki · ~USD 660-900</span></div></div></div></div>
+
+      <div class="day-row hawaii has-bookings"><div class="d">12</div><div class="date">Lun 3 ago</div><div class="activity"><span class="loc">Pearl Harbor + Waikiki Beach</span>Uber Waikiki→HNL · pickup Thrifty 06:00 · Pearl Harbor 7:30 AM (Arizona Memorial + Battleship Missouri, ~4h total) · vuelta Waikiki almuerzo beachfront · playa + piscina PM · sunset cocktails Mai Tai Bar Royal Hawaiian · cena</div><div class="drive">1 hs</div><div class="day-bookings"><div class="booking-chip car"><span class="bc-icon">🚗</span><div class="bc-body"><strong>Thrifty · pickup HNL 06:00</strong><span>Nissan Rogue Small SUV · 3 días · Conf. <code>L59903023B8</code> · USD 242,92 pay at counter</span></div></div><div class="booking-chip todo"><span class="bc-icon">⚓</span><div class="bc-body"><strong>Pearl Harbor 7:30 AM</strong><span>Pendiente reservar 8 semanas antes (recreation.gov, gratis Arizona Memorial)</span></div></div></div></div>
+
+      <div class="day-row hawaii"><div class="d">13</div><div class="date">Mar 4 ago</div><div class="activity"><span class="loc">Lanikai + Kailua · día de playa</span>Drive a Lanikai Beach (30 min) — una de las playas más lindas del mundo, arena blanca + agua turquesa calma · mañana en la playa · almuerzo Kailua town (Buzz's Steakhouse o food trucks) · tarde en Kailua Beach Park · vuelta Waikiki al atardecer · cena</div><div class="drive">1 hs</div></div>
+
+      <div class="day-row hawaii has-bookings"><div class="d">14</div><div class="date">Mié 5 ago</div><div class="activity"><span class="loc">Oahu → Maui</span>Check-out Waikiki · drive HNL · devolver Thrifty 12:00 · <strong>AS 1106 HNL→OGG 12:31-13:15</strong> · pickup Dollar OGG 14:00 · drive Wailea · check-in resort · atardecer playa</div><div class="drive">~1h</div><div class="day-bookings"><div class="booking-chip car"><span class="bc-icon">🚗</span><div class="bc-body"><strong>Thrifty · dropoff HNL 12:00</strong><span>Conf. <code>L59903023B8</code></span></div></div><div class="booking-chip flight"><span class="bc-icon">✈️</span><div class="bc-body"><strong>AS 1106 · HNL → OGG · inter-island</strong><span>12:31 → 13:15 · PNR <code>WICOTH</code> · USD 185,76</span></div></div><div class="booking-chip car"><span class="bc-icon">🚗</span><div class="bc-body"><strong>Dollar · pickup OGG 14:00 · INCLUSIVE</strong><span>Chevrolet Cruze · 4 días · Conf. <code>L5990878549</code> · USD 354,04 · LDW + Liability $300k incluidos</span></div></div><div class="booking-chip hotel"><span class="bc-icon">🏨</span><div class="bc-body"><strong>Hotel Maui · 4 noches (Aug 5-9)</strong><span>Pendiente reservar · sugerido Wailea Beach Resort · ~USD 1.520-2.080</span></div></div></div></div>
+
+      <div class="day-row hawaii has-bookings"><div class="d">15</div><div class="date">Jue 6 ago</div><div class="activity"><span class="loc">Maui · Molokini snorkel</span>Boat tour Molokini AM (~7:00 AM salida del puerto, ~5h en el agua + snorkel con peces tropicales y tortugas) · vuelta resort 13:00 · almuerzo · beach + piscina PM · sunset beachfront</div><div class="drive">–</div><div class="day-bookings"><div class="booking-chip todo"><span class="bc-icon">🐠</span><div class="bc-body"><strong>Molokini snorkel tour AM</strong><span>Pendiente reservar 2-3 semanas antes</span></div></div></div></div>
+
+      <div class="day-row hawaii"><div class="d">16</div><div class="date">Vie 7 ago</div><div class="activity"><span class="loc">Maui · Pure Beach Day</span>0 alarmas · desayuno late · día completo en la playa del resort · piscina infinita · spa opcional para Pasajero 2 · sunset cocktail beachfront · cena resort romántica</div><div class="drive">–</div></div>
+
+      <div class="day-row hawaii has-bookings"><div class="d">17</div><div class="date">Sáb 8 ago</div><div class="activity"><span class="loc">Maui · Hana lite + Mama's Fish House</span>Drive corto a Wai'anapanapa State Park (50 min) · playa de arena negra única + caminata corta plana por las lava caves · almuerzo en Hana town · vuelta resort 16:00 · beach PM · arreglarse · <strong>cena Mama's Fish House</strong> (reservar 2 meses antes)</div><div class="drive">2 hs</div><div class="day-bookings"><div class="booking-chip todo"><span class="bc-icon">🐟</span><div class="bc-body"><strong>Mama's Fish House · cena</strong><span>CRÍTICO: reservar 2 meses antes (mamasfishhouse.com)</span></div></div></div></div>
+
+      <div class="day-row hawaii has-bookings"><div class="d">18</div><div class="date">Dom 9 ago</div><div class="activity"><span class="loc">Maui · día completo + red-eye nocturno</span>Despertar tarde · desayuno · <strong>DÍA COMPLETO DE PLAYA del resort</strong> (checkout 11 AM con late checkout, bags storage en concierge) · piscina · lunch · spa opcional · sunset beachfront · cena tranquila · drive a OGG 20:30 (45 min) · devolver Dollar al lot afuera del horario · check-in <strong>AA 14 OGG 21:00</strong> · all carry-on para minimizar bags · <strong>depart 22:54 HST</strong> (red-eye)</div><div class="drive">45 min</div><div class="day-bookings"><div class="booking-chip car"><span class="bc-icon">🚗</span><div class="bc-body"><strong>Dollar · dropoff OGG 21:00 (lote después de horario)</strong><span>Conf. <code>L5990878549</code></span></div></div><div class="booking-chip flight"><span class="bc-icon">🌙</span><div class="bc-body"><strong>AA 14 · OGG → LAX · Red-eye</strong><span>22:54 HST → 07:10 PDT Lun 10-ago · PNR <code>KAMAWP</code> · USD 650,20</span></div></div></div></div>
+
+      <div class="day-row transit has-bookings"><div class="d">19</div><div class="date">Lun 10 ago</div><div class="activity"><span class="loc">LAX connection + vuelta a casa</span>Llegan LAX 07:10 AM (T4 American) · retirar bags ~07:40 · walk T4 → TBIT 8 min · <strong>check-in LATAM 08:30 AM</strong> · security · breakfast en TBIT · <strong>boarding LATAM 10:30 · depart 11:35 → LIM 22:10</strong> · conexión 3h en LIM · LIM 01:15 → AEP 07:40 Mar 11</div><div class="drive">–</div><div class="day-bookings"><div class="booking-chip flight"><span class="bc-icon">✈️</span><div class="bc-body"><strong>LA 2479 · LAX → LIM</strong><span>Lun 10-ago 11:35 → 22:10 (8h35) · Reserva <code>YDEXMY</code></span></div></div></div></div>
+
+      <div class="day-row transit has-bookings"><div class="d">20</div><div class="date">Mar 11 ago</div><div class="activity"><span class="loc">Llegada AEP</span>Arribo Aeroparque 07:40 AM · 🏠 en casa</div><div class="drive">–</div><div class="day-bookings"><div class="booking-chip flight"><span class="bc-icon">✈️</span><div class="bc-body"><strong>LA 2465 · LIM → AEP</strong><span>Mar 11-ago 01:15 → 07:40 (4h25) · Reserva <code>YDEXMY</code></span></div></div></div></div>
+
+    </div>
+  </div>
+</section>
+
+<section id="hawaii">
   <div class="container">
     <span class="section-eyebrow">Where the trip begins to slow down</span>
     <h2 class="section-title">El <em>foco</em> del viaje: Hawaii</h2>
@@ -986,115 +1038,111 @@
   </div>
 </section>
 
-<section id="calendario">
+<section id="vuelos" class="alt">
   <div class="container">
-    <span class="section-eyebrow">Visual at a glance</span>
-    <h2 class="section-title">El <em>calendario</em></h2>
-    <p class="section-lead">Cuatro semanas mapeadas con colores para ver de un vistazo en qué isla, ciudad o ruta estamos.</p>
+    <span class="section-eyebrow">Booked & confirmed</span>
+    <h2 class="section-title">Los <em>vuelos</em></h2>
+    <p class="section-lead">Dos reservas internacionales y tres vuelos domésticos — todos confirmados. Travesía Pacífico ida y vuelta vía Lima/Santiago con LATAM, hops inter-isla con Hawaiian/Alaska.</p>
 
-    <div class="calendar-legend">
-      <div class="legend-item"><span class="legend-swatch" style="background:#ebe6dc"></span>Tránsito / vuelo</div>
-      <div class="legend-item"><span class="legend-swatch" style="background:linear-gradient(135deg,#e8f1f4,#d6e8f3)"></span>Hawaii</div>
-      <div class="legend-item"><span class="legend-swatch" style="background:linear-gradient(135deg,#fce8d8,#f3d8c8)"></span>Las Vegas</div>
-      <div class="legend-item"><span class="legend-swatch" style="background:linear-gradient(135deg,#efe5d0,#e8dcc0)"></span>Sierra Nevada</div>
-      <div class="legend-item"><span class="legend-swatch" style="background:linear-gradient(135deg,#e8eef2,#dde8ee)"></span>San Francisco</div>
-      <div class="legend-item"><span class="legend-swatch" style="background:linear-gradient(135deg,#e8f0e4,#dde9d9)"></span>PCH costa</div>
-      <div class="legend-item"><span class="legend-swatch" style="background:linear-gradient(135deg,#fcdcc8,#f5b894)"></span>Santa Monica</div>
+    <div class="booking-block confirmed">
+      <span class="badge">✓ Reserva pagada</span>
+      <h3>LATAM · Internacional</h3>
+      <div class="booking-meta">
+        <div><strong>Reserva</strong><span>YDEXMY</span></div>
+        <div><strong>Orden</strong><span>LA0454031WJYF</span></div>
+        <div><strong>Pagado</strong><span>USD 2.226,46</span></div>
+        <div><strong>Tarifa</strong><span>Economy Standard</span></div>
+      </div>
+      <ul class="flight-list">
+        <li><span class="vuelo">LA 454</span><span class="ruta">AEP → SCL <small>Aeroparque → Santiago Pudahuel</small></span><span class="horario"><strong>Mié 22-jul · 15:45</strong><br>→ 17:08 · ~2h</span><span><span class="pill ok">OK</span></span></li>
+        <li><span class="vuelo">LA 602</span><span class="ruta">SCL → LAX <small>Santiago → Los Ángeles · Boeing 787</small></span><span class="horario"><strong>Mié 22-jul · 23:25</strong><br>→ Jue 07:45 · ~10h40</span><span><span class="pill ok">OK</span></span></li>
+        <li><span class="vuelo">LA 2479</span><span class="ruta">LAX → LIM <small>Los Ángeles → Lima</small></span><span class="horario"><strong>Lun 10-ago · 11:35</strong><br>→ 22:10 · ~8h35</span><span><span class="pill ok">OK</span></span></li>
+        <li><span class="vuelo">LA 2465</span><span class="ruta">LIM → AEP <small>Lima → Aeroparque</small></span><span class="horario"><strong>Mar 11-ago · 01:15</strong><br>→ 07:40 · ~4h25</span><span><span class="pill ok">OK</span></span></li>
+      </ul>
     </div>
 
-    <div class="cal-grid">
-      <div class="cal-head">Dom</div><div class="cal-head">Lun</div><div class="cal-head">Mar</div><div class="cal-head">Mié</div><div class="cal-head">Jue</div><div class="cal-head">Vie</div><div class="cal-head">Sáb</div>
+    <div class="booking-block confirmed">
+      <span class="badge">✓ Reserva pagada · TicketsAtWork</span>
+      <h3>Domésticos USA · 3 vuelos via TicketsAtWork</h3>
+      <div class="booking-meta">
+        <div><strong>Trip ID</strong><span>1024060260</span></div>
+        <div><strong>PNRs separados</strong><span>YTNSWH · WICOTH · KAMAWP</span></div>
+        <div><strong>Pagado</strong><span>USD 1.461,98</span></div>
+        <div><strong>Tarifa</strong><span>Economy</span></div>
+      </div>
+      <ul class="flight-list">
+        <li><span class="vuelo">AS 817</span><span class="ruta">LAS → HNL <small>Red-eye · Alaska/Hawaiian</small></span><span class="horario"><strong>Dom 2-ago · 01:55</strong><br>→ 05:16 HST · ~6h21</span><span><span class="pill ok">OK</span></span></li>
+        <li><span class="vuelo">AS 1106</span><span class="ruta">HNL → OGG <small>Inter-island · Alaska/Hawaiian</small></span><span class="horario"><strong>Mié 5-ago · 12:31</strong><br>→ 13:15 HST · ~44 min</span><span><span class="pill ok">OK</span></span></li>
+        <li><span class="vuelo">AA 14</span><span class="ruta">OGG → LAX <small>Red-eye · American Airlines</small></span><span class="horario"><strong>Dom 9-ago · 22:54 HST</strong><br>→ 07:10 PDT Lun · ~5h16</span><span><span class="pill ok">OK</span></span></li>
+      </ul>
+    </div>
 
-      <div class="cal-day other-month"><div class="cal-num">19</div></div>
-      <div class="cal-day other-month"><div class="cal-num">20</div></div>
-      <div class="cal-day other-month"><div class="cal-num">21</div></div>
-      <div class="cal-day transit"><div class="cal-num">22</div><div class="cal-loc">✈ Vuelo</div><div class="cal-detail">AEP 15:45 → SCL → LAX overnight</div></div>
-      <div class="cal-day la"><div class="cal-num">23</div><div class="cal-loc">FRIENDS + Santa Monica</div><div class="cal-detail">LAX 7:45 → FRIENDS Experience Lakewood 9:30 → Santa Monica · Pier sunset</div></div>
-      <div class="cal-day pch"><div class="cal-num">24</div><div class="cal-loc">Cambria</div><div class="cal-detail">Santa Monica → Santa Bárbara → Cambria · Hearst Castle</div></div>
-      <div class="cal-day pch"><div class="cal-num">25</div><div class="cal-loc">Monterey</div><div class="cal-detail">Cambria → Big Sur → Monterey · Bixby Bridge · McWay Falls</div></div>
-
-      <div class="cal-day sf"><div class="cal-num">26</div><div class="cal-loc">San Francisco</div><div class="cal-detail">Monterey → SF · Fisherman's Wharf PM</div></div>
-      <div class="cal-day sf"><div class="cal-num">27</div><div class="cal-loc">San Francisco</div><div class="cal-detail">Golden Gate + Alcatraz + Mission + Twin Peaks</div></div>
-      <div class="cal-day sierra"><div class="cal-num">28</div><div class="cal-loc">Mariposa</div><div class="cal-detail">SF → Mariposa · cena en El Portal junto al río</div></div>
-      <div class="cal-day sierra"><div class="cal-num">29</div><div class="cal-loc">Mammoth Lakes</div><div class="cal-detail">Yosemite Valley AM → Tioga Pass → Mammoth · Hot Creek</div></div>
-      <div class="cal-day sierra"><div class="cal-num">30</div><div class="cal-loc">Lone Pine</div><div class="cal-detail">Mammoth → 395 south · Alabama Hills sunset · Mt Whitney</div></div>
-      <div class="cal-day vegas"><div class="cal-num">31</div><div class="cal-loc">Las Vegas llega AM</div><div class="cal-detail">Lone Pine 7 AM → DV lite → Vegas 11:30 AM · pool + Hoover Dam PM · Strip noche</div></div>
-      <div class="cal-day vegas"><div class="cal-num">1</div><div class="cal-loc">Vegas → ✈ Red-eye</div><div class="cal-detail">Red Rock Canyon AM · pool + show PM · LAS 22:30 · AS 817 sale 01:55 AM</div></div>
-
-      <div class="cal-day hawaii"><div class="cal-num">2</div><div class="cal-loc">Oahu</div><div class="cal-detail">Llegada HNL 05:16 AM · Uber Waikiki · chill day · sin auto</div></div>
-      <div class="cal-day hawaii"><div class="cal-num">3</div><div class="cal-loc">Pearl Harbor + Beach</div><div class="cal-detail">Pickup Thrifty 06:00 · Pearl Harbor 7:30 AM · vuelta playa Waikiki PM · sunset cocktails</div></div>
-      <div class="cal-day hawaii"><div class="cal-num">4</div><div class="cal-loc">Lanikai + Kailua</div><div class="cal-detail">East side beach day · Lanikai (top 10 mundo) + Kailua town + playa todo el día</div></div>
-      <div class="cal-day hawaii"><div class="cal-num">5</div><div class="cal-loc">Oahu → Maui</div><div class="cal-detail">Drop Thrifty HNL 12:00 · Vuelo OGG 12:31-13:15 · pickup Dollar 14:00 · resort Wailea</div></div>
-      <div class="cal-day hawaii"><div class="cal-num">6</div><div class="cal-loc">Maui · Molokini</div><div class="cal-detail">Molokini snorkel tour AM (boat 5h) · playa resort PM · sunset beachfront</div></div>
-      <div class="cal-day hawaii"><div class="cal-num">7</div><div class="cal-loc">Maui · Beach Day</div><div class="cal-detail">Beach todo el día · piscina infinita · spa · relax puro</div></div>
-      <div class="cal-day hawaii"><div class="cal-num">8</div><div class="cal-loc">Maui · Hana lite</div><div class="cal-detail">Wai'anapanapa Black Sand Beach AM · beach resort PM · cena Mama's Fish House</div></div>
-
-      <div class="cal-day hawaii"><div class="cal-num">9</div><div class="cal-loc">Maui · día completo + red-eye</div><div class="cal-detail">Beach todo el día · Mama's Fish House · drive OGG 20:30 · AA 14 sale 22:54 HST (red-eye a LAX)</div></div>
-      <div class="cal-day transit"><div class="cal-num">10</div><div class="cal-loc">LAX → LATAM home</div><div class="cal-detail">Llegan LAX 07:10 AM · walk T4 → TBIT · LATAM 11:35 → LIM (4h25 connection)</div></div>
-      <div class="cal-day transit"><div class="cal-num">11</div><div class="cal-loc">✈ → AEP</div><div class="cal-detail">LIM 01:15 → AEP 07:40 · 🏠 en casa</div></div>
-      <div class="cal-day other-month"><div class="cal-num">12</div></div>
-      <div class="cal-day other-month"><div class="cal-num">13</div></div>
-      <div class="cal-day other-month"><div class="cal-num">14</div></div>
-      <div class="cal-day other-month"><div class="cal-num">15</div></div>
+    <div class="quote warn">
+      <p><strong>Dos red-eyes:</strong> LAS→HNL (01:55 AM dom 2) al inicio + OGG→LAX (22:54 PM dom 9) al final. Última noche Hawaii se duerme en el avión.</p>
+      <p><strong>Conexión tight LAX el lun 10 ago:</strong> aterrizan AA 14 a las 07:10 AM, vuelo LATAM 11:35 AM = <strong>4h25 de buffer entre vuelos en LAX</strong>. Llevar TODO en carry-on para minimizar tiempo en bags.</p>
+      <p><strong>Bonus:</strong> el dom 9 ago se transformó en DÍA COMPLETO de playa en Maui (en vez de medio día) porque el vuelo sale recién a las 22:54 PM.</p>
     </div>
   </div>
 </section>
 
-<section id="dia-a-dia" class="alt">
+<section id="autos">
   <div class="container">
-    <span class="section-eyebrow">Day by day</span>
-    <h2 class="section-title">El <em>itinerario</em>, en detalle</h2>
-    <p class="section-lead">Veinte días con sus paradas, manejos y momentos clave. De Buenos Aires al Pacífico, por el desierto hasta el Pacífico otra vez.</p>
+    <span class="section-eyebrow">Three rentals, three islands of road</span>
+    <h2 class="section-title">Los <em>autos</em></h2>
+    <p class="section-lead">Un SUV para el road trip continental, un SUV pequeño para descubrir Oahu, y un sedán para Maui con todos los seguros incluidos.</p>
 
-    <div class="day-timeline">
+    <div class="booking-block confirmed">
+      <span class="badge">✓ Pagado</span>
+      <h3>Hertz · LAX → LAS · 10 días</h3>
+      <div class="booking-meta">
+        <div><strong>Confirmación</strong><span>L5994697119</span></div>
+        <div><strong>Vehículo</strong><span>Nissan Rogue</span></div>
+        <div><strong>Pagado</strong><span>USD 1.079,60</span></div>
+        <div><strong>Drop-off fee</strong><span>incluido</span></div>
+      </div>
+      <ul class="flight-list">
+        <li><span class="vuelo">PICKUP</span><span class="ruta">LAX <small>Los Angeles International</small></span><span class="horario"><strong>Jue 23-jul · 08:00 AM</strong></span><span><span class="pill ok">OK</span></span></li>
+        <li><span class="vuelo">DROPOFF</span><span class="ruta">LAS <small>Harry Reid International (Las Vegas)</small></span><span class="horario"><strong>Sáb 1-ago · 11:00 PM</strong></span><span><span class="pill ok">OK</span></span></li>
+      </ul>
+    </div>
 
-      <div class="day-row transit"><div class="d">0</div><div class="date">Mié 22 jul</div><div class="activity"><span class="loc">En vuelo</span>Aeroparque 15:45 → SCL (layover 6h) → vuelo overnight a LAX</div><div class="drive">–</div></div>
+    <div class="booking-block confirmed">
+      <span class="badge">✓ Reservado · pay at counter</span>
+      <h3>Thrifty · Oahu · 3 días</h3>
+      <div class="booking-meta">
+        <div><strong>Confirmación</strong><span>L59903023B8</span></div>
+        <div><strong>Vehículo</strong><span>Nissan Rogue (Small SUV)</span></div>
+        <div><strong>A pagar</strong><span>USD 242,92</span></div>
+        <div><strong>Free drivers</strong><span>2 adicionales</span></div>
+      </div>
+      <ul class="flight-list">
+        <li><span class="vuelo">PICKUP</span><span class="ruta">HNL <small>Daniel K. Inouye (Honolulu)</small></span><span class="horario"><strong>Lun 3-ago · 06:00 AM</strong></span><span><span class="pill ok">OK</span></span></li>
+        <li><span class="vuelo">DROPOFF</span><span class="ruta">HNL <small>Antes del vuelo a Maui</small></span><span class="horario"><strong>Mié 5-ago · 12:00 PM</strong></span><span><span class="pill ok">OK</span></span></li>
+      </ul>
+    </div>
 
-      <div class="day-row la"><div class="d">1</div><div class="date">Jue 23 jul</div><div class="activity"><span class="loc">FRIENDS Experience + Santa Monica</span>Aterrizaje LAX 07:45 · customs + bags · shuttle a Car Rental Center · pickup Hertz · drive a Lakewood Center (30 min sur) · <strong>The FRIENDS™ Experience 09:30-11:00</strong> (sets recreados Central Perk + apartments, PIVOT! scene, foto en el sillón naranja) · drive a Santa Monica (~45 min) · check-in hotel beachfront · lunch · paseo Pier + Venice Beach · sunset · cena temprana</div><div class="drive">1.5 hs</div></div>
+    <div class="booking-block confirmed">
+      <span class="badge">✓ Reservado · INCLUSIVE</span>
+      <h3>Dollar · Maui · 4 días con seguros incluidos</h3>
+      <div class="booking-meta">
+        <div><strong>Confirmación</strong><span>L5990878549</span></div>
+        <div><strong>Vehículo</strong><span>Chevrolet Cruze (Sedan)</span></div>
+        <div><strong>A pagar</strong><span>USD 354,04</span></div>
+        <div><strong>Incluye</strong><span>LDW + Liability $300k</span></div>
+      </div>
+      <ul class="flight-list">
+        <li><span class="vuelo">PICKUP</span><span class="ruta">OGG <small>Kahului Airport · Maui</small></span><span class="horario"><strong>Mié 5-ago · 02:00 PM</strong></span><span><span class="pill ok">OK</span></span></li>
+        <li><span class="vuelo">DROPOFF</span><span class="ruta">OGG <small>Antes del vuelo de regreso</small></span><span class="horario"><strong>Dom 9-ago · 12:00 PM</strong></span><span><span class="pill ok">OK</span></span></li>
+      </ul>
+    </div>
 
-      <div class="day-row pch"><div class="d">2</div><div class="date">Vie 24 jul</div><div class="activity"><span class="loc">Cambria</span>Santa Monica → PCH norte · Santa Bárbara (almuerzo State Street) → Solvang opcional → Cambria · Hearst Castle PM · Elephant Seal Vista sunset</div><div class="drive">4 hs PCH</div></div>
-
-      <div class="day-row pch"><div class="d">3</div><div class="date">Sáb 25 jul</div><div class="activity"><span class="loc">Monterey / Carmel</span>Cambria → Big Sur → Monterey · Bixby Bridge · McWay Falls · Pfeiffer Beach · cena Carmel-by-the-Sea</div><div class="drive">3 hs</div></div>
-
-      <div class="day-row sf"><div class="d">4</div><div class="date">Dom 26 jul</div><div class="activity"><span class="loc">San Francisco</span>Monterey Bay Aquarium AM · 17-Mile Drive + Pebble Beach · drive a SF vía Half Moon Bay · Fisherman's Wharf + Pier 39 PM</div><div class="drive">2 hs</div></div>
-
-      <div class="day-row sf"><div class="d">5</div><div class="date">Lun 27 jul</div><div class="activity"><span class="loc">San Francisco</span>Caminar Golden Gate · Crissy Field · Alcatraz tour mediodía · Painted Ladies + Mission + Twin Peaks atardecer · cena North Beach</div><div class="drive">–</div></div>
-
-      <div class="day-row sierra"><div class="d">6</div><div class="date">Mar 28 jul</div><div class="activity"><span class="loc">Mariposa (Yosemite)</span>SF → Mariposa vía Oakland, Modesto · check-in lodge · cena en El Portal junto al río Merced</div><div class="drive">4 hs</div></div>
-
-      <div class="day-row sierra"><div class="d">7</div><div class="date">Mié 29 jul</div><div class="activity"><span class="loc">Mammoth Lakes</span>Yosemite Valley AM: Tunnel View, El Capitan, Half Dome viewpoint, Bridalveil Fall · cruce Tioga Pass · Tuolumne Meadows, Olmsted Point · bajada a Mammoth · Hot Creek</div><div class="drive">3 hs scenic</div></div>
-
-      <div class="day-row sierra"><div class="d">8</div><div class="date">Jue 30 jul</div><div class="activity"><span class="loc">Lone Pine</span>Mammoth → 395 south · parada Manzanar + Bishop · Lone Pine · Alabama Hills sunset (paisajes wild west) · vista Mt Whitney</div><div class="drive">2.5 hs</div></div>
-
-      <div class="day-row vegas"><div class="d">9</div><div class="date">Vie 31 jul</div><div class="activity"><span class="loc">Las Vegas (llegada mediodía)</span>Salida Lone Pine 07:00 AM · Death Valley lite (solo Father Crowley Vista 15 min) · drive directo 95 N · <strong>llegada Vegas 11:30 AM</strong> · valet Polo Towers · lunch · pool · check-in 16:00 PM · <strong>Hoover Dam tour PM</strong> (14:30-18:30) · Strip walk + Bellagio Fountains + cena</div><div class="drive">4.5 hs</div></div>
-
-      <div class="day-row vegas"><div class="d">10</div><div class="date">Sáb 1 ago</div><div class="activity"><span class="loc">Las Vegas → ✈ Red-eye</span>Late breakfast + pool AM · check-out 11:00 (storage bags) · <strong>Red Rock Canyon scenic drive</strong> (40 min al loop + 13-mile scenic) · lunch tardío Strip · pool/spa/casino PM · cena Strip + show (Cirque "O" / U2 Sphere) · retirar bags 22:00 · LAS airport 22:30 · vuelo AS 817 01:55 AM Dom 2</div><div class="drive">2 hs</div></div>
-
-      <div class="day-row hawaii"><div class="d">11</div><div class="date">Dom 2 ago</div><div class="activity"><span class="loc">Oahu (Waikiki) · sin auto</span>Aterrizan HNL 05:16 AM · Uber a Waikiki · early check-in si disponible · siesta · pool/playa Waikiki PM · cena temprana</div><div class="drive">–</div></div>
-
-      <div class="day-row hawaii"><div class="d">12</div><div class="date">Lun 3 ago</div><div class="activity"><span class="loc">Pearl Harbor + Waikiki Beach</span>Uber Waikiki→HNL · pickup Thrifty 06:00 · Pearl Harbor 7:30 AM (Arizona Memorial + Battleship Missouri, ~4h total) · vuelta Waikiki almuerzo beachfront · playa + piscina PM · sunset cocktails Mai Tai Bar Royal Hawaiian · cena</div><div class="drive">1 hs</div></div>
-
-      <div class="day-row hawaii"><div class="d">13</div><div class="date">Mar 4 ago</div><div class="activity"><span class="loc">Lanikai + Kailua · día de playa</span>Drive a Lanikai Beach (30 min) — una de las playas más lindas del mundo, arena blanca + agua turquesa calma · mañana en la playa · almuerzo Kailua town (Buzz's Steakhouse o food trucks) · tarde en Kailua Beach Park · vuelta Waikiki al atardecer · cena</div><div class="drive">1 hs</div></div>
-
-      <div class="day-row hawaii"><div class="d">14</div><div class="date">Mié 5 ago</div><div class="activity"><span class="loc">Oahu → Maui</span>Check-out Waikiki · drive HNL · devolver Thrifty 12:00 · <strong>AS 1106 HNL→OGG 12:31-13:15</strong> · pickup Dollar OGG 14:00 · drive Wailea · check-in resort · atardecer playa</div><div class="drive">~1h</div></div>
-
-      <div class="day-row hawaii"><div class="d">15</div><div class="date">Jue 6 ago</div><div class="activity"><span class="loc">Maui · Molokini snorkel</span>Boat tour Molokini AM (~7:00 AM salida del puerto, ~5h en el agua + snorkel con peces tropicales y tortugas) · vuelta resort 13:00 · almuerzo · beach + piscina PM · sunset beachfront</div><div class="drive">–</div></div>
-
-      <div class="day-row hawaii"><div class="d">16</div><div class="date">Vie 7 ago</div><div class="activity"><span class="loc">Maui · Pure Beach Day</span>0 alarmas · desayuno late · día completo en la playa del resort · piscina infinita · spa opcional para Pasajero 2 · sunset cocktail beachfront · cena resort romántica</div><div class="drive">–</div></div>
-
-      <div class="day-row hawaii"><div class="d">17</div><div class="date">Sáb 8 ago</div><div class="activity"><span class="loc">Maui · Hana lite + Mama's Fish House</span>Drive corto a Wai'anapanapa State Park (50 min) · playa de arena negra única + caminata corta plana por las lava caves · almuerzo en Hana town · vuelta resort 16:00 · beach PM · arreglarse · <strong>cena Mama's Fish House</strong> (reservar 2 meses antes)</div><div class="drive">2 hs</div></div>
-
-      <div class="day-row hawaii"><div class="d">18</div><div class="date">Dom 9 ago</div><div class="activity"><span class="loc">Maui · día completo + red-eye nocturno</span>Despertar tarde · desayuno · <strong>DÍA COMPLETO DE PLAYA del resort</strong> (checkout 11 AM con late checkout, bags storage en concierge) · piscina · lunch · spa opcional · sunset beachfront · cena tranquila · drive a OGG 20:30 (45 min) · devolver Dollar al lot afuera del horario · check-in <strong>AA 14 OGG 21:00</strong> · all carry-on para minimizar bags · <strong>depart 22:54 HST</strong> (red-eye)</div><div class="drive">45 min</div></div>
-
-      <div class="day-row transit"><div class="d">19</div><div class="date">Lun 10 ago</div><div class="activity"><span class="loc">LAX connection + vuelta a casa</span>Llegan LAX 07:10 AM (T4 American) · retirar bags ~07:40 · walk T4 → TBIT 8 min · <strong>check-in LATAM 08:30 AM</strong> · security · breakfast en TBIT · <strong>boarding LATAM 10:30 · depart 11:35 → LIM 22:10</strong> · conexión 3h en LIM · LIM 01:15 → AEP 07:40 Mar 11</div><div class="drive">–</div></div>
-
-      <div class="day-row transit"><div class="d">20</div><div class="date">Mar 11 ago</div><div class="activity"><span class="loc">Llegada AEP</span>Arribo Aeroparque 07:40 AM · 🏠 en casa</div><div class="drive">–</div></div>
-
+    <div class="quote confirmed">
+      <p><strong>Dollar Maui INCLUSIVE Rate</strong> — incluye todo: LDW Zero Excess + Liability $300.000 + Uninsured Motorist Protection + Unlimited miles + Taxes. En el counter <strong>nada extra</strong>.</p>
     </div>
   </div>
 </section>
 
-<section id="presupuesto">
+<section id="presupuesto" class="alt">
   <div class="container">
     <span class="section-eyebrow">The numbers</span>
     <h2 class="section-title">El <em>presupuesto</em></h2>
@@ -1142,6 +1190,7 @@
     </div>
   </div>
 </section>
+
 
 <footer>
   <div class="container">
