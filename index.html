@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw==" crossorigin="anonymous">
 <style>
   :root {
     --sunset-coral: #ed7867;
@@ -107,29 +108,82 @@
     margin: 0 auto 36px;
     line-height: 1.6;
   }
-  .hero-stats {
-    display: flex;
-    justify-content: center;
-    gap: 60px;
+  .hero-countdown {
     margin-top: 48px;
-    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
   }
-  .hero-stat { text-align: center; }
-  .hero-stat .num {
+  .cd-eyebrow {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    color: var(--ocean-teal);
+    font-weight: 600;
+    transform: rotate(-1deg);
+    display: inline-block;
+  }
+  .cd-grid {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .cd-unit {
+    background: var(--warm-white);
+    border-radius: 18px;
+    padding: 18px 22px 14px;
+    min-width: 96px;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--line);
+  }
+  .cd-num {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 56px;
+    font-size: 58px;
     font-weight: 600;
     color: var(--sunset-coral);
     line-height: 1;
     font-feature-settings: 'lnum';
+    font-variant-numeric: tabular-nums;
   }
-  .hero-stat .label {
+  .cd-label {
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--ink-soft);
+    margin-top: 8px;
+    font-weight: 600;
+  }
+  .cd-sep {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    color: var(--sunset-peach);
+    line-height: 1;
+    padding-top: 18px;
+    align-self: flex-start;
+    opacity: 0.7;
+  }
+  #cd-secs {
+    color: var(--ocean-teal);
+    transition: transform 0.18s ease-out;
+  }
+  #cd-secs.tick { transform: scale(1.06); }
+  .cd-target {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: var(--ocean-deep);
+    font-style: italic;
     margin-top: 6px;
-    font-weight: 500;
+  }
+  .cd-target strong { font-style: normal; font-weight: 600; color: var(--sunset-coral); }
+  .cd-launched {
+    font-family: 'Caveat', cursive;
+    font-size: 42px;
+    color: var(--sunset-coral);
+    font-weight: 700;
+    padding: 20px 0;
   }
   .hero-dates {
     margin-top: 36px;
@@ -525,10 +579,128 @@
     letter-spacing: 0.5px;
     color: rgba(255, 255, 255, 0.5);
   }
+  .map-shell {
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--line);
+    margin-top: 28px;
+    background: var(--warm-white);
+  }
+  #roadtrip-map { height: 580px; width: 100%; z-index: 0; }
+  @media (max-width: 720px) { #roadtrip-map { height: 440px; } }
+  #roadtrip-map.loading::before {
+    content: 'Cargando ruta…';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-muted);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-style: italic;
+    z-index: 1;
+    background: var(--sand);
+  }
+  .leaflet-popup-content {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .leaflet-popup-content strong { color: var(--ocean-deep); font-size: 14px; }
+  .leaflet-popup-content em { color: var(--sunset-coral); font-style: normal; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .legs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+    margin-top: 28px;
+  }
+  .leg {
+    background: var(--warm-white);
+    border-radius: 14px;
+    padding: 16px 18px;
+    border-left: 5px solid var(--ocean-soft);
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: transform 0.2s;
+  }
+  .leg:hover { transform: translateY(-2px); }
+  .leg .leg-day {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--ink-muted);
+    font-weight: 700;
+  }
+  .leg .leg-route {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--ocean-deep);
+    line-height: 1.2;
+  }
+  .leg .leg-meta {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+  .leg .leg-meta strong { color: var(--sunset-coral); font-weight: 700; }
+  .leg.la { border-left-color: var(--sunset-coral); }
+  .leg.pch { border-left-color: var(--leaf); }
+  .leg.sf { border-left-color: #4a7585; }
+  .leg.sierra { border-left-color: #8b6f47; }
+  .leg.vegas { border-left-color: #8b3a1a; }
+  .map-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 28px;
+    background: var(--ocean-deep);
+    color: white;
+    padding: 14px 26px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    box-shadow: var(--shadow-soft);
+  }
+  .map-cta:hover { background: var(--sunset-coral); transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+  .map-cta::after { content: '→'; transition: transform 0.2s; }
+  .map-cta:hover::after { transform: translateX(4px); }
+  .map-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    margin: 22px 0 0;
+    padding: 18px 24px;
+    background: var(--sand);
+    border-radius: 14px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .map-stats div { display: flex; flex-direction: column; }
+  .map-stats div strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ocean-deep);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
   @media (max-width: 720px) {
     .hero h1 { font-size: 48px; }
-    .hero-stats { gap: 32px; }
-    .hero-stat .num { font-size: 40px; }
+    .cd-grid { gap: 8px; }
+    .cd-unit { min-width: 70px; padding: 14px 12px 10px; border-radius: 14px; }
+    .cd-num { font-size: 40px; }
+    .cd-sep { font-size: 32px; padding-top: 14px; }
+    .cd-label { font-size: 9.5px; letter-spacing: 1.4px; }
     .section-title { font-size: 32px; }
     .flight-list li { grid-template-columns: 1fr; gap: 6px; }
     .flight-list .horario { text-align: left; }
@@ -553,12 +725,18 @@
     <span class="hero-eyebrow">Nuestra luna de miel</span>
     <h1>Hawaii, <em>Sierras</em>, Pacífico<br>& el Sur de California</h1>
     <p class="hero-tagline">Un viaje de 3 semanas a través del Pacífico — playas todos los días en Oahu y Maui, cruzando Las Vegas, las sierras de Yosemite, San Francisco, el Pacific Coast Highway hasta Santa Monica. Beachfront en Hawaii, slow mornings, sunsets diarios.</p>
-    <div class="hero-stats">
-      <div class="hero-stat"><div class="num">19</div><div class="label">Noches</div></div>
-      <div class="hero-stat"><div class="num">10</div><div class="label">Ciudades</div></div>
-      <div class="hero-stat"><div class="num">2</div><div class="label">Islas Hawaii</div></div>
-      <div class="hero-stat"><div class="num">7</div><div class="label">Vuelos</div></div>
-      <div class="hero-stat"><div class="num">3</div><div class="label">Autos</div></div>
+    <div class="hero-countdown" aria-live="polite">
+      <span class="cd-eyebrow">Faltan para despegar</span>
+      <div class="cd-grid">
+        <div class="cd-unit"><div class="cd-num" id="cd-days">—</div><div class="cd-label">Días</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><div class="cd-num" id="cd-hours">—</div><div class="cd-label">Horas</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><div class="cd-num" id="cd-mins">—</div><div class="cd-label">Min</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><div class="cd-num" id="cd-secs">—</div><div class="cd-label">Seg</div></div>
+      </div>
+      <div class="cd-target">LATAM 454 · Aeroparque · <strong>Mié 22 julio 2026 · 15:45 hs</strong></div>
     </div>
     <div class="hero-dates">22 julio 2026 <span>—</span> 11 agosto 2026</div>
   </div>
@@ -569,6 +747,7 @@
     <a href="#resumen">Resumen</a>
     <a href="#vuelos">Vuelos</a>
     <a href="#autos">Autos</a>
+    <a href="#ruta-mapa">Mapa ruta</a>
     <a href="#hawaii">Hawaii</a>
     <a href="#calendario">Calendario</a>
     <a href="#dia-a-dia">Día a día</a>
@@ -695,6 +874,39 @@
     <div class="quote confirmed">
       <p><strong>Dollar Maui INCLUSIVE Rate</strong> — incluye todo: LDW Zero Excess + Liability $300.000 + Uninsured Motorist Protection + Unlimited miles + Taxes. En el counter <strong>nada extra</strong>.</p>
     </div>
+  </div>
+</section>
+
+<section id="ruta-mapa">
+  <div class="container">
+    <span class="section-eyebrow">Pacific Coast → Sierra Nevada → Desierto</span>
+    <h2 class="section-title">El <em>mapa</em> del road trip</h2>
+    <p class="section-lead">Nueve días manejando desde Los Ángeles hasta Las Vegas — costa Pacífica por el PCH, cruce por San Francisco, subida a Yosemite y bajada por el desierto hasta el Strip. La línea roja sigue las carreteras reales; cada punto numerado es una parada con pernocte.</p>
+
+    <div class="map-shell">
+      <div id="roadtrip-map" class="loading"></div>
+    </div>
+
+    <div class="map-stats">
+      <div><strong>~3.000 km</strong><span>Distancia total LA → LAS</span></div>
+      <div><strong>~23 h</strong><span>De manejo neto en 8 días</span></div>
+      <div><strong>9 paradas</strong><span>Promedio 3h/día al volante</span></div>
+      <div><strong>1 SUV</strong><span>Nissan Rogue · Hertz</span></div>
+    </div>
+
+    <div class="legs-grid">
+      <div class="leg la"><span class="leg-day">Día 1 · Jue 23 jul</span><span class="leg-route">LAX → Santa Monica</span><span class="leg-meta"><strong>~1.5 h</strong> · vía Lakewood (FRIENDS Experience)</span></div>
+      <div class="leg pch"><span class="leg-day">Día 2 · Vie 24 jul</span><span class="leg-route">Santa Monica → Cambria</span><span class="leg-meta"><strong>~4 h</strong> · vía Santa Bárbara · Hearst Castle</span></div>
+      <div class="leg pch"><span class="leg-day">Día 3 · Sáb 25 jul</span><span class="leg-route">Cambria → Monterey</span><span class="leg-meta"><strong>~3 h</strong> · Big Sur · Bixby Bridge · McWay Falls</span></div>
+      <div class="leg sf"><span class="leg-day">Día 4 · Dom 26 jul</span><span class="leg-route">Monterey → San Francisco</span><span class="leg-meta"><strong>~2 h</strong> · 17-Mile Drive + Half Moon Bay</span></div>
+      <div class="leg sf"><span class="leg-day">Día 5 · Lun 27 jul</span><span class="leg-route">San Francisco</span><span class="leg-meta"><strong>sin manejar</strong> · Golden Gate + Alcatraz</span></div>
+      <div class="leg sierra"><span class="leg-day">Día 6 · Mar 28 jul</span><span class="leg-route">San Francisco → Mariposa</span><span class="leg-meta"><strong>~4 h</strong> · puerta de Yosemite</span></div>
+      <div class="leg sierra"><span class="leg-day">Día 7 · Mié 29 jul</span><span class="leg-route">Mariposa → Mammoth Lakes</span><span class="leg-meta"><strong>~3 h</strong> · Yosemite Valley + Tioga Pass scenic</span></div>
+      <div class="leg sierra"><span class="leg-day">Día 8 · Jue 30 jul</span><span class="leg-route">Mammoth → Lone Pine</span><span class="leg-meta"><strong>~2.5 h</strong> · Hwy 395 · Alabama Hills sunset</span></div>
+      <div class="leg vegas"><span class="leg-day">Día 9 · Vie 31 jul</span><span class="leg-route">Lone Pine → Las Vegas</span><span class="leg-meta"><strong>~4.5 h</strong> · Death Valley lite · llega 11:30 AM</span></div>
+    </div>
+
+    <a class="map-cta" href="https://www.google.com/maps/dir/Los+Angeles+International+Airport/Santa+Monica,+CA/Santa+Barbara,+CA/Cambria,+CA/Big+Sur,+CA/Monterey,+CA/San+Francisco,+CA/Mariposa,+CA/Mammoth+Lakes,+CA/Lone+Pine,+CA/Las+Vegas,+NV/" target="_blank" rel="noopener">Abrir ruta completa en Google Maps</a>
   </div>
 </section>
 
@@ -939,5 +1151,102 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  // Salida AEP — LATAM 454 — Mié 22 julio 2026 · 15:45 hora Argentina (UTC-3)
+  const departure = new Date('2026-07-22T15:45:00-03:00').getTime();
+  const elD = document.getElementById('cd-days');
+  const elH = document.getElementById('cd-hours');
+  const elM = document.getElementById('cd-mins');
+  const elS = document.getElementById('cd-secs');
+  const cdGrid = document.querySelector('.hero-countdown');
+  if (!elD || !elH || !elM || !elS) return;
+  const pad = n => String(n).padStart(2, '0');
+  function tick() {
+    const diff = departure - Date.now();
+    if (diff <= 0) {
+      if (cdGrid) cdGrid.innerHTML = '<div class="cd-launched">🌺 ¡Estamos de luna de miel! 🌺</div>';
+      clearInterval(timer);
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    elD.textContent = d;
+    elH.textContent = pad(h);
+    elM.textContent = pad(m);
+    elS.textContent = pad(s);
+    elS.classList.add('tick');
+    setTimeout(() => elS.classList.remove('tick'), 180);
+  }
+  tick();
+  const timer = setInterval(tick, 1000);
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin="anonymous"></script>
+<script>
+(function(){
+  const stops = [
+    { day: 1, date: 'Jue 23 jul', label: 'LAX → Santa Monica',     lat: 34.0195, lng: -118.4912, color: '#ed7867', note: '1.5h vía Lakewood (FRIENDS)' },
+    { day: 2, date: 'Vie 24 jul', label: 'Cambria',                 lat: 35.5644, lng: -121.0807, color: '#6b8e7f', note: '4h por PCH · Hearst Castle' },
+    { day: 3, date: 'Sáb 25 jul', label: 'Monterey',                lat: 36.6002, lng: -121.8947, color: '#6b8e7f', note: '3h · Big Sur · Bixby Bridge' },
+    { day: 4, date: 'Dom 26 jul', label: 'San Francisco',           lat: 37.7749, lng: -122.4194, color: '#4a7585', note: '2h · 17-Mile Drive' },
+    { day: 5, date: 'Lun 27 jul', label: 'San Francisco (2da noche)', lat: 37.7749, lng: -122.4194, color: '#4a7585', note: 'Sin manejar · GG + Alcatraz', skip: true },
+    { day: 6, date: 'Mar 28 jul', label: 'Mariposa',                lat: 37.4849, lng: -119.9663, color: '#8b6f47', note: '4h · puerta a Yosemite' },
+    { day: 7, date: 'Mié 29 jul', label: 'Mammoth Lakes',           lat: 37.6485, lng: -118.9721, color: '#8b6f47', note: '3h · Tioga Pass scenic' },
+    { day: 8, date: 'Jue 30 jul', label: 'Lone Pine',               lat: 36.6063, lng: -118.0626, color: '#8b6f47', note: '2.5h · Alabama Hills' },
+    { day: 9, date: 'Vie 31 jul', label: 'Las Vegas',               lat: 36.1147, lng: -115.1728, color: '#8b3a1a', note: '4.5h · llega 11:30 AM' }
+  ];
+
+  const mapEl = document.getElementById('roadtrip-map');
+  if (!mapEl || !window.L) return;
+
+  const map = L.map('roadtrip-map', { scrollWheelZoom: false, zoomControl: true }).setView([37, -120], 6);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 17
+  }).addTo(map);
+
+  // Markers
+  const markerStops = stops.filter(s => !s.skip);
+  const bounds = L.latLngBounds([]);
+  markerStops.forEach(s => {
+    const icon = L.divIcon({
+      className: '',
+      html: '<div style="background:' + s.color + ';color:white;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;border:3px solid white;box-shadow:0 2px 10px rgba(0,0,0,0.35);font-family:DM Sans,sans-serif;">' + s.day + '</div>',
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -14]
+    });
+    L.marker([s.lat, s.lng], { icon: icon })
+      .addTo(map)
+      .bindPopup('<em>Día ' + s.day + ' · ' + s.date + '</em><br><strong>' + s.label + '</strong><br>' + s.note);
+    bounds.extend([s.lat, s.lng]);
+  });
+  map.fitBounds(bounds, { padding: [40, 40] });
+
+  // Fetch actual road route from OSRM
+  const routeCoords = markerStops.map(s => s.lng + ',' + s.lat).join(';');
+  const osrmUrl = 'https://router.project-osrm.org/route/v1/driving/' + routeCoords + '?overview=full&geometries=geojson';
+  fetch(osrmUrl)
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(data => {
+      if (data && data.routes && data.routes[0]) {
+        L.geoJSON(data.routes[0].geometry, {
+          style: { color: '#ed7867', weight: 4, opacity: 0.85, lineCap: 'round', lineJoin: 'round' }
+        }).addTo(map).bringToBack();
+      }
+      mapEl.classList.remove('loading');
+    })
+    .catch(() => {
+      // Fallback: straight line polyline
+      L.polyline(markerStops.map(s => [s.lat, s.lng]), {
+        color: '#ed7867', weight: 4, opacity: 0.7, dashArray: '8 6', lineCap: 'round'
+      }).addTo(map);
+      mapEl.classList.remove('loading');
+    });
+})();
+</script>
 </body>
 </html>
